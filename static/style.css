@@ -1,0 +1,113 @@
+body {
+	font: 16px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+	color: #333;
+	background-color: #fff;
+	text-align: center;
+}
+
+a {
+	color: #4078c0;
+	text-decoration: none;
+}
+
+a:hover,
+a:active {
+	text-decoration: underline;
+}
+
+.container {
+	width: 980px;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+.jumbotron {
+	margin-bottom: 13em;
+	padding-top: 1em;
+	padding-bottom: 10em;
+	font-size: 1.5rem;
+	background-color: #4078c0;
+	color: #fff;
+}
+
+.jumbotron h1 {
+	margin-bottom: 0;
+	font-size: 2.5em;
+	font-weight: normal;
+}
+
+.btn {
+	position: relative;
+	display: inline-block;
+	color: #fff;
+	white-space: nowrap;
+	vertical-align: middle;
+	cursor: pointer;
+	border: 1px solid #fff;
+	border-radius: 3px;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	-webkit-appearance: none;
+	padding: .75em 1.15em;
+	font-size: inherit;
+	font-weight: normal;
+	line-height: 1;
+}
+
+.btn:hover,
+.btn:active {
+	text-decoration: none;
+	color: #4078c0;
+	background: #fff;
+	border-color: #fff;
+	box-shadow: none;
+}
+
+.footer {
+	margin-bottom: 1.5em;
+	padding-top: 2em;
+	padding-bottom: 1em;
+	line-height: 1.75;
+	color: #7a7a7a;
+	border-top: 1px solid #eee;
+	border-bottom: 1px solid #eee;
+}
+
+.screenshots figure {
+	margin: 0;
+	float: left;
+	height: 30em;
+	width: 30em;
+	border: 1px solid #fff;
+	position: relative;
+}
+
+.screenshots figcaption {
+	background-color: #0078D7;
+	color: #fff;
+	width: 100%;
+	line-height: 2;
+	position: absolute;
+	bottom: 0;
+}
+
+.screenshots-main {
+	position: absolute;
+	top: 22em;
+}
+
+.screenshots-other {
+	padding-bottom: 3em;
+}
+
+.screenshots:after {
+	display: table;
+	content: " ";
+	clear: both;
+}
+
+.screenshots figure:last-child {
+	float: right;
+}

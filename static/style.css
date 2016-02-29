@@ -16,15 +16,14 @@ a:active {
 }
 
 .container {
-	width: 980px;
-	margin-right: auto;
-	margin-left: auto;
+	margin-left: 1em;
+	margin-right: 1em;
+	width: auto;
 }
 
 .jumbotron {
-	margin-bottom: 13em;
 	padding-top: 1em;
-	padding-bottom: 10em;
+	padding-bottom: 2em;
 	font-size: 1.5rem;
 	background-color: #4078c0;
 	color: #fff;
@@ -66,7 +65,6 @@ a:active {
 }
 
 .footer {
-	margin-bottom: 1.5em;
 	padding-top: 2em;
 	padding-bottom: 1em;
 	line-height: 1.75;
@@ -75,11 +73,18 @@ a:active {
 	border-bottom: 1px solid #eee;
 }
 
+.screenshots {
+	margin-top: 1.5em;
+}
+
+.screenshots img {
+	max-width: 100%;
+}
+
 .screenshots figure {
 	margin: 0;
 	float: left;
-	height: 30em;
-	width: 30em;
+	width: 49%;
 	border: 1px solid #fff;
 	position: relative;
 }
@@ -91,11 +96,6 @@ a:active {
 	line-height: 2;
 	position: absolute;
 	bottom: 0;
-}
-
-.screenshots-main {
-	position: absolute;
-	top: 22em;
 }
 
 .screenshots-other {
@@ -110,4 +110,46 @@ a:active {
 
 .screenshots figure:last-child {
 	float: right;
+}
+
+@media (min-width: 1060px) {
+	.container {
+		width: 980px;
+		margin-right: auto;
+		margin-left: auto;
+	}
+	
+	.jumbotron {
+		margin-bottom: 13em;
+		padding-bottom: 10em;
+	}
+	
+	.screenshots-main {
+		position: absolute;
+		top: 20em;
+	}
+}
+
+@media (max-width: 840px) {
+	.screenshots figure {
+		width: auto;
+		max-width: 480px;
+		float: none !important;
+		text-align: center;
+		margin: 1em auto;
+	}
+	
+	.jumbotron h1 {
+		font-size: 1.5em;
+	}
+	
+	.jumbotron p {
+		margin-top: 0;
+	}
+}
+
+@media (max-width: 480px) {
+	.jumbotron h1 {
+		font-size: 1em;
+	}
 }

@@ -12,7 +12,7 @@
 				<div class="container">
 					<h1>Source 2 Resource Viewer</h1>
 					<p>C# Library, CLI Utility, GUI Viewer.</p>
-					<a href="https://github.com/SteamDatabase/ValveResourceFormat/releases" class="btn">Download</a>
+					<a href="https://github.com/SteamDatabase/ValveResourceFormat/releases" class="btn" id="js-download">Download</a>
 				</div>
 			</div>
 
@@ -48,5 +48,24 @@
 					<figcaption>Use the command line utility</figcaption>
 				</figure>
 			</div>
+			
+			<script>
+				fetch( 'https://api.github.com/repos/SteamDatabase/ValveResourceFormat/releases' )
+				.then( function( response )
+				{
+					return response.json();
+				} )
+				.then( function( response )
+				{
+					if( response.length )
+					{
+						response = response[ 0 ];
+						
+						var button = document.getElementById( 'js-download' );
+						button.href = response.html_url;
+						button.textContent += ' ' + response.name;
+					}
+				} );
+			</script>
 	</body>
 </html>

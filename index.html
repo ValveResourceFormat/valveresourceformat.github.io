@@ -61,9 +61,24 @@
 					{
 						response = response[ 0 ];
 						
-						var button = document.getElementById( 'js-download' );
+						const date = new Date( response.published_at );
+						const year = date.getUTCFullYear();
+						let month = date.getUTCMonth() + 1;
+						let day = date.getUTCDate();
+						
+						if( month < 10 )
+						{
+							month = `0${month}`;
+						}
+						
+						if( day < 10 )
+						{
+							day = `0${day}`;
+						}
+						
+						const button = document.getElementById( 'js-download' );
 						button.href = response.html_url;
-						button.textContent += ' ' + response.name;
+						button.textContent += ` ${response.name} (${year}-${month}-${day})`;
 					}
 				} );
 			</script>

@@ -6,7 +6,7 @@ body {
 }
 
 a {
-	color: #4078c0;
+	color: #07c;
 	text-decoration: none;
 }
 
@@ -25,7 +25,7 @@ a:active {
 	padding-top: 1em;
 	padding-bottom: 2em;
 	font-size: 1.5rem;
-	background-color: #4078c0;
+	background-color: #07c;
 	color: #fff;
 }
 
@@ -68,7 +68,7 @@ a:active {
 	padding-top: 2em;
 	padding-bottom: 1em;
 	line-height: 1.75;
-	color: #7a7a7a;
+	color: #757575;
 	border-top: 1px solid #eee;
 	border-bottom: 1px solid #eee;
 }
@@ -90,7 +90,7 @@ a:active {
 }
 
 .screenshots figcaption {
-	background-color: #0078D7;
+	background-color: #07c;
 	color: #fff;
 	width: 100%;
 	line-height: 2;

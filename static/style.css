@@ -35,26 +35,31 @@ a:active {
 	font-weight: normal;
 }
 
+.unstable {
+	margin-top: 0;
+	font-size: 1rem;
+}
+
+.unstable a {
+	color: #fff;
+	text-decoration: underline;
+}
+
 .btn {
 	position: relative;
 	display: inline-block;
 	color: #fff;
-	white-space: nowrap;
 	vertical-align: middle;
 	cursor: pointer;
 	border: 1px solid #fff;
 	border-radius: 3px;
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
-	-webkit-appearance: none;
 	padding: .75em 1.15em;
 	font-size: inherit;
 	font-weight: normal;
 	line-height: 1;
 }
 
+.unstable a:hover,
 .btn:hover,
 .btn:active {
 	text-decoration: none;
@@ -120,13 +125,11 @@ a:active {
 	}
 	
 	.jumbotron {
-		margin-bottom: 13em;
 		padding-bottom: 10em;
 	}
 	
 	.screenshots-main {
-		position: absolute;
-		top: 20em;
+		margin-top: -13em;
 	}
 }
 

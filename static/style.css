@@ -1,5 +1,5 @@
 body {
-	font: 16px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+	font: 16px/1.5 'Open Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
 	color: #333;
 	background-color: #fff;
 	text-align: center;
@@ -25,13 +25,16 @@ a:active {
 	padding-top: 1em;
 	padding-bottom: 2em;
 	font-size: 1.5rem;
-	background-color: #07c;
 	color: #fff;
 	text-align: left;
+	background-color: #000;
+	background-image: url(hero.jpg);
+	background-position: center top;
+	background-repeat: no-repeat;
 }
 
 .jumbotron h1 {
-	margin-bottom: 0;
+	margin: 0;
 	font-size: 2.5em;
 	font-weight: normal;
 }
@@ -41,6 +44,7 @@ a:active {
 	margin-top: .5em;
 	font-size: .8em;
 	line-height: 1.2;
+	color: #eee;
 }
 
 .jumbotron .unstable {
@@ -48,15 +52,16 @@ a:active {
 	font-size: 1rem;
 }
 
-.unstable a {
-	color: #fff;
+.jumbotron a {
+	color: inherit;
 	text-decoration: underline;
 }
 
-.btn {
+.jumbotron .btn {
 	position: relative;
 	display: inline-block;
 	color: #fff;
+	text-decoration: none;
 	vertical-align: middle;
 	cursor: pointer;
 	border: 1px solid #fff;
@@ -68,11 +73,11 @@ a:active {
 	margin-top: 1em;
 }
 
-.unstable a:hover,
-.unstable a:focus,
-.btn:hover,
-.btn:focus,
-.btn:active {
+.jumbotron a:hover,
+.jumbotron a:focus,
+.jumbotron .btn:hover,
+.jumbotron .btn:focus,
+.jumbotron .btn:active {
 	text-decoration: none;
 	color: #4078c0;
 	background: #fff;
@@ -81,12 +86,9 @@ a:active {
 }
 
 .footer {
-	padding-top: 2em;
-	padding-bottom: 1em;
+	margin: 1.5em 0;
 	line-height: 1.75;
 	color: #757575;
-	border-top: 1px solid #eee;
-	border-bottom: 1px solid #eee;
 }
 
 .screenshots {
@@ -101,7 +103,6 @@ a:active {
 	margin: 0;
 	float: left;
 	width: 49%;
-	border: 1px solid #fff;
 	position: relative;
 }
 
@@ -129,11 +130,10 @@ a:active {
 }
 
 .github-corner svg {
-	fill:#fff;
-	color:#07c;
+	fill: #333;
+	color: #fff;
 	position: absolute;
 	top: 0;
-	border: 0;
 	right: 0;
 }
 
@@ -141,10 +141,10 @@ a:active {
 	animation: octocat-wave 560ms ease-in-out;
 }
 
-@keyframes octocat-wave{
-	0%,100%{transform:rotate(0)}
-	20%,60%{transform:rotate(-25deg)}
-	40%,80%{transform:rotate(10deg)}
+@keyframes octocat-wave {
+	0%, 100% { transform:rotate(0); }
+	20%, 60% { transform:rotate(-25deg); }
+	40%, 80% { transform:rotate(10deg); }
 }
 
 @media (min-width: 1060px) {
@@ -185,7 +185,4 @@ a:active {
 	.jumbotron h1 {
 		font-size: 1em;
 	}
-
-	.github-corner:hover .octo-arm{animation:none}
-	.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}
 }

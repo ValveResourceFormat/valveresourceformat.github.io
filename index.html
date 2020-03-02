@@ -5,6 +5,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="description" content="Tools to view, decompile, and export Valve's Source 2 models, maps, textures, panorama files, and much more.">
 		<title>Source 2 Resource Viewer and Decompiler - VRF</title>
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" rel="stylesheet">
 		<link rel="stylesheet" href="static/normalize.css">
 		<link rel="stylesheet" href="static/style.css">
 		<link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/SteamDatabase/ValveResourceFormat/master/Icons/vrf.ico">
@@ -20,10 +21,10 @@
 					</svg>
 				</a>
 				<div class="container">
-					<h1>VRF: Source 2 Resource Viewer</h1>
+					<h1>VRF / Source 2 Resource Viewer</h1>
 					<p>This program can open Valve's VPK packages and most Source 2 assets<br><small>(maps, models, meshes, materials, textures, sounds, and more!)</small></p>
-					<p>All Source 2 projects are supported: Dota 2, Half-Life: Alyx, SteamVR, Underlords…</p>
-					<a href="https://github.com/SteamDatabase/ValveResourceFormat/releases" class="btn" id="js-download">Download</a>
+					<p class="supported">All Source 2 projects are supported: <a href="https://store.steampowered.com/app/570/">Dota 2</a>, <a href="https://store.steampowered.com/app/546560/">Half-Life: Alyx</a>, <a href="https://store.steampowered.com/app/250820/">SteamVR</a>, <a href="https://store.steampowered.com/app/1046930/">Underlords</a>, and others</p>
+					<a href="https://github.com/SteamDatabase/ValveResourceFormat/releases" class="btn" id="js-download">Download last release</a>
 					<p class="unstable">or <a href="https://ci.appveyor.com/project/xPaw/valveresourceformat/build/artifacts">download latest unstable build</a></p>
 				</div>
 			</div>
@@ -101,7 +102,7 @@
 
 						const button = document.getElementById( 'js-download' );
 						button.href = url;
-						button.textContent += ` ${response.tag_name} (${year}-${month}-${day})`;
+						button.textContent = `Download v${response.tag_name} (${year}-${month}-${day})`;
 					}
 				} );
 			</script>

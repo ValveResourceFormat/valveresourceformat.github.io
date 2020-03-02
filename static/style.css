@@ -117,6 +117,25 @@ a:active {
 	float: right;
 }
 
+.github-corner svg {
+	fill:#fff;
+	color:#07c;
+	position: absolute;
+	top: 0;
+	border: 0;
+	right: 0;
+}
+
+.github-corner:hover .octo-arm {
+	animation: octocat-wave 560ms ease-in-out;
+}
+
+@keyframes octocat-wave{
+	0%,100%{transform:rotate(0)}
+	20%,60%{transform:rotate(-25deg)}
+	40%,80%{transform:rotate(10deg)}
+}
+
 @media (min-width: 1060px) {
 	.container {
 		width: 980px;
@@ -155,4 +174,7 @@ a:active {
 	.jumbotron h1 {
 		font-size: 1em;
 	}
+
+	.github-corner:hover .octo-arm{animation:none}
+	.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}
 }

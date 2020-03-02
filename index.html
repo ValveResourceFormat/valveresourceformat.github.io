@@ -87,9 +87,20 @@
 							day = `0${day}`;
 						}
 						
+						let url = response.html_url;
+
+						for( const asset of response.assets )
+						{
+							if( asset.name === 'GUI.zip' || asset.name === 'VRF.exe' )
+							{
+								url = asset.browser_download_url;
+								break;
+							}
+						}
+
 						const button = document.getElementById( 'js-download' );
-						button.href = response.html_url;
-						button.textContent += ` ${response.name} (${year}-${month}-${day})`;
+						button.href = url;
+						button.textContent += ` ${response.tag_name} (${year}-${month}-${day})`;
 					}
 				} );
 			</script>

@@ -60,7 +60,9 @@ a:active {
 }
 
 .unstable a:hover,
+.unstable a:focus,
 .btn:hover,
+.btn:focus,
 .btn:active {
 	text-decoration: none;
 	color: #4078c0;

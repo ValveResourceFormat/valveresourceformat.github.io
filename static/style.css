@@ -27,6 +27,7 @@ a:active {
 	font-size: 1.5rem;
 	background-color: #07c;
 	color: #fff;
+	text-align: left;
 }
 
 .jumbotron h1 {
@@ -35,7 +36,14 @@ a:active {
 	font-weight: normal;
 }
 
-.unstable {
+.jumbotron p {
+	margin-bottom: 0;
+	margin-top: .5em;
+	font-size: .8em;
+	line-height: 1.2;
+}
+
+.jumbotron .unstable {
 	margin-top: 0;
 	font-size: 1rem;
 }
@@ -57,6 +65,7 @@ a:active {
 	font-size: inherit;
 	font-weight: normal;
 	line-height: 1;
+	margin-top: 1em;
 }
 
 .unstable a:hover,

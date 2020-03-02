@@ -186,4 +186,13 @@ a:active {
 	.jumbotron h1 {
 		font-size: 1em;
 	}
+
+	.jumbotron .btn {
+		display: block;
+	}
+
+	.jumbotron .unstable {
+		text-align: center;
+		margin-top: 1em;
+	}
 }

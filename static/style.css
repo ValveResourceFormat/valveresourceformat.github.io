@@ -1,3 +1,11 @@
+html {
+	box-sizing: border-box;
+}
+
+*, *:before, *:after {
+	box-sizing: inherit;
+}
+
 body {
 	font: 16px/1.5 'Open Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
 	color: #333;
@@ -93,40 +101,30 @@ a:active {
 
 .screenshots {
 	margin-top: 1.5em;
+	display: flex;
+	justify-content: space-between;
 }
 
 .screenshots img {
-	max-width: 100%;
+	width: 100%;
 }
 
 .screenshots figure {
 	margin: 0;
-	float: left;
-	width: 49%;
-	position: relative;
+	width: 480px; /* 980px/2 - 10px */
+	font-size: 0;
 }
 
 .screenshots figcaption {
 	background-color: #07c;
 	color: #fff;
-	width: 100%;
-	line-height: 2;
-	position: absolute;
-	bottom: 0;
+	line-height: 1;
+	padding: 8px;
+	font-size: 16px;
 }
 
 .screenshots-other {
 	padding-bottom: 3em;
-}
-
-.screenshots:after {
-	display: table;
-	content: " ";
-	clear: both;
-}
-
-.screenshots figure:last-child {
-	float: right;
 }
 
 .github-corner svg {
@@ -164,10 +162,13 @@ a:active {
 }
 
 @media (max-width: 840px) {
+	.screenshots {
+		flex-direction: column;
+	}
+
 	.screenshots figure {
 		width: auto;
 		max-width: 480px;
-		float: none !important;
 		text-align: center;
 		margin: 1em auto;
 	}

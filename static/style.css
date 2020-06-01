@@ -82,7 +82,7 @@ a:active {
 .jumbotron .btn {
 	position: relative;
 	display: inline-block;
-	color: #fff;
+	color: hsl(66, 70%, 70%);
 	text-decoration: none;
 	vertical-align: middle;
 	cursor: pointer;
@@ -116,6 +116,15 @@ a:active {
 .jumbotron .download {
 	margin: 60px 0;
 	text-align: center;
+}
+
+.jumbotron .download svg {
+	vertical-align: -7px;
+	margin-left: .75em;
+}
+
+.jumbotron .download path {
+	fill: currentColor;
 }
 
 .footer {

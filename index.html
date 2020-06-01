@@ -48,7 +48,11 @@
 					<p class="supported">All Source 2 projects are supported: <a href="https://store.steampowered.com/app/570/">Dota 2</a>, <a href="https://store.steampowered.com/app/546560/">Half-Life: Alyx</a>, <a href="https://store.steampowered.com/app/250820/">SteamVR</a>, <a href="https://store.steampowered.com/app/1046930/">Underlords</a>, and others</p>
 					
 					<div class="download">
-						<a href="https://github.com/SteamDatabase/ValveResourceFormat/releases" class="btn" id="js-download">Download last release</a>
+						<a href="https://github.com/SteamDatabase/ValveResourceFormat/releases" class="btn" id="js-download">
+							<span>Download last release</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="29" height="29">
+								<path d="M4.97 11.03a.75.75 0 111.06-1.06L11 14.94V2.75a.75.75 0 011.5 0v12.19l4.97-4.97a.75.75 0 111.06 1.06l-6.25 6.25a.75.75 0 01-1.06 0l-6.25-6.25zm-.22 9.47a.75.75 0 000 1.5h14.5a.75.75 0 000-1.5H4.75z"></path>
+							</svg>
+						</a>
 						<p class="unstable">or <a href="https://ci.appveyor.com/api/projects/xPaw/valveresourceformat/artifacts/GUI%2Fbin%2FRelease%2Fwin-x64%2FGUI.zip?branch=master">download latest unstable build</a></p>
 					</div>
 				</div>
@@ -127,7 +131,8 @@
 
 						const button = document.getElementById( 'js-download' );
 						button.href = url;
-						button.textContent = `Download v${response.tag_name} (${year}-${month}-${day})`;
+						button.querySelector( 'span' ).textContent =
+							`Download v${response.tag_name} (${year}-${month}-${day})`;
 					}
 				} );
 			</script>

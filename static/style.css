@@ -37,7 +37,7 @@ a:active {
 	text-align: left;
 	background-color: #000;
 	background-image: url(hero.jpg);
-	background-position: center top;
+	background-position: center bottom;
 	background-repeat: no-repeat;
 }
 
@@ -50,13 +50,18 @@ a:active {
 .jumbotron p {
 	margin-bottom: 0;
 	margin-top: .5em;
-	font-size: .8em;
-	line-height: 1.2;
+	font-size: 20px;
+	line-height: 1.4;
 	color: #eee;
 }
 
+.jumbotron p small {
+	font-size: 16px;
+	display: block;
+	color: #bbb;
+}
+
 .jumbotron .unstable {
-	margin-top: 0;
 	font-size: 1rem;
 }
 
@@ -72,25 +77,36 @@ a:active {
 	text-decoration: none;
 	vertical-align: middle;
 	cursor: pointer;
-	border: 1px solid #fff;
-	border-radius: 3px;
+	background: hsla(66, 70%, 54%, 0.2);
+	border: 2px solid hsl(66, 70%, 54%);
+	border-radius: 6px;
 	padding: .75em 1.15em;
 	font-size: inherit;
 	font-weight: normal;
 	line-height: 1;
 	margin-top: 1em;
+	transition: background .2s;
 }
 
 .jumbotron a:hover,
-.jumbotron a:focus,
+.jumbotron a:focus {
+	text-decoration: none;
+	color: #000;
+	background: #fff;
+}
+
 .jumbotron .btn:hover,
 .jumbotron .btn:focus,
 .jumbotron .btn:active {
 	text-decoration: none;
-	color: #4078c0;
-	background: #fff;
-	border-color: #fff;
+	color: #000;
+	background: hsl(66, 70%, 54%);
 	box-shadow: none;
+}
+
+.jumbotron .download {
+	margin: 60px 0;
+	text-align: center;
 }
 
 .footer {
@@ -176,23 +192,15 @@ a:active {
 	.jumbotron h1 {
 		font-size: 1.5em;
 	}
-	
-	.jumbotron p {
-		margin-top: 0;
-	}
 }
 
 @media (max-width: 480px) {
 	.jumbotron h1 {
 		font-size: 1em;
+		margin-bottom: 1em;
 	}
 
 	.jumbotron .btn {
 		display: block;
-	}
-
-	.jumbotron .unstable {
-		text-align: center;
-		margin-top: 1em;
 	}
 }

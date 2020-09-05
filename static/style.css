@@ -210,6 +210,10 @@ a:active {
 	.jumbotron h1 {
 		font-size: 1.5em;
 	}
+
+	.jumbotron p small {
+		display: inline;
+	}
 }
 
 @media (max-width: 480px) {

@@ -157,10 +157,6 @@ a:active {
 	font-size: 16px;
 }
 
-.screenshots-other {
-	padding-bottom: 3em;
-}
-
 .github-corner svg {
 	fill: #333;
 	color: #fff;
@@ -197,6 +193,7 @@ a:active {
 
 @media (max-width: 840px) {
 	.screenshots {
+		margin-top: 0;
 		flex-direction: column;
 	}
 
@@ -204,7 +201,8 @@ a:active {
 		width: auto;
 		max-width: 480px;
 		text-align: center;
-		margin: 1em auto;
+		margin: 0 auto;
+		margin-top: 16px;
 	}
 	
 	.jumbotron h1 {

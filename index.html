@@ -47,7 +47,7 @@
 						<small>(maps, models, meshes, materials, textures, sounds, and more!)</small>
 					</p>
 					<p class="supported">All Source 2 projects are supported: <a href="https://store.steampowered.com/app/570/">Dota 2</a>, <a href="https://store.steampowered.com/app/546560/">Half-Life: Alyx</a>, <a href="https://store.steampowered.com/app/250820/">SteamVR</a>, <a href="https://store.steampowered.com/app/1046930/">Underlords</a>, and others</p>
-					
+
 					<div class="download">
 						<a href="https://github.com/SteamDatabase/ValveResourceFormat/releases" class="btn" id="js-download">
 							<span>Download last release</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="29" height="29">
@@ -59,18 +59,28 @@
 				</div>
 			</div>
 
-			<div class="container">
-				<div class="container screenshots screenshots-main">
-					<figure>
-						<img src="static/screen_package.png" alt="">
-						<figcaption>View and export files in VPK packages</figcaption>
-					</figure>
-					
-					<figure>
-						<img src="static/screen_map.png" alt="">
-						<figcaption>Preview maps and models in 3D space</figcaption>
-					</figure>
-				</div>
+			<div class="container screenshots screenshots-main">
+				<figure>
+					<img src="static/screen_package.png" alt="">
+					<figcaption>View and export files in VPK packages</figcaption>
+				</figure>
+
+				<figure>
+					<img src="static/screen_map.png" alt="">
+					<figcaption>Preview maps and models in 3D space</figcaption>
+				</figure>
+			</div>
+
+			<div class="container screenshots">
+				<figure>
+					<img src="static/screen_texture.png" alt="">
+					<figcaption>View and export textures along with other resources</figcaption>
+				</figure>
+
+				<figure>
+					<img src="static/screen_cli.png" alt="">
+					<figcaption>Use the command line utility</figcaption>
+				</figure>
 			</div>
 
 			<div class="container footer">
@@ -79,19 +89,7 @@
 				Created and maintained by <a href="https://github.com/SteamDatabase/ValveResourceFormat/graphs/contributors">various contributors</a>.<br>
 				Thanks to everyone that helped with reverse engineering the file formats.
 			</div>
-			
-			<div class="container screenshots screenshots-other">
-				<figure>
-					<img src="static/screen_texture.png" alt="">
-					<figcaption>View and export textures along with other resources</figcaption>
-				</figure>
-				
-				<figure>
-					<img src="static/screen_cli.png" alt="">
-					<figcaption>Use the command line utility</figcaption>
-				</figure>
-			</div>
-			
+
 			<script>
 				fetch( 'https://api.github.com/repos/SteamDatabase/ValveResourceFormat/releases' )
 				.then( function( response )
@@ -103,22 +101,22 @@
 					if( response.length )
 					{
 						response = response[ 0 ];
-						
+
 						const date = new Date( response.published_at );
 						const year = date.getUTCFullYear();
 						let month = date.getUTCMonth() + 1;
 						let day = date.getUTCDate();
-						
+
 						if( month < 10 )
 						{
 							month = `0${month}`;
 						}
-						
+
 						if( day < 10 )
 						{
 							day = `0${day}`;
 						}
-						
+
 						let url = response.html_url;
 
 						for( const asset of response.assets )

@@ -8,13 +8,16 @@ html {
 
 body {
 	font: 16px/1.5 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
-	color: #333;
-	background-color: #fff;
+	color: #fff;
 	text-align: center;
+	background-color: #000;
+	background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 100%), url(dota_stars_wallpaper.jpg);
+	background-repeat: no-repeat;
+	background-size: cover;
 }
 
 a {
-	color: #07c;
+	color: #3af;
 	text-decoration: none;
 }
 
@@ -36,10 +39,6 @@ a:active {
 	color: #fff;
 	text-shadow: 1px 1px 0 #000;
 	text-align: left;
-	background-color: #000;
-	background-image: url(hero.jpg);
-	background-position: center bottom;
-	background-repeat: no-repeat;
 }
 
 .jumbotron h1 {
@@ -126,10 +125,11 @@ a:active {
 	fill: currentColor;
 }
 
-.jumbotron .download-other {
+.jumbotron .download-other,
+.jumbotron .other-links {
 	font-size: 15px;
 	text-align: center;
-	margin: 60px 0;
+	margin-bottom: 30px;
 }
 
 .jumbotron .download-other a {
@@ -140,6 +140,7 @@ a:active {
 	padding: .5em .8em;
 	font-weight: bold;
 	text-decoration: none;
+	transition: background .2s;
 	backdrop-filter: blur(5px);
 }
 
@@ -150,14 +151,15 @@ a:active {
 	text-shadow: none;
 }
 
-.jumbotron .download-other a:not(:last-child) {
+.jumbotron .download-other a:not(:last-child),
+.jumbotron .other-links a:not(:last-child) {
 	margin-right: 2em;
 }
 
 .footer {
 	margin: 1.5em 0;
 	line-height: 1.75;
-	color: #757575;
+	color: #ccc;
 }
 
 .screenshots {
@@ -168,6 +170,8 @@ a:active {
 
 .screenshots img {
 	width: 100%;
+	border-top-left-radius: 12px;
+	border-top-right-radius: 12px;
 	aspect-ratio: 1 / 1;
 }
 
@@ -183,29 +187,8 @@ a:active {
 	line-height: 1;
 	padding: 8px;
 	font-size: 16px;
-}
-
-.discord {
-	font-size: 0;
-	margin-top: 20px;
-}
-
-.github-corner svg {
-	fill: #333;
-	color: #fff;
-	position: absolute;
-	top: 0;
-	right: 0;
-}
-
-.github-corner:hover .octo-arm {
-	animation: octocat-wave 560ms ease-in-out;
-}
-
-@keyframes octocat-wave {
-	0%, 100% { transform:rotate(0); }
-	20%, 60% { transform:rotate(-25deg); }
-	40%, 80% { transform:rotate(10deg); }
+	border-bottom-left-radius: 8px;
+	border-bottom-right-radius: 8px;
 }
 
 @media (min-width: 1060px) {

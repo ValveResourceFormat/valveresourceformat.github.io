@@ -81,7 +81,7 @@ a:active {
 
 .jumbotron .btn {
 	position: relative;
-	display: inline-block;
+	display: inline-flex;
 	color: hsl(66, 70%, 70%);
 	text-decoration: none;
 	vertical-align: middle;
@@ -89,7 +89,6 @@ a:active {
 	background: hsla(66, 70%, 54%, 0.2);
 	border: 2px solid hsl(66, 70%, 54%);
 	border-radius: 6px;
-	padding: .75em 1.15em;
 	font-size: inherit;
 	font-weight: normal;
 	line-height: 1;
@@ -118,9 +117,14 @@ a:active {
 	text-align: center;
 }
 
+.jumbotron .download span {
+	margin: .75em 1.15em;
+	margin-right: .5em;
+}
+
 .jumbotron .download svg {
-	vertical-align: -7px;
-	margin-left: .75em;
+	align-self: center;
+	margin-right: .5em;
 }
 
 .jumbotron .download path {

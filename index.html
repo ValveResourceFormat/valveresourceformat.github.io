@@ -50,9 +50,8 @@
 
 					<div class="download">
 						<a href="https://github.com/SteamDatabase/ValveResourceFormat/releases" class="btn" id="js-download">
-							<span>Download last release</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="29" height="29">
-								<path d="M4.97 11.03a.75.75 0 111.06-1.06L11 14.94V2.75a.75.75 0 011.5 0v12.19l4.97-4.97a.75.75 0 111.06 1.06l-6.25 6.25a.75.75 0 01-1.06 0l-6.25-6.25zm-.22 9.47a.75.75 0 000 1.5h14.5a.75.75 0 000-1.5H4.75z"></path>
-							</svg>
+							<span>Download last release</span>
+							<svg aria-hidden="true" focusable="false" width="40" height="40" viewBox="0 0 448 512"><path fill="currentColor" d="M0 93.7l183.6-25.3v177.4H0V93.7zm0 324.6l183.6 25.3V268.4H0v149.9zm203.8 28L448 480V268.4H203.8v177.9zm0-380.6v180.1H448V32L203.8 65.7z"></path></svg>
 						</a>
 						<p class="unstable">or <a href="https://nightly.link/SteamDatabase/ValveResourceFormat/workflows/build/master/VRF-GUI.zip">download latest unstable build</a></p>
 					</div>
@@ -124,7 +123,7 @@
 
 						for( const asset of response.assets )
 						{
-							if( asset.name === 'GUI.zip' || asset.name === 'VRF.exe' )
+							if( asset.name === 'VRF.exe' )
 							{
 								url = asset.browser_download_url;
 								break;

@@ -55,6 +55,12 @@
 						</a>
 						<p class="unstable">or <a href="https://nightly.link/SteamDatabase/ValveResourceFormat/workflows/build/master/VRF-GUI.zip">download latest unstable build</a></p>
 					</div>
+					<div class="download-other">
+						<a href="#" id="js-download-cli-windows">CLI for Windows</a>
+						<a href="#" id="js-download-cli-linux">CLI for Linux</a>
+						<a href="#" id="js-download-cli-macos">CLI for macOS</a>
+						<a href="https://www.nuget.org/packages/ValveResourceFormat/">NuGet</a>
+					</div>
 				</div>
 			</div>
 
@@ -121,12 +127,23 @@
 
 						let url = response.html_url;
 
+						const fileMap =
+						{
+							'Decompiler-windows.zip': 'js-download-cli-windows',
+							'Decompiler-linux.zip': 'js-download-cli-linux',
+							'Decompiler-macos.zip': 'js-download-cli-macos',
+						};
+
 						for( const asset of response.assets )
 						{
 							if( asset.name === 'VRF.exe' )
 							{
 								url = asset.browser_download_url;
 								break;
+							}
+							else if( fileMap[ asset.name ] )
+							{
+								document.getElementById( fileMap[ asset.name ] ).href = asset.browser_download_url;
 							}
 						}
 

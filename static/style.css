@@ -43,6 +43,7 @@ a:active {
 	padding-bottom: 2em;
 	font-size: 1.5rem;
 	color: #fff;
+	text-shadow: 1px 1px 0 #000;
 	text-align: left;
 	background-color: #000;
 	background-image: url(hero.jpg);
@@ -129,6 +130,15 @@ a:active {
 
 .jumbotron .download path {
 	fill: currentColor;
+}
+
+.jumbotron .download-other {
+	font-size: 15px;
+	text-align: center;
+}
+
+.jumbotron .download-other a:not(:last-child) {
+	margin-right: 2em;
 }
 
 .footer {
@@ -222,6 +232,11 @@ a:active {
 	.jumbotron p small {
 		display: inline;
 	}
+
+	.jumbotron .download-other a {
+		display: block;
+		margin: 1em 0 !important;
+	}
 }
 
 @media (max-width: 480px) {
@@ -232,5 +247,14 @@ a:active {
 
 	.jumbotron .btn {
 		display: block;
+		padding: .5em;
+	}
+
+	.jumbotron .download span {
+		margin: 0;
+	}
+
+	.jumbotron .btn svg {
+		display: none;
 	}
 }

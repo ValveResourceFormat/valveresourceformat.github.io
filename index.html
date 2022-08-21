@@ -44,20 +44,21 @@
 
 					<div class="download">
 						<a href="https://github.com/SteamDatabase/ValveResourceFormat/releases" class="btn" id="js-download">
-							<span>Download last release</span>
+							<span>Download viewer</span>
 							<svg aria-hidden="true" focusable="false" width="40" height="40" viewBox="0 0 448 512"><path fill="currentColor" d="M0 93.7l183.6-25.3v177.4H0V93.7zm0 324.6l183.6 25.3V268.4H0v149.9zm203.8 28L448 480V268.4H203.8v177.9zm0-380.6v180.1H448V32L203.8 65.7z"></path></svg>
 						</a>
 						<p class="unstable">or <a href="https://nightly.link/SteamDatabase/ValveResourceFormat/workflows/build/master/VRF-GUI.zip">download latest unstable build</a></p>
 					</div>
-					<div class="download-other">
-						<a href="https://github.com/SteamDatabase/ValveResourceFormat/releases" id="js-download-cli-windows">CLI for Windows</a>
-						<a href="https://github.com/SteamDatabase/ValveResourceFormat/releases" id="js-download-cli-linux">CLI for Linux</a>
-						<a href="https://github.com/SteamDatabase/ValveResourceFormat/releases" id="js-download-cli-macos">CLI for macOS</a>
-						<a href="https://www.nuget.org/packages/ValveResourceFormat/">NuGet</a>
-					</div>
-					<div class="other-links">
-						<a href="https://steamdb.info/discord/">Join our Discord</a>
-						<a href="https://github.com/SteamDatabase/ValveResourceFormat">View project on GitHub</a>
+
+					<div class="list-group" id="js-download-all"></div>
+
+					<div class="list-group">
+						<a class="list-group-item" href="https://www.nuget.org/packages/ValveResourceFormat">ValveResourceFormat on NuGet</a>
+						<a class="list-group-item" href="https://www.nuget.org/packages/ValveKeyValue">ValveKeyValue on NuGet</a>
+						<a class="list-group-item" href="https://www.nuget.org/packages/ValvePak">ValvePak on NuGet</a>
+						<a class="list-group-item" href="https://github.com/SteamDatabase/ValveResourceFormat/releases">View releases on GitHub</a>
+						<a class="list-group-item" href="https://github.com/SteamDatabase/ValveResourceFormat">View project on GitHub</a>
+						<a class="list-group-item" href="https://steamdb.info/discord/">Join our Discord</a>
 					</div>
 				</div>
 			</div>
@@ -94,58 +95,6 @@
 				Source 2 is a trademark and/or registered trademark of Valve Corporation.
 			</div>
 
-			<script>
-				fetch( 'https://api.github.com/repos/SteamDatabase/ValveResourceFormat/releases' )
-				.then( function( response )
-				{
-					return response.json();
-				} )
-				.then( function( response )
-				{
-					if( response.length )
-					{
-						response = response[ 0 ];
-
-						const date = new Date( response.published_at );
-						const year = date.getUTCFullYear();
-						let month = date.getUTCMonth() + 1;
-						let day = date.getUTCDate();
-
-						if( month < 10 )
-						{
-							month = `0${month}`;
-						}
-
-						if( day < 10 )
-						{
-							day = `0${day}`;
-						}
-
-						let url = response.html_url;
-
-						const fileMap =
-						{
-							'Decompiler-windows-x64.zip': 'js-download-cli-windows',
-							'Decompiler-linux-x64.zip': 'js-download-cli-linux',
-							'Decompiler-macos-x64.zip': 'js-download-cli-macos',
-						};
-
-						for( const asset of response.assets )
-						{
-							if( asset.name === 'VRF.exe' )
-							{
-								const button = document.getElementById( 'js-download' );
-								button.href = url;
-								button.querySelector( 'span' ).textContent =
-									`Download v${response.tag_name} (${year}-${month}-${day})`;
-							}
-							else if( fileMap[ asset.name ] )
-							{
-								document.getElementById( fileMap[ asset.name ] ).href = asset.browser_download_url;
-							}
-						}
-					}
-				} );
-			</script>
+			<script src="static/main.js"></script>
 	</body>
 </html>

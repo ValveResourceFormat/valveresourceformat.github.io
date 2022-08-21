@@ -125,28 +125,25 @@
 
 						const fileMap =
 						{
-							'Decompiler-windows.zip': 'js-download-cli-windows',
-							'Decompiler-linux.zip': 'js-download-cli-linux',
-							'Decompiler-macos.zip': 'js-download-cli-macos',
+							'Decompiler-windows-x64.zip': 'js-download-cli-windows',
+							'Decompiler-linux-x64.zip': 'js-download-cli-linux',
+							'Decompiler-macos-x64.zip': 'js-download-cli-macos',
 						};
 
 						for( const asset of response.assets )
 						{
 							if( asset.name === 'VRF.exe' )
 							{
-								url = asset.browser_download_url;
-								break;
+								const button = document.getElementById( 'js-download' );
+								button.href = url;
+								button.querySelector( 'span' ).textContent =
+									`Download v${response.tag_name} (${year}-${month}-${day})`;
 							}
 							else if( fileMap[ asset.name ] )
 							{
 								document.getElementById( fileMap[ asset.name ] ).href = asset.browser_download_url;
 							}
 						}
-
-						const button = document.getElementById( 'js-download' );
-						button.href = url;
-						button.querySelector( 'span' ).textContent =
-							`Download v${response.tag_name} (${year}-${month}-${day})`;
 					}
 				} );
 			</script>

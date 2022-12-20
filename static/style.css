@@ -47,6 +47,14 @@ a:active {
 	font-weight: normal;
 }
 
+.jumbotron h1 .logo {
+	background: rgba(0, 100, 255, .2);
+	border: 1px solid rgba(0, 100, 255, .5);
+	backdrop-filter: blur(5px);
+	border-radius: 10px;
+	padding: 0 10px;
+}
+
 .jumbotron p {
 	margin-bottom: 0;
 	margin-top: .5em;
@@ -72,7 +80,7 @@ a:active {
 
 .jumbotron .btn {
 	position: relative;
-	display: inline-flex;
+	display: flex;
 	color: hsl(66, 70%, 70%);
 	text-decoration: none;
 	vertical-align: middle;
@@ -83,7 +91,9 @@ a:active {
 	font-size: inherit;
 	font-weight: bold;
 	line-height: 1;
+	margin: 0 auto;
 	margin-top: 1em;
+	max-width: 600px;
 	transition: background .2s;
 	backdrop-filter: blur(5px);
 }
@@ -114,11 +124,13 @@ a:active {
 .jumbotron .download span {
 	margin: .75em 1.15em;
 	margin-right: .5em;
+	flex-grow: 1;
 }
 
 .jumbotron .download svg {
 	align-self: center;
 	margin-right: .5em;
+	flex-shrink: 0;
 }
 
 .jumbotron .download path {
@@ -232,31 +244,24 @@ a:active {
 		margin-top: 16px;
 	}
 	
-	.jumbotron h1 {
+	.jumbotron h1,
+	.jumbotron h1 .logo {
 		font-size: 1.5em;
+	}
+
+	.jumbotron h1 .title {
+		display: block;
 	}
 
 	.jumbotron p small {
 		display: inline;
 	}
 
-	.jumbotron .btn {
-		display: block;
-		padding: .5em;
-	}
-
-	.jumbotron .btn svg {
-		display: none;
-	}
 }
 
 @media (max-width: 480px) {
 	.jumbotron h1 {
 		font-size: 1em;
 		margin-bottom: 1em;
-	}
-
-	.jumbotron .download span {
-		margin: 0;
 	}
 }

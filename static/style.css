@@ -220,14 +220,6 @@ a:active {
 		margin-right: auto;
 		margin-left: auto;
 	}
-	
-	.jumbotron {
-		padding-bottom: 10em;
-	}
-	
-	.screenshots-main {
-		margin-top: -13em;
-	}
 }
 
 @media (max-width: 840px) {

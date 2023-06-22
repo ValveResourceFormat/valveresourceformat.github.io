@@ -1,4 +1,4 @@
-fetch( 'https://api.github.com/repos/SteamDatabase/ValveResourceFormat/releases' )
+fetch( 'https://api.github.com/repos/SteamDatabase/ValveResourceFormat/releases?per_page=1' )
 	.then( function( response )
 	{
 		return response.json();

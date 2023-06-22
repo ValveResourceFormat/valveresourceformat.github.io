@@ -24,7 +24,8 @@ fetch( 'https://api.github.com/repos/SteamDatabase/ValveResourceFormat/releases'
 				day = `0${day}`;
 			}
 
-			const downloadContainer = document.getElementById( 'js-download-all' );
+			const downloadContainer = document.querySelectorAll( '#js-download-all .list-group-item' );
+			let zipCount = 0;
 
 			for( const asset of response.assets )
 			{
@@ -37,11 +38,15 @@ fetch( 'https://api.github.com/repos/SteamDatabase/ValveResourceFormat/releases'
 				}
 				else if( asset.name.startsWith( 'Decompiler-' ) && asset.name.endsWith( '.zip' ) )
 				{
-					const link = document.createElement( 'a' );
-					link.className = 'list-group-item';
+					if( zipCount >= downloadContainer.length )
+					{
+						console.error( 'Not enough group items to fit all zip files' );
+						continue;
+					}
+
+					const link = downloadContainer[ zipCount++ ];
 					link.href = asset.browser_download_url;
 					link.textContent = 'Download CLI Decompiler for ' + asset.name.substring( 'Decompiler-'.length, asset.name.length - '.zip'.length );
-					downloadContainer.prepend( link );
 				}
 			}
 		}

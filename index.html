@@ -3,17 +3,20 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta name="theme-color" content="#0077cc">
-		<title>Source 2 Resource Viewer and Decompiler - VRF</title>
-		<link rel="stylesheet" href="static/normalize.css">
+		<meta name="color-scheme" content="dark">
+		<meta name="theme-color" content="#3fa">
+		<title>Source 2 Viewer &amp; Decompiler</title>
+		<link rel="preconnect" href="https://api.github.com">
+		<link rel="preload" href="static/Manrope.woff2" as="font" type="font/woff2" crossorigin>
 		<link rel="stylesheet" href="static/style.css">
 		<link rel="canonical" href="https://valveresourceformat.github.io/">
 		<link rel="image_src" href="https://valveresourceformat.github.io/static/media.jpg">
-		<meta name="description" content="Tools to view, decompile, and export Valve's Source 2 models, maps, textures, panorama files, and much more.">
-		<meta property="og:description" content="Tools to view, decompile, and export Valve's Source 2 models, maps, textures, panorama files, and much more.">
+		<meta name="description" content="Tools to view, decompile, and export Source 2 models, maps, textures, panorama files, and much more.">
+		<meta property="og:description" content="Tools to view, decompile, and export Source 2 models, maps, textures, panorama files, and much more.">
 		<meta property="og:image" content="https://valveresourceformat.github.io/static/media.jpg">
-		<meta property="og:title" content="Source 2 Resource Viewer and Decompiler - VRF">
+		<meta property="og:title" content="Source 2 Viewer &amp; Decompiler">
 		<meta property="twitter:card" content="summary_large_image">
+		<script src="static/main.js" defer></script>
 		<script type="application/ld+json">
 		{
 			"@context": "https://schema.org",
@@ -30,85 +33,166 @@
 		</script>
 	</head>
 	<body>
-		<div class="jumbotron">
+		<header>
 			<div class="container">
-				<h1><b class="logo">VRF</b> <span class="title">Source 2 Viewer</span></h1>
-				<p>
-					This program can open, extract, and decompile Valve's VPK packages and most Source 2 assets
-					<small>(maps, models, meshes, materials, textures, sounds, and more!)</small>
-				</p>
-				<p>This tool is based entirely on a reverse engineered effort as there is no Source 2 SDK.</p>
-				<p class="supported">
-					All Source 2 projects are supported, including
-					<a href="https://store.steampowered.com/app/570/">Dota 2</a>,
-					<a href="https://store.steampowered.com/app/730/">Counter-Strike 2</a>, 
-					<a href="https://store.steampowered.com/app/546560/">Half-Life: Alyx</a>,
-					<a href="https://store.steampowered.com/app/250820/">SteamVR</a>,
-					<a href="https://store.steampowered.com/app/1902490/">Aperture Desk Job</a>,
-					<a href="https://sbox.facepunch.com/">s&amp;box</a>,
-					and <a href="https://steamdb.info/tech/Engine/Source2/">more</a>.
-				</p>
-
-				<div class="download">
-					<a href="https://github.com/ValveResourceFormat/ValveResourceFormat/releases" class="btn" id="js-download">
-						<span>Download viewer</span>
-						<svg aria-hidden="true" focusable="false" width="40" height="40" viewBox="0 0 448 512"><path fill="currentColor" d="M0 93.7l183.6-25.3v177.4H0V93.7zm0 324.6l183.6 25.3V268.4H0v149.9zm203.8 28L448 480V268.4H203.8v177.9zm0-380.6v180.1H448V32L203.8 65.7z"></path></svg>
+				<h1><img src="static/logo.png" alt="" width="64" height="64"> Source 2 Viewer</h1>
+				<div class="header-buttons">
+					<a href="https://github.com/ValveResourceFormat/ValveResourceFormat" class="header-github" title="View on GitHub"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="40" height="40"><path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"  fill="currentColor"></path></svg></a>
+					<a href="https://github.com/ValveResourceFormat/ValveResourceFormat/releases" class="header-download" id="js-download-header" title="Download Source 2 Viewer">
+						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path d="m4.927 5.427 2.896 2.896a.25.25 0 0 0 .354 0l2.896-2.896A.25.25 0 0 0 10.896 5H8.75V.75a.75.75 0 1 0-1.5 0V5H5.104a.25.25 0 0 0-.177.427Z" fill="currentColor"></path><path d="M1.573 2.573a.25.25 0 0 0-.073.177v7.5a.25.25 0 0 0 .25.25h12.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25h-3a.75.75 0 1 1 0-1.5h3A1.75 1.75 0 0 1 16 2.75v7.5A1.75 1.75 0 0 1 14.25 12h-3.727c.099 1.041.52 1.872 1.292 2.757A.75.75 0 0 1 11.25 16h-6.5a.75.75 0 0 1-.565-1.243c.772-.885 1.192-1.716 1.292-2.757H1.75A1.75 1.75 0 0 1 0 10.25v-7.5A1.75 1.75 0 0 1 1.75 1h3a.75.75 0 0 1 0 1.5h-3a.25.25 0 0 0-.177.073ZM6.982 12a5.72 5.72 0 0 1-.765 2.5h3.566a5.72 5.72 0 0 1-.765-2.5H6.982Z" fill="currentColor"></path></svg>
+						DOWNLOAD
 					</a>
-					<p class="unstable">or <a href="https://nightly.link/ValveResourceFormat/ValveResourceFormat/workflows/build/master/VRF-GUI.zip">download latest unstable build</a></p>
 				</div>
+			</div>
+		</header>
 
-				<div class="list-group" id="js-download-all">
-					<a class="list-group-item" href="#">Loading data from GitHub…</a>
-					<a class="list-group-item" href="#">…</a>
-					<a class="list-group-item" href="#">…</a>
-					<a class="list-group-item" href="#">…</a>
-					<a class="list-group-item" href="#">…</a>
-					<a class="list-group-item" href="#">…</a>
+		<div class="container"><i style="position:absolute;top:6.5rem;color:#888">* new icon is coming soon</i></div>
+
+		<div class="hero">
+			<div class="container">
+				<div class="hero-left">
+					<p class="hero-fluff">Source 2 Viewer is a powerful tool that allows you to <b>browse VPK archives</b>, view, extract, and <b>decompile Source 2 assets</b>, including maps, models, materials, textures, sounds, and more.</p>
+					<p>This open-source project is based entirely on a reverse engineered effort as there is no Source 2 SDK.</p>
+					<p class="supported">
+						All Source 2 projects are supported including
+						<a href="https://www.counter-strike.net"><img alt="" width="16" height="16" src="static/games/cs2.png"> Counter-Strike 2</a>,
+						<a href="https://www.dota2.com"><img alt="" width="16" height="16" src="static/games/dota2.png"> Dota 2</a>,
+						<a href="https://half-life.com"><img alt="" width="16" height="16" src="static/games/alyx.png"> Half-Life: Alyx</a>,
+						<a href="https://store.steampowered.com/app/250820/"><img alt="" width="16" height="16" src="static/games/steamvr.png"> SteamVR</a>,
+						<a href="https://store.steampowered.com/app/1902490/"><img alt="" width="16" height="16" src="static/games/deskjob.png"> Aperture Desk Job</a>,
+						<a href="https://sbox.facepunch.com/"><img alt="" width="16" height="16" src="static/games/sbox.png"> s&amp;box</a>,
+						and <a href="https://steamdb.info/tech/Engine/Source2/" title="List of Source 2 games on SteamDB">more…</a>
+					</p>
+
+					<div class="download">
+						<div>
+							<a href="https://github.com/ValveResourceFormat/ValveResourceFormat/releases" class="btn" id="js-download">
+								<svg width="30" height="30" viewBox="0 0 16 16" aria-hidden="true"><path d="M0 1h7v7H0zM0 9h7v7H0zM8 9h7v7H8zM8 1h7v7H8z" fill="currentColor"></path></svg>
+								<span class="download-text">Download <span>Source 2 Viewer</span></span>
+							</a>
+							<span class="download-unstable">or <a href="https://nightly.link/ValveResourceFormat/ValveResourceFormat/workflows/build/master/VRF-GUI.zip">download latest unstable build</a></span>
+						</div>
+						<div class="download-notes">
+							<a href="https://github.com/ValveResourceFormat/ValveResourceFormat/releases" class="download-version">View release notes</a>
+						</div>
+					</div>
 				</div>
-
-				<div class="list-group">
-					<a class="list-group-item" href="https://www.nuget.org/packages/ValveResourceFormat">ValveResourceFormat on NuGet</a>
-					<a class="list-group-item" href="https://www.nuget.org/packages/ValveKeyValue">ValveKeyValue on NuGet</a>
-					<a class="list-group-item" href="https://www.nuget.org/packages/ValvePak">ValvePak on NuGet</a>
-					<a class="list-group-item" href="https://github.com/ValveResourceFormat/ValveResourceFormat/releases">View releases on GitHub</a>
-					<a class="list-group-item" href="https://github.com/ValveResourceFormat/ValveResourceFormat">View project on GitHub</a>
-					<a class="list-group-item" href="https://steamdb.info/discord/">Join our Discord</a>
+				<div class="hero-right">
+					<img src="static/screen_hero.png" alt="" class="hero-screenshot">
 				</div>
 			</div>
 		</div>
 
-		<div class="container screenshots screenshots-main">
-			<figure>
-				<img src="static/screen_package.png" alt="">
-				<figcaption>View and export files in VPK packages</figcaption>
-			</figure>
+		<div class="libraries">
+			<div class="container">
+				<div class="library-list">
+					<div class="library">
+						<div class="library-icon">
+							<img src="static/libraries/terminal.svg" alt="" width="64" height="48">
+						</div>
+						<div class="library-description">
+							<h2>Command line utility</h2>
+							<p>There's a cross-platform console application that can export and decompile Source 2 resources similar to the main application.</p>
 
-			<figure>
-				<img src="static/screen_map.png" alt="">
-				<figcaption>Preview maps and models in 3D space</figcaption>
-			</figure>
+							<a href="https://github.com/ValveResourceFormat/ValveResourceFormat/releases">Download Decompiler for your OS from GitHub</a>
+						</div>
+					</div>
+					<div class="library">
+						<div class="library-icon">
+							<img src="static/libraries/vrf.png" alt="" width="64" height="64">
+						</div>
+						<div class="library-description">
+							<h2>ValveResourceFormat</h2>
+							<p>.NET library that powers Source 2 Viewer. This library can be used to open and extract Source 2 resource files programmatically.</p>
+
+							<a href="https://www.nuget.org/packages/ValveResourceFormat">Get ValveResourceFormat from NuGet</a> |
+							<a href="https://github.com/ValveResourceFormat/ValveResourceFormat">View on GitHub</a>
+						</div>
+					</div>
+					<div class="library">
+						<div class="library-icon">
+							<img src="static/libraries/vpk.png" alt="" width="64" height="64">
+						</div>
+						<div class="library-description">
+							<h2>ValvePak</h2>
+							<p>.NET library to read Valve Pak (VPK) archives. VPK files are uncompressed archives used to package game content. This library allows you to read and extract files out of these paks.</p>
+
+							<a href="https://www.nuget.org/packages/ValvePak">Get ValvePak from NuGet</a> |
+							<a href="https://github.com/ValveResourceFormat/ValvePak">View on GitHub</a>
+						</div>
+					</div>
+					<div class="library">
+						<div class="library-icon">
+							<img src="static/libraries/vdf.png" alt="" width="64" height="64">
+						</div>
+						<div class="library-description">
+							<h2>ValveKeyValue</h2>
+							<p>.NET library to read and write files in Valve key value format. This library aims to be fully compatible with Valve's various implementations of KeyValues format parsing.</p>
+
+							<a href="https://www.nuget.org/packages/ValveKeyValue">Get ValveKeyValue from NuGet</a> |
+							<a href="https://github.com/ValveResourceFormat/ValveResourceFormat">View on GitHub</a>
+						</div>
+					</div>
+				</div>
+				<div class="library-code">
+					<span class="hljs-language">C#</span>
+					<pre class="hljs"><code><span class="hljs-comment">// Open package and read a file</span>
+<span class="hljs-keyword">using var</span> package = <span class="hljs-keyword">new</span> <a class="hljs-built_in" href="https://github.com/ValveResourceFormat/ValvePak/blob/master/ValvePak/ValvePak/Package.cs">Package</a>();
+package.<span class="hljs-built_in">Read</span>(<span class="hljs-string">"pak01_dir.vpk"</span>);
+
+<span class="hljs-keyword">var</span> packageEntry = package.<span class="hljs-built_in">FindEntry</span>(<span class="hljs-string">"textures/debug.vtex_c"</span>);
+package.<span class="hljs-built_in">ReadEntry</span>(packageEntry, <span class="hljs-keyword">out var</span> rawFile);
+
+<span class="hljs-comment">// Read file as a resource</span>
+<span class="hljs-keyword">using</span> var ms = <span class="hljs-keyword">new</span> <span class="hljs-built_in">MemoryStream</span>(rawFile);
+<span class="hljs-keyword">using</span> var resource = <span class="hljs-keyword">new</span> <a class="hljs-built_in" href="https://github.com/ValveResourceFormat/ValveResourceFormat/blob/master/ValveResourceFormat/Resource/Resource.cs">Resource</a>();
+resource.<span class="hljs-built_in">Read</span>(ms);
+
+Debug.<span class="hljs-built_in">Assert</span>(resource.<span class="hljs-built_in">ResourceType</span> == ResourceType.Texture);
+
+<span class="hljs-comment">// Get a png from the texture</span>
+<span class="hljs-keyword">var</span> texture = (Texture)resource.DataBlock;
+<span class="hljs-keyword">using var</span> bitmap = texture.<span class="hljs-built_in">GenerateBitmap</span>();
+<span class="hljs-keyword">var</span> png = TextureExtract.<span class="hljs-built_in">ToPngImage</span>(bitmap);
+
+File.<span class="hljs-built_in">WriteAllBytes</span>(<span class="hljs-string">"image.png"</span>, png);</code></pre>
+				</div>
+			</div>
 		</div>
 
 		<div class="container screenshots">
 			<figure>
-				<img src="static/screen_texture.png" alt="">
-				<figcaption>View and export textures along with other resources</figcaption>
+				<figcaption>View and export files in VPK packages</figcaption>
+				<img src="static/screen_package.png" alt="" loading="lazy">
 			</figure>
 
 			<figure>
-				<img src="static/screen_cli.png" alt="">
+				<figcaption>Preview maps and models in 3D space</figcaption>
+				<img src="static/screen_map.png" alt="" loading="lazy">
+			</figure>
+
+			<figure>
+				<figcaption>View and export textures along with other resources</figcaption>
+				<img src="static/screen_texture.png" alt="" loading="lazy">
+			</figure>
+
+			<figure>
 				<figcaption>Use the command line utility</figcaption>
+				<img src="static/screen_cli.png" alt="" loading="lazy">
 			</figure>
 		</div>
 
-		<div class="container footer">
-			Available under the <a href="https://github.com/ValveResourceFormat/ValveResourceFormat/blob/master/LICENSE">MIT license</a>.<br>
-			Created and maintained by <a href="https://github.com/ValveResourceFormat/ValveResourceFormat/graphs/contributors">various contributors</a>.<br>
-			Thanks to everyone that helped with reverse engineering the file formats.<br><br>
-			This project is not affiliated with Valve Software.<br>
-			Source 2 is a trademark and/or registered trademark of Valve Corporation.
+		<div class="footer">
+			<div class="container">
+				<div class="footer-left">
+					Available under the <a href="https://github.com/ValveResourceFormat/ValveResourceFormat/blob/master/LICENSE">MIT license</a>.<br>
+					Created and maintained by <a href="https://github.com/ValveResourceFormat/ValveResourceFormat/graphs/contributors">various contributors</a>.
+				</div>
+				<div class="footer-right">
+					This project is not affiliated with Valve Software.<br>
+					Source 2 is a trademark and/or registered trademark of Valve Corporation.
+				</div>
+			</div>
 		</div>
-
-		<script src="static/main.js"></script>
 	</body>
 </html>

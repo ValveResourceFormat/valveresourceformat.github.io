@@ -270,6 +270,7 @@ header h1 img {
 	display: flex;
 	gap: 1rem;
 	justify-content: center;
+	align-items: end;
 }
 
 .screenshots img {
@@ -290,6 +291,7 @@ header h1 img {
 	padding: .5rem;
 	font-size: 1rem;
 	text-align: center;
+	text-wrap: balance;
 }
 
 .footer {

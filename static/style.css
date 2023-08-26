@@ -91,7 +91,7 @@ header h1 {
 }
 
 header h1 img {
-	margin-right: 1rem;
+	margin-right: .5rem;
 }
 
 .header-buttons {
@@ -203,9 +203,9 @@ header h1 img {
 }
 
 .supported img {
-	width: 1.4rem;
-	height: 1.4rem;
-	vertical-align: middle;
+	width: 24px;
+	height: 24px;
+	vertical-align: -0.2rem;
 }
 
 .supported a {
@@ -451,6 +451,6 @@ a.hljs-built_in {
 @media (max-width: 400px) {
 	header h1,
 	.hero-left {
-		font-size: 1.2rem;
+		font-size: 1.5rem;
 	}
 }

@@ -294,6 +294,12 @@ header h1 img {
 	text-wrap: balance;
 }
 
+.footnote {
+	text-align: center;
+	text-wrap: balance;
+	margin-bottom: 6rem;
+}
+
 .footer {
 	margin: 3rem auto;
 	line-height: 1.75;

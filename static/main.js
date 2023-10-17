@@ -12,7 +12,7 @@ fetch( 'https://api.github.com/repositories/42366054/releases/latest' )
 	{
 		for( const asset of response.assets )
 		{
-			if( asset.name === 'VRF.exe' || asset.name === 'Source2Viewer.exe' )
+			if( asset.name === 'Source2Viewer.exe' )
 			{
 				document.getElementById( 'js-download' ).href = asset.browser_download_url;
 				document.getElementById( 'js-download-header' ).href = asset.browser_download_url;

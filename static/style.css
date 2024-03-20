@@ -8,7 +8,7 @@
 
 :root {
 	box-sizing: border-box;
-	--color-accent: #3fa;
+	--color-accent: #458fff;
 }
 
 *, *:before, *:after {
@@ -27,12 +27,12 @@ body {
 
 a {
 	color: var(--color-accent);
-	text-decoration: none;
+	text-decoration: underline;
 }
 
 a:hover,
 a:active {
-	text-decoration: underline;
+	color: #fff;
 }
 
 header {
@@ -60,11 +60,13 @@ header .container {
 	display: flex;
 	align-items: center;
 	height: 40px;
+	text-decoration: none;
 }
 
 .header-download:hover,
 .header-download:focus {
 	background: var(--color-accent);
+	text-decoration: underline;
 }
 
 .header-download svg {
@@ -116,7 +118,7 @@ header h1 img {
 	vertical-align: middle;
 	cursor: pointer;
 	background: var(--color-accent);
-	border-radius: 5rem;
+	border-radius: 0.6rem;
 	font-size: 1.3rem;
 	font-weight: bold;
 	line-height: 1;
@@ -127,11 +129,14 @@ header h1 img {
 	font-size: 1rem;
 }
 
+.hero .download-version,
 .hero .download-unstable a {
 	color: inherit;
 	text-decoration: underline;
 }
 
+.hero .download-version:hover,
+.hero .download-version:focus,
 .hero .download-unstable a:hover,
 .hero .download-unstable a:focus {
 	border-radius: 6px;
@@ -166,7 +171,6 @@ header h1 img {
 	font-size: .8rem;
 	margin-top: .4rem;
 	margin-left: 1rem;
-	color: #fff;
 }
 
 .hero .download svg {
@@ -199,7 +203,7 @@ header h1 img {
 	max-width: 1200px;
 	aspect-ratio: 1800 / 1200;
 	border-radius: 10px;
-	box-shadow: rgb(51 255 170 / 30%) 0 0 80px 0;
+	box-shadow: rgb(71 145 255 / 30%) 0 0 80px 0;
 }
 
 .supported img {
@@ -210,6 +214,11 @@ header h1 img {
 
 .supported a {
 	white-space: nowrap;
+	text-decoration: none;
+}
+
+.supported a:hover {
+	text-decoration: underline;
 }
 
 .libraries {

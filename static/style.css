@@ -423,7 +423,10 @@ a.hljs-built_in {
 		margin-bottom: 2rem;
 	}
 
-	.hero-screenshot,
+	.hero-right {
+		order: -1;
+	}
+
 	.header-buttons {
 		display: none;
 	}

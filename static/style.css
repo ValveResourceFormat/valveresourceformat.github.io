@@ -197,6 +197,12 @@ header h1 img {
 	color: var(--color-accent);
 }
 
+.hero-right {
+	display: flex;
+    flex-direction: column;
+	gap: 2px;
+}
+
 .hero-screenshot {
 	width: 100%;
 	width: calc(100vw / 2 - 5%);
@@ -204,6 +210,21 @@ header h1 img {
 	aspect-ratio: 1800 / 1200;
 	border-radius: 10px;
 	box-shadow: rgb(71 145 255 / 30%) 0 0 80px 0;
+}
+
+.hero-screenshot-author {
+	margin-left: 6px;
+	font-size: 14px;
+	color: #ccc;
+}
+
+.hero-screenshot-author svg {
+	vertical-align: text-bottom;
+	margin-right: 2px;
+}
+
+.hero-screenshot-author a {
+	color: inherit;
 }
 
 .supported img {

@@ -19,8 +19,8 @@ body {
 	margin: 0;
 	font: 16px/1.5 Manrope, -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif;
 	color: #fff;
-	background-color: #171724;
-	background-image: radial-gradient(960px 1440px at 35% 0%,#191c37,#171724);
+	background-color: #0c121c;
+	background-image: radial-gradient(720px 1280px at 35% 0%, #5e95f963, #0c121c);
 	background-repeat: no-repeat;
 	background-size: cover;
 }
@@ -209,7 +209,7 @@ header h1 img {
 	max-width: 1200px;
 	aspect-ratio: 1800 / 1200;
 	border-radius: 10px;
-	box-shadow: rgb(71 145 255 / 30%) 0 0 80px 0;
+	box-shadow: rgb(71 168 255 / 43%) 0 0 80px 0;
 }
 
 .hero-screenshot-author {
@@ -244,11 +244,11 @@ header h1 img {
 
 .libraries {
 	max-width: 1800px;
-	padding: 2rem 0;
+	padding: 5rem 0;
 	margin: 0 auto;
 	margin-top: 5rem;
-	border-radius: 2rem;
-	background: linear-gradient(rgba(0, 0, 0, 0) 0%, rgba(255, 255, 255, 0.1) 100%);
+	border-radius: 4rem;
+	background: linear-gradient(rgb(12 18 28 / 0%) 0%, rgb(38 48 64 / 64%) 100%);
 }
 
 .libraries .container {
@@ -316,7 +316,7 @@ header h1 img {
 }
 
 .screenshots figcaption {
-	color: var(--color-accent);
+	color: #63a1ff;
 	line-height: 1;
 	padding: .5rem;
 	font-size: 1rem;
@@ -367,12 +367,12 @@ header h1 img {
 }
 
 .hljs-comment {
-	color: var(--color-accent);
+	color: #63a1ff;
 	font-weight: bold;
 }
 
 .hljs-built_in {
-	color: #f5ab35;
+	color: #ffbc6a;
 }
 
 a.hljs-built_in {
@@ -380,7 +380,7 @@ a.hljs-built_in {
 }
 
 .hljs-string {
-	color: #abe338;
+	color: #d0ff6f;
 }
 
 .hljs-keyword {

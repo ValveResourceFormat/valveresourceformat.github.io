@@ -125,20 +125,20 @@ header h1 img {
 	padding: .5rem 1rem;
 }
 
-.hero .download-unstable {
+.hero .download-dev {
 	font-size: 1rem;
 }
 
 .hero .download-version,
-.hero .download-unstable a {
+.hero .download-dev a {
 	color: inherit;
 	text-decoration: underline;
 }
 
 .hero .download-version:hover,
 .hero .download-version:focus,
-.hero .download-unstable a:hover,
-.hero .download-unstable a:focus {
+.hero .download-dev a:hover,
+.hero .download-dev a:focus {
 	border-radius: 6px;
 	color: var(--color-accent);
 }
@@ -435,7 +435,7 @@ a.hljs-built_in {
 		display: flex;
 	}
 
-	.hero .download-unstable {
+	.hero .download-dev {
 		display: block;
 		margin: 1rem 0;
 		text-align: center;

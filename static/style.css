@@ -178,6 +178,13 @@ header h1 img {
 	flex-shrink: 0;
 }
 
+.hero .download-reqs {
+	font-size: .8rem;
+	margin-top: 1rem;
+	margin-left: 1rem;
+	color: #999;
+}
+
 .hero .container {
 	display: flex;
 	gap: 60px;

@@ -441,6 +441,7 @@ a.hljs-built_in {
 	aspect-ratio: 16 / 9;
 	box-shadow: 2px 2px 10px #0c121c;
 	background: #000;
+	object-fit: contain;
 }
 
 .workshop-item:hover .workshop-image,

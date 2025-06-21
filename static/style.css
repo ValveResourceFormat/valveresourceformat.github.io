@@ -9,6 +9,8 @@
 :root {
 	box-sizing: border-box;
 	--color-accent: #63a1ff;
+	scrollbar-width: thin;
+	scrollbar-color: rgb(71 168 255 / 50%) #0c121c;
 }
 
 *, *:before, *:after {
@@ -20,9 +22,6 @@ body {
 	font: 16px/1.5 Manrope, -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif;
 	color: #fff;
 	background-color: #0c121c;
-	background-image: radial-gradient(720px 1280px at 35% 0%, #5e95f963, #0c121c);
-	background-repeat: no-repeat;
-	background-size: cover;
 }
 
 a {
@@ -35,78 +34,30 @@ a:active {
 	color: #fff;
 }
 
-header {
-	position: sticky;
-	top: 0;
-	z-index: 10;
-	backdrop-filter: blur(20px);
-	border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-	margin-bottom: 5rem;
-}
-
-header .container {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-}
-
-.header-download {
-	color: #000;
-	font-weight: bold;
-	background: #fff;
-	font-size: .8rem;
-	padding: 0 1rem;
-	border-radius: 5rem;
-	display: flex;
-	align-items: center;
-	height: 40px;
-	text-decoration: none;
-}
-
-.header-download:hover,
-.header-download:focus {
-	background: var(--color-accent);
-	text-decoration: underline;
-}
-
-.header-download svg {
-	margin-right: .4rem;
-}
-
-.header-github {
-	line-height: 1;
-	font-size: 0;
-	color: #fff;
-}
-
-.header-github:hover,
-.header-github:focus {
-	color: var(--color-accent);
-}
-
-header h1 {
-	padding: 1rem 0;
-	margin: 0;
-	display: flex;
-	align-items: center;
-	font-size: 2rem;
-}
-
-header h1 img {
-	margin-right: .5rem;
-}
-
-.header-buttons {
-	display: flex;
-	align-items: center;
-	gap: 15px;
-}
-
 .container {
 	margin: 0 auto;
 	padding: 0 1rem;
 	max-width: 1440px;
 	width: 100%;
+}
+
+.background-pattern {
+	position: absolute;
+	pointer-events: none;
+	width: 100%;
+	height: 100%;
+	stroke: rgb(255 255 255 / 10%);
+	mask-image: radial-gradient(60% 80% at top left, #fff, transparent);
+	z-index: -1;
+}
+
+.hero {
+	min-height: max(1000px, 90vh);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 6rem;
+	margin: 0 6rem;
 }
 
 .hero .download .btn {
@@ -119,20 +70,27 @@ header h1 img {
 	cursor: pointer;
 	background: var(--color-accent);
 	border-radius: 0.6rem;
-	font-size: 1.3rem;
+	font-size: 1.5rem;
 	font-weight: bold;
 	line-height: 1;
-	padding: .5rem 1rem;
+	padding: 1rem 1.5rem;
+	box-shadow: inset 0 5px 10px rgb(0 0 0 / 30%);
+	transition: background-color 0.2s ease-in-out;
 }
 
 .hero .download-dev {
-	font-size: 1rem;
+	font-size: 1.3rem;
+	margin-bottom: 1rem;
 }
 
-.hero .download-version,
+.hero .download-version {
+	text-decoration: none;
+	margin-top: 2rem;
+	font-size: .9rem;
+}
+
 .hero .download-dev a {
 	color: inherit;
-	text-decoration: underline;
 }
 
 .hero .download-version:hover,
@@ -167,27 +125,16 @@ header h1 img {
 	white-space: nowrap;
 }
 
-.hero .download-version {
-	font-size: .8rem;
-	margin-top: .4rem;
-	margin-left: 1rem;
-}
-
 .hero .download svg {
 	align-self: center;
 	flex-shrink: 0;
 }
 
 .hero .download-reqs {
-	font-size: .8rem;
-	margin-top: 1rem;
-	margin-left: 1rem;
+	font-size: .9rem;
+	margin-top: .1rem;
+	margin-bottom: 2rem;
 	color: #999;
-}
-
-.hero .container {
-	display: flex;
-	gap: 60px;
 }
 
 .hero-left {
@@ -196,8 +143,8 @@ header h1 img {
 	align-self: center;
 }
 
-.hero-left > p {
-	margin-top: 0;
+.hero-fluff strong {
+	font-size: 2rem;
 }
 
 .hero-fluff b {
@@ -207,16 +154,17 @@ header h1 img {
 .hero-right {
 	display: flex;
     flex-direction: column;
+	align-self: center;
 	gap: 2px;
 }
 
 .hero-screenshot {
 	width: 100%;
-	width: calc(100vw / 2 - 5%);
-	max-width: 1200px;
+	max-width: 1000px;
 	aspect-ratio: 1800 / 1200;
 	border-radius: 10px;
-	box-shadow: rgb(71 168 255 / 43%) 0 0 80px 0;
+	border: 1px solid rgb(71 168 255 / 30%);
+	box-shadow: rgb(71 168 255 / 20%) 0 0 100px 0;
 }
 
 .hero-screenshot-author {
@@ -250,12 +198,10 @@ header h1 img {
 }
 
 .libraries {
-	max-width: 1800px;
 	padding: 5rem 0;
 	margin: 0 auto;
-	margin-top: 5rem;
-	border-radius: 4rem;
-	background: linear-gradient(rgb(12 18 28 / 0%) 0%, rgb(38 48 64 / 64%) 100%);
+	background: linear-gradient(transparent 0%, rgb(38 48 64 / 24%) 100%);
+	border-bottom: 1px solid rgb(71 168 255 / 30%);
 }
 
 .libraries .container {
@@ -398,8 +344,10 @@ a.hljs-built_in {
 	max-width: 1800px;
 	margin: 0 auto;
 	margin-top: 5rem;
-	border-radius: 4rem;
-	background: linear-gradient(rgb(38 48 64 / 64%) 0%, rgb(12 18 28 / 0%) 100%);
+	border-top-left-radius: 2rem;
+	border-top-right-radius: 2rem;
+	background: linear-gradient(rgb(38 48 64 / 64%) 0%, transparent 100%);
+	border-bottom: 1px solid rgb(71 168 255 / 20%);
 	position: relative;
 	overflow: hidden;
 }
@@ -470,8 +418,22 @@ a.hljs-built_in {
 	color: #999;
 }
 
-@media (max-width: 1300px) {
-	.hero .container {
+.main-logo {
+	vertical-align: text-bottom;
+}
+
+@media (min-width: 1151px) {
+	.main-logo {
+		position: absolute;
+		left: 64px;
+		top: 64px;
+		width: 128px;
+		height: 128px;
+	}
+}
+
+@media (max-width: 1500px) {
+	.hero {
 		flex-direction: column;
 	}
 
@@ -479,9 +441,18 @@ a.hljs-built_in {
 		width: 100%;
 		max-width: 100%;
 	}
+
+	.download {
+		text-align: center;
+	}
 }
 
 @media (max-width: 1100px) {
+	.hero {
+		margin: 0 2rem;
+		gap: 1rem;
+	}
+
 	.libraries .container {
 		flex-direction: column;
 	}
@@ -493,6 +464,7 @@ a.hljs-built_in {
 	.hljs {
 		overflow-x: auto;
 		padding: .5rem;
+		scrollbar-width: thin;
 	}
 
 	.screenshots {
@@ -501,40 +473,6 @@ a.hljs-built_in {
 }
 
 @media (max-width: 840px) {
-	header {
-		position: unset;
-		margin-bottom: 2rem;
-	}
-
-	.hero-right {
-		order: -1;
-	}
-
-	.header-buttons {
-		display: none;
-	}
-
-	.hero .download .btn {
-		display: flex;
-	}
-
-	.hero .download-dev {
-		display: block;
-		margin: 1rem 0;
-		text-align: center;
-	}
-
-	.hero .download-notes {
-		text-align: center;
-	}
-
-	.hero .download-version {
-		text-decoration: underline;
-		font-size: 1rem;
-		margin-top: 1rem;
-		margin-left: 0;
-	}
-
 	.libraries {
 		margin-top: 1rem;
 	}
@@ -577,7 +515,7 @@ a.hljs-built_in {
 }
 
 @media (max-width: 400px) {
-	header h1,
+	.hero strong,
 	.hero-left {
 		font-size: 1.5rem;
 	}

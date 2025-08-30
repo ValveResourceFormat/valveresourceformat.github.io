@@ -141,6 +141,7 @@ a:active {
 	font-size: 1.5rem;
 	max-width: 600px;
 	align-self: center;
+	flex-shrink: 0;
 }
 
 .hero-fluff strong {
@@ -156,6 +157,8 @@ a:active {
     flex-direction: column;
 	align-self: center;
 	gap: 2px;
+	flex-basis: 1000px;
+	flex-shrink: 1;
 }
 
 .hero-screenshot {
@@ -435,6 +438,11 @@ a.hljs-built_in {
 @media (max-width: 1500px) {
 	.hero {
 		flex-direction: column;
+	}
+
+	.hero-right {
+		flex-basis: auto;
+		width: 100%;
 	}
 
 	.hero-screenshot {

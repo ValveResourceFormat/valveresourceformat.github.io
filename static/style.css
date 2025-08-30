@@ -69,12 +69,12 @@ a:active {
 	vertical-align: middle;
 	cursor: pointer;
 	background: var(--color-accent);
+	border: 2px solid rgb(255 255 255 / 50%);
 	border-radius: 0.6rem;
 	font-size: 1.5rem;
 	font-weight: bold;
 	line-height: 1;
 	padding: 1rem 1.5rem;
-	box-shadow: inset 0 5px 10px rgb(0 0 0 / 30%);
 	transition: background-color 0.2s ease-in-out;
 }
 

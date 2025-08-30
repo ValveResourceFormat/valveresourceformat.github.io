@@ -154,7 +154,7 @@ a:active {
 
 .hero-right {
 	display: flex;
-    flex-direction: column;
+	flex-direction: column;
 	align-self: center;
 	gap: 2px;
 	flex-basis: 1000px;
@@ -530,5 +530,38 @@ a.hljs-built_in {
 
 	.workshop-grid {
 		grid-template-columns: 1fr;
+	}
+}
+
+.github-stars {
+	display: inline-flex;
+	align-items: center;
+	align-self: center;
+	gap: 0.5rem;
+	padding: 0.5rem 0.75rem;
+	font-size: 1rem;
+	line-height: 1;
+	text-decoration: none;
+	color: #fff;
+	background: rgb(255 255 255 / 10%);
+	border: 1px solid rgb(255 255 255 / 20%);
+	border-radius: .5rem;
+	margin-top: 1rem;
+
+	&:hover {
+		background: rgb(255 255 255 / 15%);
+		color: #fff;
+		text-decoration: underline;
+	}
+
+	svg {
+		fill: currentColor;
+		flex-shrink: 0;
+	}
+
+	@media (min-width: 841px) {
+		position: absolute;
+		top: 0;
+		right: 1rem;
 	}
 }

@@ -1,3 +1,20 @@
+fetch( 'https://api.github.com/repositories/42366054' )
+	.then( function( response )
+	{
+		if( !response.ok )
+		{
+			throw new Error( 'Failed to fetch github repo info' );
+		}
+
+		return response.json();
+	} )
+	.then( function( response )
+	{
+		const starsCount = document.getElementById( 'js-stars-count' );
+		const formatter = new Intl.NumberFormat( 'en', { notation: 'compact' } );
+		starsCount.textContent = formatter.format( response.stargazers_count );
+	} );
+
 fetch( 'https://api.github.com/repositories/42366054/releases/latest' )
 	.then( function( response )
 	{

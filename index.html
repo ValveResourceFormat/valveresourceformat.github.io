@@ -194,13 +194,147 @@ File.<span class="hljs-built_in">WriteAllBytes</span>(<span class="hljs-string">
 			</figure>
 		</div>
 
-		<div class="container footnote">
-			Maps, models, and meshes can be converted to the glTF format.
-			glTF is an open standard and supported by a lot of software, such as Blender.
-			Maps can be decompiled to vmap for use in Hammer editor.
-			Models can be decompiled to ModelDoc format.
-			Exporting materials will correctly split textures.
-			Source 2 Viewer is also known as S2V.
+		<div class="container feature-outline">
+			<h2>Features</h2>
+
+			<div class="feature-section">
+				<div>
+					<h3>3D Renderer</h3>
+					<ul>
+						<li>Interactive viewer for Maps, Models, Physics, and Particles</li>
+						<li>Reverse-engineered PBR shaders with real-time lighting</li>
+						<li>Animation playback controls</li>
+						<li>Entity viewer with property inspection</li>
+						<li>WASD camera controls with customizable FOV</li>
+						<li>Debug visualizations and performance monitoring</li>
+						<li>Hardware-accelerated OpenGL rendering</li>
+					</ul>
+				</div>
+
+				<div>
+					<h3>Texture Viewer</h3>
+					<ul>
+						<li>View Textures and SVGs with isolated channel viewing</li>
+						<li>Color channels, depth layers, and mips support</li>
+						<li>GPU or CPU decoding options</li>
+						<li>Cubemap and HDR texture support</li>
+						<li>Normal map visualization modes</li>
+						<li>Rasterize SVG to image</li>
+						<li>Export exactly what is displayed</li>
+						<li>Zoom and pan controls</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="feature-section">
+				<div>
+					<h3>VPK Package Files</h3>
+					<ul>
+						<li>Browse, extract, and manage Valve Package (vpk) archives with full version support</li>
+						<li>Tree view and list view interfaces with file type icons</li>
+						<li>Advanced search system (name, path, regex, content, hex)</li>
+						<li>Sort files by size and other criteria</li>
+						<li>Extract individual files or entire packages</li>
+						<li>Multi-threaded extraction with progress tracking</li>
+						<li>Discover and recover deleted files from VPK archives</li>
+						<li>Create new archives from folders with one click</li>
+						<li>Support all vpk versions (including Source 1)</li>
+					</ul>
+				</div>
+
+				<div>
+					<h3>Export Systems</h3>
+					<ul>
+						<li>Export Maps, Models, Physics, and Animations to glTF 2.0</li>
+						<li>Convert Source 2 material channels to glTF channels</li>
+						<li>Compatible with Blender and other glTF-supporting software</li>
+						<li>Materials export with correctly split textures</li>
+						<li>Batch export functionality for multiple files</li>
+						<li>Resource dependency tracking and validation</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="feature-section">
+				<div>
+					<h3>Content Decompilers</h3>
+					<ul>
+						<li>Maps (vmap_c → vmap) for use in Hammer editor</li>
+						<li>Models (vmdl_c → vmdl) to ModelDoc format</li>
+						<li>Materials (vmat_c → vmat)</li>
+						<li>Produce editable assets for Source 2 Workshop Tools</li>
+						<li>Retain maximum data fidelity</li>
+					</ul>
+				</div>
+
+				<div>
+					<h3>Source 2 Resource Files</h3>
+					<ul>
+						<li>Read and process Source 2 resource files (_c file extension) with comprehensive support</li>
+						<li>View Resource Blocks in separate tabs</li>
+						<li>Decode data to user-friendly text representation</li>
+						<li>Support for all resource file versions (as early as 2014)</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="feature-section">
+				<div>
+					<h3>Audio System</h3>
+					<ul>
+						<li>Built-in audio player with waveform visualization</li>
+						<li>Support for WAV, MP3, and Source 2 audio formats</li>
+						<li>Volume controls and stereo meters</li>
+						<li>Timeline scrubbing and playback controls</li>
+						<li>Auto-play in preview mode</li>
+					</ul>
+				</div>
+
+				<div>
+					<h3>Shader Packages</h3>
+					<ul>
+						<li>Inspect and analyze Source 2 shader files (vcs extension) with bytecode conversion</li>
+						<li>Read Source 2 shader packages</li>
+						<li>Compiled shader code viewer</li>
+						<li>Inspect shader metadata and bytecode</li>
+						<li>Tree view for static and dynamic combos</li>
+						<li>Convert Vulkan bytecode (SPIRV) to readable shading language</li>
+						<li>Support all publicly available file versions</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="feature-section">
+				<div>
+					<h3>User Interface</h3>
+					<ul>
+						<li>Modern, intuitive interface designed for efficient file management and content exploration</li>
+						<li>Tabbed document interface with advanced tab management</li>
+						<li>Dark and light theme support</li>
+						<li>Steam games auto-detection and explorer</li>
+						<li>Recent files and bookmarks management</li>
+						<li>Drag and drop file support</li>
+						<li>Keyboard shortcuts for quick navigation</li>
+						<li>Windows integration with file associations</li>
+					</ul>
+				</div>
+
+				<div>
+					<h3>Additional File Formats</h3>
+					<ul>
+						<li>NavigationMesh (.nav) and ToolsAssetInfo (.bin) files</li>
+						<li>World nodes (vwnod_c) for streaming world geometry</li>
+						<li>Compiled particle systems (vpcf_c) and effects</li>
+						<li>Sound event files and audio definitions</li>
+						<li>Various image formats (PNG, JPG, TGA, GIF)</li>
+						<li>Hex viewer for binary data inspection</li>
+						<li>Text and binary file viewing with syntax highlighting</li>
+						<li>Complete KeyValues support (KV1, KV2, KV3)</li>
+						<li>Convert binary keyvalues to text format</li>
+						<li>Closed captions file support</li>
+					</ul>
+				</div>
+			</div>
 		</div>
 
 		<div class="workshop">
@@ -256,7 +390,8 @@ File.<span class="hljs-built_in">WriteAllBytes</span>(<span class="hljs-string">
 			<div class="container">
 				<div class="footer-left">
 					Available under the <a href="https://github.com/ValveResourceFormat/ValveResourceFormat/blob/master/LICENSE">MIT license</a>.<br>
-					Created and maintained by <a href="https://github.com/ValveResourceFormat/ValveResourceFormat/graphs/contributors">various contributors</a>.
+					Created and maintained by <a href="https://github.com/ValveResourceFormat/ValveResourceFormat/graphs/contributors">various contributors</a>.<br>
+					Source 2 Viewer is also known as S2V.
 				</div>
 				<div class="footer-right">
 					This project is not affiliated with Valve Software.<br>

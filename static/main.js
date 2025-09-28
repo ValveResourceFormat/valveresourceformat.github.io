@@ -15,7 +15,7 @@ fetch( 'https://api.github.com/repositories/42366054' )
 		starsCount.textContent = formatter.format( response.stargazers_count );
 	} );
 
-fetch( 'https://api.github.com/repositories/42366054/releases/latest', {
+fetch( 'https://api.github.com/repositories/42366054/releases?per_page=5', {
 	headers: {
 		Accept: 'application/vnd.github.html+json',
 	},
@@ -24,17 +24,21 @@ fetch( 'https://api.github.com/repositories/42366054/releases/latest', {
 	{
 		if( !response.ok )
 		{
-			throw new Error( 'Failed to fetch github release' );
+			throw new Error( 'Failed to fetch github releases' );
 		}
 
 		return response.json();
 	} )
-	.then( function( response )
+	.then( function( releases )
 	{
-		const releaseAssetsContainer = document.getElementById( 'js-release-assets' );
-		releaseAssetsContainer.innerHTML = '';
+		if( !releases || releases.length === 0 )
+		{
+			return;
+		}
 
-		for( const asset of response.assets )
+		const latestRelease = releases[ 0 ];
+
+		for( const asset of latestRelease.assets )
 		{
 			if( asset.name === 'Source2Viewer.exe' )
 			{
@@ -42,46 +46,78 @@ fetch( 'https://api.github.com/repositories/42366054/releases/latest', {
 
 				const version = document.querySelector( '.download-version' );
 
-				let string = `View release notes for v${response.tag_name}`;
+				let string = `View release notes for v${latestRelease.tag_name}`;
 
 				if( window.innerWidth > 500 )
 				{
-					const date = new Date( response.published_at );
+					const date = new Date( latestRelease.published_at );
 					string += `, released on ${date.toLocaleDateString()}`;
 				}
 
 				version.textContent = string;
+				break;
 			}
-
-			let name = asset.name;
-
-			if( name.endsWith( '.zip' ) )
-			{
-				name = name.substring( 0, name.length - 4 ).replace( /-/g, ' ' );
-			}
-
-			const assetLink = document.createElement( 'a' );
-			assetLink.href = asset.browser_download_url;
-			assetLink.className = 'asset-link';
-			assetLink.download = '';
-			assetLink.textContent = name;
-			releaseAssetsContainer.append( assetLink );
 		}
 
-		const githubLink = document.createElement( 'a' );
-		githubLink.href = response.html_url;
-		githubLink.className = 'asset-link';
-		githubLink.target = '_blank';
-		githubLink.rel = 'noopener';
-		githubLink.textContent = 'View release on GitHub';
-		releaseAssetsContainer.append( githubLink );
+		const releaseNotesContainer = document.getElementById( 'release-notes' );
 
-		const releaseNotesTitle = document.getElementById( 'js-release-notes-title' );
-		releaseNotesTitle.textContent = `Release Notes for v${response.tag_name}`;
+		releases.forEach( function( release, index )
+		{
+			const isLatest = index === 0;
 
-		const releaseNotesContainer = document.getElementById( 'js-release-notes' );
-		releaseNotesContainer.innerHTML = response.body_html;
+			const releaseSection = document.createElement( 'div' );
+			releaseSection.className = 'release-notes-content';
 
+			const releaseHeader = document.createElement( 'a' );
+			releaseHeader.className = 'release-version';
+			releaseHeader.href = release.html_url;
+			releaseHeader.target = '_blank';
+			releaseHeader.rel = 'noopener';
+			const releaseDate = new Date( release.published_at );
+			releaseHeader.textContent = `v${release.tag_name} - ${releaseDate.toLocaleDateString()}`;
+			releaseSection.appendChild( releaseHeader );
+
+			const releaseContent = document.createElement( 'div' );
+			releaseContent.className = 'release-content';
+			releaseContent.innerHTML = release.body_html;
+			releaseSection.appendChild( releaseContent );
+
+			if( isLatest )
+			{
+				const releaseAssetsContainer = document.createElement( 'div' );
+				releaseAssetsContainer.className = 'release-assets';
+				releaseAssetsContainer.id = 'js-release-assets';
+
+				for( const asset of release.assets )
+				{
+					let name = asset.name;
+
+					if( name.endsWith( '.zip' ) )
+					{
+						name = name.substring( 0, name.length - 4 ).replace( /-/g, ' ' );
+					}
+
+					const assetLink = document.createElement( 'a' );
+					assetLink.href = asset.browser_download_url;
+					assetLink.className = 'asset-link';
+					assetLink.download = '';
+					assetLink.textContent = name;
+					releaseAssetsContainer.appendChild( assetLink );
+				}
+
+				const githubLink = document.createElement( 'a' );
+				githubLink.href = release.html_url;
+				githubLink.className = 'asset-link';
+				githubLink.target = '_blank';
+				githubLink.rel = 'noopener';
+				githubLink.textContent = 'View release on GitHub';
+				releaseAssetsContainer.appendChild( githubLink );
+
+				releaseSection.appendChild( releaseAssetsContainer );
+			}
+
+			releaseNotesContainer.appendChild( releaseSection );
+		} );
 	} );
 
 function LoadWorkshop()

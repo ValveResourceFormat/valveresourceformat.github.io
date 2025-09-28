@@ -14,13 +14,23 @@
 	scroll-behavior: smooth;
 }
 
-*, *:before, *:after {
+*,
+*:before,
+*:after {
 	box-sizing: inherit;
 }
 
 body {
 	margin: 0;
-	font: 16px/1.5 Manrope, -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif;
+	font:
+		16px / 1.5 Manrope,
+		-apple-system,
+		BlinkMacSystemFont,
+		"Segoe UI",
+		"Noto Sans",
+		Helvetica,
+		Arial,
+		sans-serif;
 	color: #fff;
 	background-color: #0c121c;
 }
@@ -87,7 +97,7 @@ a:active {
 .hero .download-version {
 	text-decoration: none;
 	margin-top: 2rem;
-	font-size: .9rem;
+	font-size: 0.9rem;
 }
 
 .hero .download-dev a {
@@ -119,7 +129,7 @@ a:active {
 }
 
 .hero .download-text {
-	margin-left: .5rem;
+	margin-left: 0.5rem;
 }
 
 .hero .download-text span {
@@ -132,8 +142,8 @@ a:active {
 }
 
 .hero .download-reqs {
-	font-size: .9rem;
-	margin-top: .1rem;
+	font-size: 0.9rem;
+	margin-top: 0.1rem;
 	margin-bottom: 2rem;
 	color: #999;
 }
@@ -239,14 +249,14 @@ a:active {
 
 .library-description h2 {
 	margin-top: 0;
-	margin-bottom: .5rem;
+	margin-bottom: 0.5rem;
 	font-size: 2rem;
 	word-break: break-all;
 }
 
 .library-description p {
 	margin: 0;
-	margin-bottom: .7rem;
+	margin-bottom: 0.7rem;
 	text-wrap: balance;
 }
 
@@ -275,7 +285,7 @@ a:active {
 .screenshots figcaption {
 	color: #63a1ff;
 	line-height: 1;
-	padding: .5rem;
+	padding: 0.5rem;
 	font-size: 1rem;
 	text-align: center;
 	text-wrap: balance;
@@ -299,7 +309,13 @@ a:active {
 }
 
 .hljs {
-	font-family: ui-monospace, SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
+	font-family:
+		ui-monospace,
+		SFMono-Regular,
+		Consolas,
+		Liberation Mono,
+		Menlo,
+		monospace;
 	border: 1px solid #000;
 	border-radius: 1rem;
 	color: #f8f8f2;
@@ -310,10 +326,10 @@ a:active {
 .hljs-language {
 	background: #000;
 	border-radius: 1rem;
-	padding: .2rem 1rem;
+	padding: 0.2rem 1rem;
 	position: absolute;
 	top: 0;
-	right: .5rem;
+	right: 0.5rem;
 	z-index: 1;
 }
 
@@ -466,7 +482,7 @@ a.hljs-built_in {
 
 	.hljs {
 		overflow-x: auto;
-		padding: .5rem;
+		padding: 0.5rem;
 		scrollbar-width: thin;
 	}
 
@@ -540,7 +556,7 @@ a.hljs-built_in {
 	color: #fff;
 	background: rgb(255 255 255 / 10%);
 	border: 1px solid rgb(255 255 255 / 20%);
-	border-radius: .5rem;
+	border-radius: 0.5rem;
 	margin-top: 1rem;
 
 	&:hover {
@@ -668,7 +684,12 @@ a.hljs-built_in {
 			}
 		}
 
-		h1, h2, h3, h4, h5, h6 {
+		h1,
+		h2,
+		h3,
+		h4,
+		h5,
+		h6 {
 			color: #fff;
 			margin: 1.5rem 0 0.5rem 0;
 
@@ -681,7 +702,8 @@ a.hljs-built_in {
 			margin: 0.8rem 0;
 		}
 
-		ul, ol {
+		ul,
+		ol {
 			padding-left: 1.2rem;
 			margin: 0;
 
@@ -699,7 +721,13 @@ a.hljs-built_in {
 			background: rgb(255 255 255 / 10%);
 			border-radius: 3px;
 			padding: 0.2em 0.4em;
-			font-family: ui-monospace, SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
+			font-family:
+				ui-monospace,
+				SFMono-Regular,
+				Consolas,
+				Liberation Mono,
+				Menlo,
+				monospace;
 		}
 
 		pre {

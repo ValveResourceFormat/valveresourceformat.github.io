@@ -15,7 +15,11 @@ fetch( 'https://api.github.com/repositories/42366054' )
 		starsCount.textContent = formatter.format( response.stargazers_count );
 	} );
 
-fetch( 'https://api.github.com/repositories/42366054/releases/latest' )
+fetch( 'https://api.github.com/repositories/42366054/releases/latest', {
+	headers: {
+		Accept: 'application/vnd.github.html+json',
+	},
+} )
 	.then( function( response )
 	{
 		if( !response.ok )
@@ -27,6 +31,9 @@ fetch( 'https://api.github.com/repositories/42366054/releases/latest' )
 	} )
 	.then( function( response )
 	{
+		const releaseAssetsContainer = document.getElementById( 'js-release-assets' );
+		releaseAssetsContainer.innerHTML = '';
+
 		for( const asset of response.assets )
 		{
 			if( asset.name === 'Source2Viewer.exe' )
@@ -34,7 +41,6 @@ fetch( 'https://api.github.com/repositories/42366054/releases/latest' )
 				document.getElementById( 'js-download' ).href = asset.browser_download_url;
 
 				const version = document.querySelector( '.download-version' );
-				version.href = response.html_url;
 
 				let string = `View release notes for v${response.tag_name}`;
 
@@ -45,10 +51,37 @@ fetch( 'https://api.github.com/repositories/42366054/releases/latest' )
 				}
 
 				version.textContent = string;
-
-				break;
 			}
+
+			let name = asset.name;
+
+			if( name.endsWith( '.zip' ) )
+			{
+				name = name.substring( 0, name.length - 4 ).replace( /-/g, ' ' );
+			}
+
+			const assetLink = document.createElement( 'a' );
+			assetLink.href = asset.browser_download_url;
+			assetLink.className = 'asset-link';
+			assetLink.download = '';
+			assetLink.textContent = name;
+			releaseAssetsContainer.append( assetLink );
 		}
+
+		const githubLink = document.createElement( 'a' );
+		githubLink.href = response.html_url;
+		githubLink.className = 'asset-link';
+		githubLink.target = '_blank';
+		githubLink.rel = 'noopener';
+		githubLink.textContent = 'View release on GitHub';
+		releaseAssetsContainer.append( githubLink );
+
+		const releaseNotesTitle = document.getElementById( 'js-release-notes-title' );
+		releaseNotesTitle.textContent = `Release Notes for v${response.tag_name}`;
+
+		const releaseNotesContainer = document.getElementById( 'js-release-notes' );
+		releaseNotesContainer.innerHTML = response.body_html;
+
 	} );
 
 function LoadWorkshop()

@@ -227,6 +227,25 @@ a:active {
 .library-code {
 	align-self: center;
 	position: relative;
+
+	.api-docs-link {
+		display: inline-block;
+		margin-top: 0.5rem;
+		padding: 0.6rem 1rem;
+		border-radius: 0.5rem;
+		background: var(--color-accent);
+		color: #000;
+		font-weight: 600;
+		text-decoration: none;
+		transition: background-color 0.2s ease-in-out;
+
+		&:hover,
+		&:focus {
+			text-decoration: underline;
+			color: #000;
+			background: #fff;
+		}
+	}
 }
 
 .library {

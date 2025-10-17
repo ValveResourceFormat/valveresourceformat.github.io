@@ -7,9 +7,18 @@ fetch('https://api.github.com/repositories/42366054')
 		return response.json();
 	})
 	.then((response) => {
+		const stars = response.stargazers_count;
 		const starsCount = document.getElementById('js-stars-count');
 		const formatter = new Intl.NumberFormat('en', { notation: 'compact' });
-		starsCount.textContent = formatter.format(response.stargazers_count);
+		starsCount.textContent = formatter.format(stars);
+
+		const schemaScript = document.querySelector(
+			'script[type="application/ld+json"]',
+		);
+		const schema = JSON.parse(schemaScript.textContent);
+		schema.review.reviewRating.ratingValue = stars;
+		schema.review.reviewRating.bestRating = stars;
+		schemaScript.textContent = JSON.stringify(schema);
 	});
 
 fetch('https://api.github.com/repositories/42366054/releases?per_page=5', {

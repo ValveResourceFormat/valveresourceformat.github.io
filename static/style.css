@@ -155,12 +155,19 @@ a:active {
 	flex-shrink: 0;
 }
 
-.hero-fluff strong {
-	font-size: 2rem;
-}
+.hero-fluff {
+	font-size: 1.5rem;
+	font-weight: normal;
+	line-height: 1.5;
+	margin: 1em 0;
 
-.hero-fluff b {
-	color: var(--color-accent);
+	strong {
+		font-size: 2rem;
+	}
+
+	b {
+		color: var(--color-accent);
+	}
 }
 
 .hero-right {

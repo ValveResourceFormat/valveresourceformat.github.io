@@ -138,7 +138,9 @@ function LoadWorkshop() {
 				params.set('searchtext', 'valveresourceformat');
 
 				element.href = `https://steamcommunity.com/sharedfiles/filedetails/?${params}`;
-				element.querySelector('.workshop-image').src = file.preview_url;
+				const image = element.querySelector('.workshop-image');
+				image.src = file.preview_url;
+				image.alt = file.title;
 				element.querySelector('.workshop-title').textContent = file.title;
 				element.querySelector('.workshop-info').textContent =
 					`${dateFormatter.format(date)} — ${file.subscriptions.toLocaleString()} subscribers`;

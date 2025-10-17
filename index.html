@@ -25,12 +25,16 @@
 			"@context": "https://schema.org",
 			"@type": "SoftwareApplication",
 			"name": "Source 2 Viewer",
-			"operatingSystem": "Windows",
+			"alternateName": "S2V",
+			"description": "A powerful tool that allows you to browse VPK archives, view, extract, and decompile Source 2 assets, including maps, models, materials, textures, sounds, and more.",
+			"url": "https://s2v.app/",
+			"operatingSystem": "Windows 11",
 			"applicationCategory": "https://schema.org/DeveloperApplication",
 			"isAccessibleForFree": true,
 			"offers": {
 				"@type": "Offer",
-				"price": "0"
+				"price": "0",
+				"priceCurrency": "USD"
 			},
 			"downloadUrl": "https://github.com/ValveResourceFormat/ValveResourceFormat/releases",
 			"releaseNotes": "https://github.com/ValveResourceFormat/ValveResourceFormat/releases",
@@ -54,11 +58,11 @@
 				<p>This open-source project is based entirely on a reverse engineered effort as there is no Source 2 SDK.</p>
 				<p class="supported">
 					All Source 2 projects are supported including
-					<a href="https://www.counter-strike.net"><img alt="" width="16" height="16" aria-hidden="true" src="static/games/cs2.png"> Counter-Strike 2</a>,
-					<a href="https://www.dota2.com"><img alt="" width="16" height="16" aria-hidden="true" src="static/games/dota2.png"> Dota 2</a>,
-					<a href="https://playdeadlock.com"><img alt="" width="16" height="16" aria-hidden="true" src="static/games/deadlock.png"> Deadlock</a>,
-					<a href="https://half-life.com"><img alt="" width="16" height="16" aria-hidden="true" src="static/games/alyx.png"> Half-Life: Alyx</a>,
-					<a href="https://www.steamvr.com"><img alt="" width="16" height="16" aria-hidden="true" src="static/games/steamvr.png"> SteamVR</a>,
+					<a href="https://www.counter-strike.net"><img alt="Counter-Strike 2" width="16" height="16" src="static/games/cs2.png"> Counter-Strike 2</a>,
+					<a href="https://www.dota2.com"><img alt="Dota 2" width="16" height="16" src="static/games/dota2.png"> Dota 2</a>,
+					<a href="https://playdeadlock.com"><img alt="Deadlock" width="16" height="16" src="static/games/deadlock.png"> Deadlock</a>,
+					<a href="https://half-life.com"><img alt="Half-Life: Alyx" width="16" height="16" src="static/games/alyx.png"> Half-Life: Alyx</a>,
+					<a href="https://www.steamvr.com"><img alt="SteamVR" width="16" height="16" src="static/games/steamvr.png"> SteamVR</a>,
 					and <a href="https://steamdb.info/tech/Engine/Source2/" title="List of Source 2 games on SteamDB">more…</a>
 				</p>
 
@@ -78,7 +82,7 @@
 				</div>
 			</div>
 			<div class="hero-right">
-				<img src="static/screen_hero.webp" alt="" class="hero-screenshot">
+				<img src="static/screen_hero.webp" alt="Screenshot of Source 2 Viewer displaying a 3D rendered map of Inferno Night with detailed lighting and textures" class="hero-screenshot">
 				<div class="hero-screenshot-author">
 					<svg width="16" height="16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h0"/></svg>
 					<a href="https://steamcommunity.com/workshop/filedetails/?id=3124567099">Inferno Night</a> by Angel, created by decompiling with Source 2 Viewer.
@@ -100,7 +104,7 @@
 				<div class="library-list">
 					<div class="library">
 						<div class="library-icon">
-							<img src="static/libraries/console.png" alt="" width="64" height="64" aria-hidden="true">
+							<img src="static/libraries/console.png" alt="Command line utility" width="64" height="64" aria-hidden="true">
 						</div>
 						<div class="library-description">
 							<h2>Command line utility</h2>
@@ -111,7 +115,7 @@
 					</div>
 					<div class="library">
 						<div class="library-icon">
-							<img src="static/libraries/vrf.png" alt="" width="64" height="64" aria-hidden="true">
+							<img src="static/libraries/vrf.png" alt="ValveResourceFormat library" width="64" height="64" aria-hidden="true">
 						</div>
 						<div class="library-description">
 							<h2>ValveResourceFormat</h2>
@@ -123,7 +127,7 @@
 					</div>
 					<div class="library">
 						<div class="library-icon">
-							<img src="static/libraries/vpk.png" alt="" width="64" height="64" aria-hidden="true">
+							<img src="static/libraries/vpk.png" alt="ValvePak library" width="64" height="64" aria-hidden="true">
 						</div>
 						<div class="library-description">
 							<h2>ValvePak</h2>
@@ -135,7 +139,7 @@
 					</div>
 					<div class="library">
 						<div class="library-icon">
-							<img src="static/libraries/vdf.png" alt="" width="64" height="64" aria-hidden="true">
+							<img src="static/libraries/vdf.png" alt="ValveKeyValue library" width="64" height="64" aria-hidden="true">
 						</div>
 						<div class="library-description">
 							<h2>ValveKeyValue</h2>
@@ -177,22 +181,22 @@ File.<span class="hljs-built_in">WriteAllBytes</span>(<span class="hljs-string">
 		<div class="container screenshots">
 			<figure>
 				<figcaption>View and export files in VPK packages</figcaption>
-				<img src="static/screen_package.png" alt="" loading="lazy">
+				<img src="static/screen_package.png" alt="Screenshot showing the VPK package explorer interface with a file tree and a list view" loading="lazy">
 			</figure>
 
 			<figure>
 				<figcaption>Preview maps and models in 3D space</figcaption>
-				<img src="static/screen_map.png" alt="" loading="lazy">
+				<img src="static/screen_map.png" alt="Screenshot of the 3D renderer displaying a Counter-Strike 2 player model on a grid" loading="lazy">
 			</figure>
 
 			<figure>
 				<figcaption>View and export textures along with other resources</figcaption>
-				<img src="static/screen_texture.png" alt="" loading="lazy">
+				<img src="static/screen_texture.png" alt="Screenshot of the texture viewer showing a test texture" loading="lazy">
 			</figure>
 
 			<figure>
 				<figcaption>Use the command line utility</figcaption>
-				<img src="static/screen_cli.png" alt="" loading="lazy">
+				<img src="static/screen_cli.png" alt="Screenshot of the command line interface showing DATA block for an audio file" loading="lazy">
 			</figure>
 		</div>
 

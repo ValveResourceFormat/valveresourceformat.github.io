@@ -10,7 +10,7 @@
 	box-sizing: border-box;
 	--color-accent: #63a1ff;
 	scrollbar-width: thin;
-	scrollbar-color: rgb(71 168 255 / 50%) #0c121c;
+	scrollbar-color: rgb(71 168 255 / 50%) hsl(216 40% 8%);
 	scroll-behavior: smooth;
 }
 
@@ -32,7 +32,7 @@ body {
 		Arial,
 		sans-serif;
 	color: #fff;
-	background-color: #0c121c;
+	background-color: hsl(216 40% 8%);
 }
 
 a {
@@ -68,7 +68,7 @@ a:active {
 	align-items: center;
 	justify-content: center;
 	gap: 6rem;
-	margin: 0 6rem;
+	margin: 0 2rem;
 }
 
 .hero .download .btn {
@@ -175,17 +175,17 @@ a:active {
 	flex-direction: column;
 	align-self: center;
 	gap: 2px;
-	flex-basis: 1000px;
+	flex-basis: 1100px;
 	flex-shrink: 1;
 }
 
 .hero-screenshot {
 	width: 100%;
-	max-width: 1000px;
-	aspect-ratio: 1800 / 1200;
+	max-width: 1100px;
+	aspect-ratio: 1100 / 700;
 	border-radius: 10px;
-	border: 1px solid rgb(71 168 255 / 30%);
-	box-shadow: rgb(71 168 255 / 20%) 0 0 100px 0;
+	outline: 2px solid hsl(216 50% 30%);
+	box-shadow: 0 0 10px hsl(216 50% 40%), 0 0 80px hsl(216 50% 20%);
 }
 
 .hero-screenshot-author {
@@ -221,8 +221,8 @@ a:active {
 .libraries {
 	padding: 5rem 0;
 	margin: 0 auto;
-	background: linear-gradient(transparent 0%, rgb(38 48 64 / 24%) 100%);
-	border-bottom: 1px solid rgb(71 168 255 / 30%);
+	background: linear-gradient(in oklch, hsl(216 40% 8%) 0%, hsl(216 50% 10%) 100%);
+	border-bottom: 1px solid hsl(216 70% 30%);
 }
 
 .libraries .container {
@@ -287,34 +287,22 @@ a:active {
 }
 
 .screenshots {
-	max-width: calc(100vw - 10%);
+	max-width: calc(820px * 3);
 	margin-top: 7rem;
 	margin-bottom: 7rem;
 	display: flex;
 	gap: 1rem;
 	justify-content: center;
 	align-items: end;
+	flex-wrap: wrap;
 }
 
 .screenshots img {
 	width: 100%;
+	max-width: 820px;
 	border-radius: 10px;
-	aspect-ratio: 1 / 1;
-}
-
-.screenshots figure {
-	margin: 0;
-	width: 480px;
-	font-size: 0;
-}
-
-.screenshots figcaption {
-	color: #63a1ff;
-	line-height: 1;
-	padding: 0.5rem;
-	font-size: 1rem;
-	text-align: center;
-	text-wrap: balance;
+	aspect-ratio: 820 / 520;
+	outline: 1px solid hsl(216 50% 20%);
 }
 
 .footer {
@@ -386,8 +374,8 @@ a.hljs-built_in {
 	margin-top: 5rem;
 	border-top-left-radius: 2rem;
 	border-top-right-radius: 2rem;
-	background: linear-gradient(rgb(38 48 64 / 64%) 0%, transparent 100%);
-	border-bottom: 1px solid rgb(71 168 255 / 20%);
+	background: linear-gradient(in oklab, hsl(216 70% 30%) 0%, hsl(216 40% 8%) 100%);
+	border-bottom: 1px solid hsl(216 70% 30%);
 	position: relative;
 	overflow: hidden;
 }
@@ -427,7 +415,7 @@ a.hljs-built_in {
 	width: 100%;
 	border-radius: 10px;
 	aspect-ratio: 16 / 9;
-	box-shadow: 2px 2px 10px #0c121c;
+	box-shadow: 2px 2px 10px hsl(216 40% 8%);
 	background: #000;
 	object-fit: contain;
 }
@@ -546,12 +534,6 @@ a.hljs-built_in {
 	.footer .footer-left,
 	.footer .footer-right {
 		text-align: center;
-	}
-
-	.screenshots figure {
-		width: auto;
-		max-width: 480px;
-		margin: 0 auto;
 	}
 
 	.workshop-grid {
@@ -769,7 +751,7 @@ a.hljs-built_in {
 
 		details {
 			margin: 1rem 0;
-			border: 1px solid rgb(71 168 255 / 20%);
+			border: 1px solid hsl(216 70% 30%);
 			border-radius: 6px;
 			background: rgb(255 255 255 / 3%);
 
@@ -794,7 +776,7 @@ a.hljs-built_in {
 			max-height: 1000px !important;
 			height: auto;
 			border-radius: 0 0 6px 6px;
-			border-top: 1px solid rgb(71 168 255 / 20%);
+			border-top: 1px solid hsl(216 70% 30%);
 		}
 
 		svg {

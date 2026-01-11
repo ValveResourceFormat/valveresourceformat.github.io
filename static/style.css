@@ -185,7 +185,9 @@ a:active {
 	aspect-ratio: 1100 / 700;
 	border-radius: 10px;
 	outline: 2px solid hsl(216 50% 30%);
-	box-shadow: 0 0 10px hsl(216 50% 40%), 0 0 80px hsl(216 50% 20%);
+	box-shadow:
+		0 0 10px hsl(216 50% 40%),
+		0 0 80px hsl(216 50% 20%);
 }
 
 .hero-screenshot-author {
@@ -221,7 +223,11 @@ a:active {
 .libraries {
 	padding: 5rem 0;
 	margin: 0 auto;
-	background: linear-gradient(in oklch, hsl(216 40% 8%) 0%, hsl(216 50% 10%) 100%);
+	background: linear-gradient(
+		in oklch,
+		hsl(216 40% 8%) 0%,
+		hsl(216 50% 10%) 100%
+	);
 	border-bottom: 1px solid hsl(216 70% 30%);
 }
 
@@ -271,19 +277,39 @@ a:active {
 
 .library-description {
 	max-width: 600px;
-}
+	color: #989fb0;
 
-.library-description h2 {
-	margin-top: 0;
-	margin-bottom: 0.5rem;
-	font-size: 2rem;
-	word-break: break-all;
-}
+	h2 {
+		margin: 0;
+		font-size: 2rem;
+		word-break: break-all;
+		color: #fff;
+	}
 
-.library-description p {
-	margin: 0;
-	margin-bottom: 0.7rem;
-	text-wrap: balance;
+	p {
+		margin: 0;
+		margin-bottom: 0.7rem;
+		text-wrap: balance;
+	}
+
+	.library-links {
+		display: flex;
+		gap: 5px;
+		margin-bottom: 0.5rem;
+
+		a {
+			border: 1px solid rgb(255 255 255 / 20%);
+			border-radius: 3rem;
+			padding: 0 0.5rem;
+			font-size: 0.9rem;
+			text-decoration: none;
+
+			&:hover {
+				background: hsl(216 50% 20% / 40%);
+				border-color: currentColor;
+			}
+		}
+	}
 }
 
 .screenshots {
@@ -374,7 +400,11 @@ a.hljs-built_in {
 	margin-top: 5rem;
 	border-top-left-radius: 2rem;
 	border-top-right-radius: 2rem;
-	background: linear-gradient(in oklab, hsl(216 70% 30%) 0%, hsl(216 40% 8%) 100%);
+	background: linear-gradient(
+		in oklab,
+		hsl(216 70% 30%) 0%,
+		hsl(216 40% 8%) 100%
+	);
 	border-bottom: 1px solid hsl(216 70% 30%);
 	position: relative;
 	overflow: hidden;

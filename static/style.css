@@ -582,33 +582,38 @@ a.hljs-built_in {
 	}
 }
 
-.github-stars {
-	display: inline-flex;
-	align-items: center;
-	align-self: center;
-	gap: 0.5rem;
-	padding: 0.5rem 0.75rem;
-	font-size: 1rem;
-	line-height: 1;
-	text-decoration: none;
-	color: #fff;
-	background: rgb(255 255 255 / 10%);
-	border: 1px solid rgb(255 255 255 / 20%);
-	border-radius: 0.5rem;
-	margin-top: 1rem;
+.social-buttons-container {
+	display: flex;
+	gap: 5px;
 
-	&:hover {
-		background: rgb(255 255 255 / 15%);
+	.social-button {
+		display: inline-flex;
+		align-items: center;
+		align-self: center;
+		gap: 0.5rem;
+		padding: 0.5rem 0.75rem;
+		font-size: 1rem;
+		line-height: 1;
+		text-decoration: none;
 		color: #fff;
-		text-decoration: underline;
+		background: rgb(255 255 255 / 10%);
+		border: 1px solid rgb(255 255 255 / 20%);
+		border-radius: 0.5rem;
+		margin-top: 1rem;
+
+		&:hover {
+			background: rgb(255 255 255 / 15%);
+			color: #fff;
+			text-decoration: underline;
+		}
+
+		svg {
+			fill: currentColor;
+			flex-shrink: 0;
+		}
 	}
 
-	svg {
-		fill: currentColor;
-		flex-shrink: 0;
-	}
-
-	@media (min-width: 841px) {
+	@media (min-width: 960px) {
 		position: absolute;
 		top: 0;
 		right: 1rem;

@@ -163,6 +163,7 @@
 							<p>A cross-platform console application that can export and decompile Source 2 resources similar to the main application.</p>
 							<div class="library-links">
 								<a href="https://github.com/ValveResourceFormat/ValveResourceFormat/releases">Download CLI for your OS from GitHub</a>
+								<a href="/ValveResourceFormat/guides/command-line.html">View usage guide</a>
 							</div>
 						</div>
 					</div>
@@ -175,8 +176,9 @@
 							<div class="library-links">
 								<a href="https://www.nuget.org/packages/ValveResourceFormat">NuGet</a>
 								<a href="https://github.com/ValveResourceFormat/ValveResourceFormat">GitHub</a>
+								<a href="/ValveResourceFormat/api/ValveResourceFormat.html">API Docs</a>
 							</div>
-							<p>.NET library that powers Source 2 Viewer, also known as VRF. This library can be used to open and extract Source 2 resource files programmatically.</p>
+							<p>.NET library that powers Source 2 Viewer, also known as VRF. This library can be used to <a href="/ValveResourceFormat/guides/read-resource.html">open and extract Source 2 resource files</a> programmatically.</p>
 						</div>
 					</div>
 					<div class="library">
@@ -188,6 +190,7 @@
 							<div class="library-links">
 								<a href="https://www.nuget.org/packages/ValveResourceFormat.Renderer">NuGet</a>
 								<a href="https://github.com/ValveResourceFormat/ValveResourceFormat/tree/master/Renderer">GitHub</a>
+								<a href="/ValveResourceFormat/api/ValveResourceFormat.Renderer.html">API Docs</a>
 							</div>
 							<p>.NET library providing an OpenGL-based rendering engine for Source 2 assets. Standalone rendering of models, maps, particles, animations, lighting, and materials with physically-based rendering (PBR).</p>
 						</div>
@@ -261,26 +264,25 @@ File.<span class="hljs-built_in">WriteAllBytes</span>(<span class="hljs-string">
 				<div>
 					<h3>3D Renderer</h3>
 					<ul>
-						<li>Interactive viewer for Maps, Models, Physics, and Particles</li>
+						<li>View <a href="/ValveResourceFormat/api/ValveResourceFormat.ResourceTypes.Model.html">maps, models, physics, and particles</a> from CS2, Dota 2, Deadlock, and other Source 2 games</li>
 						<li>Reverse-engineered PBR shaders with real-time lighting</li>
-						<li>Animation playback controls</li>
-						<li>Entity viewer with property inspection</li>
+						<li><a href="/ValveResourceFormat/api/ValveResourceFormat.ResourceTypes.ModelAnimation.html">Animation</a> playback controls</li>
+						<li><a href="/ValveResourceFormat/api/ValveResourceFormat.ResourceTypes.EntityLump.html">Entity viewer</a> with property inspection</li>
 						<li>WASD camera controls with customizable FOV</li>
 						<li>Debug visualizations and performance monitoring</li>
-						<li>Hardware-accelerated OpenGL rendering</li>
+						<li>Hardware-accelerated <a href="/ValveResourceFormat/api/ValveResourceFormat.Renderer.html">OpenGL rendering</a></li>
 					</ul>
 				</div>
 
 				<div>
 					<h3>Texture Viewer</h3>
 					<ul>
-						<li>View Textures and SVGs with isolated channel viewing</li>
-						<li>Color channels, depth layers, and mips support</li>
+						<li>View <a href="/ValveResourceFormat/api/ValveResourceFormat.ResourceTypes.Texture.html">textures</a> and SVGs with isolated channel viewing</li>
+						<li>Export <a href="/ValveResourceFormat/api/ValveResourceFormat.IO.TextureExtract.html">vtex_c</a> to PNG, TGA, or other image formats</li>
+						<li>Color channels, depth layers, and mip levels</li>
 						<li>GPU or CPU decoding options</li>
 						<li>Cubemap and HDR texture support</li>
 						<li>Normal map visualization modes</li>
-						<li>Rasterize SVG to image</li>
-						<li>Export exactly what is displayed</li>
 						<li>Zoom and pan controls</li>
 					</ul>
 				</div>
@@ -288,28 +290,28 @@ File.<span class="hljs-built_in">WriteAllBytes</span>(<span class="hljs-string">
 
 			<div class="feature-section">
 				<div>
-					<h3>VPK Package Files</h3>
+					<h3>VPK Viewer &amp; Extractor</h3>
 					<ul>
-						<li>Browse, extract, and manage Valve Package (vpk) archives with full version support</li>
+						<li>Open VPK files from CS2, Dota 2, Deadlock, Half-Life: Alyx, and more</li>
 						<li>Tree view and list view interfaces with file type icons</li>
 						<li>Advanced search system (name, path, regex, content, hex)</li>
 						<li>Sort files by size and other criteria</li>
-						<li>Extract individual files or entire packages</li>
-						<li>Multi-threaded extraction with progress tracking</li>
+						<li>Extract individual files or entire VPK packages</li>
+						<li>Multi-threaded VPK extraction with progress tracking</li>
 						<li>Discover and recover deleted files from VPK archives</li>
-						<li>Create new archives from folders with one click</li>
-						<li>Support all vpk versions (including Source 1)</li>
+						<li>Create new VPK archives from folders with one click</li>
+						<li>Support all VPK versions (including Source 1)</li>
 					</ul>
 				</div>
 
 				<div>
-					<h3>Export Systems</h3>
+					<h3>glTF Export</h3>
 					<ul>
-						<li>Export Maps, Models, Physics, and Animations to glTF 2.0</li>
-						<li>Convert Source 2 material channels to glTF channels</li>
-						<li>Compatible with Blender and other glTF-supporting software</li>
-						<li>Materials export with correctly split textures</li>
-						<li>Batch export functionality for multiple files</li>
+						<li>Export maps, models, <a href="/ValveResourceFormat/api/ValveResourceFormat.ResourceTypes.PhysAggregateData.html">physics</a>, and animations to <a href="/ValveResourceFormat/api/ValveResourceFormat.IO.GltfModelExporter.html">glTF 2.0</a></li>
+						<li>Works with CS2, Dota 2, Deadlock, and all Source 2 games</li>
+						<li>Convert Source 2 materials to glTF PBR channels</li>
+						<li>Compatible with Blender, Unity, Unreal Engine, and more</li>
+						<li>Batch export with correctly split textures</li>
 						<li>Resource dependency tracking and validation</li>
 					</ul>
 				</div>
@@ -317,11 +319,11 @@ File.<span class="hljs-built_in">WriteAllBytes</span>(<span class="hljs-string">
 
 			<div class="feature-section">
 				<div>
-					<h3>Content Decompilers</h3>
+					<h3>Source 2 Decompiler</h3>
 					<ul>
-						<li>Maps (vmap_c → vmap) for use in Hammer editor</li>
-						<li>Models (vmdl_c → vmdl) to ModelDoc format</li>
-						<li>Materials (vmat_c → vmat)</li>
+						<li><a href="/ValveResourceFormat/api/ValveResourceFormat.IO.MapExtract.html">Maps</a> (vmap_c → vmap) for Hammer editor</li>
+						<li><a href="/ValveResourceFormat/api/ValveResourceFormat.IO.ModelExtract.html">Models</a> (vmdl_c → vmdl) to ModelDoc format</li>
+						<li><a href="/ValveResourceFormat/api/ValveResourceFormat.IO.MaterialExtract.html">Materials</a> (vmat_c → vmat)</li>
 						<li>Produce editable assets for Source 2 Workshop Tools</li>
 						<li>Retain maximum data fidelity</li>
 					</ul>
@@ -330,9 +332,9 @@ File.<span class="hljs-built_in">WriteAllBytes</span>(<span class="hljs-string">
 				<div>
 					<h3>Source 2 Resource Files</h3>
 					<ul>
-						<li>Read and process Source 2 resource files (_c file extension) with comprehensive support</li>
+						<li>Open vtex_c, vmdl_c, vmat_c, vpcf_c, and all <a href="/ValveResourceFormat/api/ValveResourceFormat.Resource.html">Source 2 file types</a></li>
 						<li>View Resource Blocks in separate tabs</li>
-						<li>Decode data to user-friendly text representation</li>
+						<li>Decode binary data to user-friendly text representation</li>
 						<li>Support for all resource file versions (as early as 2014)</li>
 					</ul>
 				</div>
@@ -343,7 +345,7 @@ File.<span class="hljs-built_in">WriteAllBytes</span>(<span class="hljs-string">
 					<h3>Audio System</h3>
 					<ul>
 						<li>Built-in audio player with waveform visualization</li>
-						<li>Support for WAV, MP3, and Source 2 audio formats</li>
+						<li>Support for WAV, MP3, and <a href="/ValveResourceFormat/api/ValveResourceFormat.ResourceTypes.Sound.html">Source 2 audio formats</a></li>
 						<li>Volume controls and stereo meters</li>
 						<li>Timeline scrubbing and playback controls</li>
 						<li>Auto-play in preview mode</li>
@@ -353,7 +355,7 @@ File.<span class="hljs-built_in">WriteAllBytes</span>(<span class="hljs-string">
 				<div>
 					<h3>Shader Packages</h3>
 					<ul>
-						<li>Inspect and analyze Source 2 shader files (vcs extension) with bytecode conversion</li>
+						<li>Inspect and analyze Source 2 <a href="/ValveResourceFormat/api/ValveResourceFormat.CompiledShader.html">shader files</a> (vcs extension) with bytecode conversion</li>
 						<li>Read Source 2 shader packages</li>
 						<li>Compiled shader code viewer</li>
 						<li>Inspect shader metadata and bytecode</li>
@@ -368,30 +370,29 @@ File.<span class="hljs-built_in">WriteAllBytes</span>(<span class="hljs-string">
 				<div>
 					<h3>User Interface</h3>
 					<ul>
-						<li>Modern, intuitive interface designed for efficient file management and content exploration</li>
 						<li>Tabbed document interface with advanced tab management</li>
 						<li>Dark and light theme support</li>
-						<li>Steam games auto-detection and explorer</li>
+						<li>Auto-detect installed Source 2 games on Steam</li>
 						<li>Recent files and bookmarks management</li>
-						<li>Drag and drop file support</li>
+						<li>Drag and drop support for VPK and resource files</li>
 						<li>Keyboard shortcuts for quick navigation</li>
-						<li>Windows integration with file associations</li>
+						<li>Windows file association integration</li>
 					</ul>
 				</div>
 
 				<div>
 					<h3>Additional File Formats</h3>
 					<ul>
-						<li>NavigationMesh (.nav) and ToolsAssetInfo (.bin) files</li>
-						<li>World nodes (vwnod_c) for streaming world geometry</li>
-						<li>Compiled particle systems (vpcf_c) and effects</li>
-						<li>Sound event files and audio definitions</li>
-						<li>Various image formats (PNG, JPG, TGA, GIF)</li>
+						<li><a href="/ValveResourceFormat/api/ValveResourceFormat.NavMesh.NavMeshFile.html">NavigationMesh</a> (.nav) and ToolsAssetInfo (.bin) files</li>
+						<li><a href="/ValveResourceFormat/api/ValveResourceFormat.ResourceTypes.WorldNode.html">World nodes</a> (vwnod_c) for streaming world geometry</li>
+						<li><a href="/ValveResourceFormat/api/ValveResourceFormat.ResourceTypes.ParticleSystem.html">Particle systems</a> (vpcf_c) and effects</li>
+						<li><a href="/ValveResourceFormat/api/ValveResourceFormat.ResourceTypes.Sound.html">Sound event files</a> and audio definitions (vsnd_c)</li>
+						<li>Image formats including PNG, JPG, TGA, and GIF</li>
 						<li>Hex viewer for binary data inspection</li>
 						<li>Text and binary file viewing with syntax highlighting</li>
-						<li>Complete KeyValues support (KV1, KV2, KV3)</li>
+						<li>Complete <a href="/ValveResourceFormat/api/ValveResourceFormat.Serialization.KeyValues.KV3File.html">KeyValues</a> support (KV1, KV2, KV3)</li>
 						<li>Convert binary keyvalues to text format</li>
-						<li>Closed captions file support</li>
+						<li><a href="/ValveResourceFormat/api/ValveResourceFormat.ClosedCaptions.html">Closed captions</a> file support</li>
 					</ul>
 				</div>
 			</div>

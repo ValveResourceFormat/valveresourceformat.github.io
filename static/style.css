@@ -62,6 +62,32 @@ a:active {
 	z-index: -1;
 }
 
+.update-banner {
+	display: inline-block;
+	margin-top: 0.75rem;
+	padding: 0.5rem 0.75rem;
+	background: hsl(140 50% 20%);
+	border: 1px solid hsl(140 60% 50%);
+	border-radius: 0.5rem;
+	font-size: 0.9rem;
+	color: #fff;
+	text-decoration: none;
+	cursor: pointer;
+	opacity: 1;
+	transition: opacity 200ms;
+
+	&:hover {
+		background: hsl(140 50% 25%);
+		color: #fff;
+	}
+
+	&[hidden] {
+		display: inline-block;
+		pointer-events: none;
+		opacity: 0;
+	}
+}
+
 .hero {
 	min-height: max(1000px, 90vh);
 	display: flex;

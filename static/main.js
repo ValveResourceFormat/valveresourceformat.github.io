@@ -40,6 +40,25 @@ fetch('https://api.github.com/repositories/42366054/releases?per_page=5', {
 
 		const latestRelease = releases[0];
 
+		try {
+			const currentVersion = latestRelease.tag_name;
+			const storedVersion = localStorage.getItem('s2v-last-version');
+
+			if (storedVersion && storedVersion !== currentVersion) {
+				const banner = document.getElementById('js-update-banner');
+				banner.hidden = false;
+
+				banner.addEventListener('click', () => {
+					banner.hidden = true;
+					localStorage.setItem('s2v-last-version', currentVersion);
+				});
+			} else {
+				localStorage.setItem('s2v-last-version', currentVersion);
+			}
+		} catch (e) {
+			console.error(e);
+		}
+
 		for (const asset of latestRelease.assets) {
 			if (asset.name === 'Source2Viewer.exe') {
 				document.getElementById('js-download').href =

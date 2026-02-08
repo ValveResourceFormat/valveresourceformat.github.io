@@ -127,6 +127,7 @@ fetch('https://api.github.com/repositories/42366054/releases?per_page=5', {
 			const releaseContent = document.createElement('div');
 			releaseContent.className = 'release-content';
 			releaseContent.innerHTML = release.body_html;
+			AdjustChangelog(releaseContent);
 			releaseMain.appendChild(releaseContent);
 
 			if (isLatest) {
@@ -165,6 +166,99 @@ fetch('https://api.github.com/repositories/42366054/releases?per_page=5', {
 			releaseNotesContainer.appendChild(releaseSection);
 		});
 	});
+
+function AdjustChangelog(changelogContainer) {
+	// Handle images
+	const images = changelogContainer.querySelectorAll('img');
+	images.forEach(img => {
+		// Remove parent link to prevent new-tab navigation
+		const parentLink = img.closest('a');
+		if (parentLink && parentLink.href === img.src) {
+			const wrapper = document.createElement('div');
+			wrapper.className = 'changelog-img-wrapper';
+			parentLink.parentNode.insertBefore(wrapper, parentLink);
+			wrapper.appendChild(img);
+			parentLink.remove();
+		} else if (!img.closest('.changelog-img-wrapper')) {
+			const wrapper = document.createElement('div');
+			wrapper.className = 'changelog-img-wrapper';
+			img.parentNode.insertBefore(wrapper, img);
+			wrapper.appendChild(img);
+		}
+
+		// Add click handler for modal
+		img.style.cursor = 'zoom-in';
+		img.addEventListener('click', (e) => {
+			e.preventDefault();
+			OpenMediaModal(img.src, img.alt, 'image');
+		});
+	});
+
+	// Handle videos
+	const videos = changelogContainer.querySelectorAll('video');
+	videos.forEach(video => {
+		// Remove outer details/summary wrapper if present
+		const detailsParent = video.closest('details');
+		if (detailsParent) {
+			const wrapper = document.createElement('div');
+			wrapper.className = 'changelog-video-wrapper';
+			detailsParent.parentNode.insertBefore(wrapper, detailsParent);
+			wrapper.appendChild(video);
+			detailsParent.remove();
+		} else if (!video.closest('.changelog-video-wrapper')) {
+			const wrapper = document.createElement('div');
+			wrapper.className = 'changelog-video-wrapper';
+			video.parentNode.insertBefore(wrapper, video);
+			wrapper.appendChild(video);
+		}
+
+		// Add click handler for modal
+		video.style.cursor = 'zoom-in';
+		video.addEventListener('click', (e) => {
+			e.preventDefault();
+			OpenMediaModal(video.src || video.querySelector('source')?.src, '', 'video');
+		});
+	});
+}
+
+// Media modal for changelog (images and videos)
+function OpenMediaModal(src, alt, type) {
+	let modal = document.getElementById('changelog-media-modal');
+	if (!modal) {
+		modal = document.createElement('div');
+		modal.id = 'changelog-media-modal';
+		modal.className = 'changelog-modal';
+		modal.innerHTML = `
+			<div class="changelog-modal-backdrop">
+				<button class="changelog-modal-close" aria-label="Close">&times;</button>
+				<div class="changelog-modal-content"></div>
+			</div>
+		`;
+		document.body.appendChild(modal);
+
+		const closeModal = () => {
+			modal.classList.remove('active');
+			const content = modal.querySelector('.changelog-modal-content');
+			const video = content.querySelector('video');
+			if (video) video.pause();
+		};
+		modal.querySelector('.changelog-modal-close').onclick = closeModal;
+		modal.querySelector('.changelog-modal-backdrop').onclick = (e) => {
+			if (e.target.classList.contains('changelog-modal-backdrop')) closeModal();
+		};
+		document.addEventListener('keydown', (e) => {
+			if (e.key === 'Escape' && modal.classList.contains('active')) closeModal();
+		});
+	}
+
+	const content = modal.querySelector('.changelog-modal-content');
+	if (type === 'video') {
+		content.innerHTML = `<video class="changelog-modal-video" src="${src}" controls autoplay loop></video>`;
+	} else {
+		content.innerHTML = `<img class="changelog-modal-img" src="${src}" alt="${alt || ''}">`;
+	}
+	modal.classList.add('active');
+}
 
 function LoadWorkshop() {
 	fetch('https://steamdb.info/api/Source2ViewerWorkshop/')

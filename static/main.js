@@ -168,96 +168,80 @@ fetch('https://api.github.com/repositories/42366054/releases?per_page=5', {
 	});
 
 function AdjustChangelog(changelogContainer) {
-	// Handle images
-	const images = changelogContainer.querySelectorAll('img');
-	images.forEach(img => {
-		// Remove parent link to prevent new-tab navigation
-		const parentLink = img.closest('a');
-		if (parentLink && parentLink.href === img.src) {
+	const wrapMedia = (element, unwrapParent) => {
+		if (unwrapParent) {
 			const wrapper = document.createElement('div');
-			wrapper.className = 'changelog-img-wrapper';
-			parentLink.parentNode.insertBefore(wrapper, parentLink);
-			wrapper.appendChild(img);
-			parentLink.remove();
-		} else if (!img.closest('.changelog-img-wrapper')) {
+			wrapper.className = 'changelog-media-wrapper';
+			unwrapParent.parentNode.insertBefore(wrapper, unwrapParent);
+			wrapper.appendChild(element);
+			unwrapParent.remove();
+		} else if (!element.closest('.changelog-media-wrapper')) {
 			const wrapper = document.createElement('div');
-			wrapper.className = 'changelog-img-wrapper';
-			img.parentNode.insertBefore(wrapper, img);
-			wrapper.appendChild(img);
+			wrapper.className = 'changelog-media-wrapper';
+			element.parentNode.insertBefore(wrapper, element);
+			wrapper.appendChild(element);
 		}
+	};
 
-		// Add click handler for modal
-		img.style.cursor = 'zoom-in';
+	for (const img of changelogContainer.querySelectorAll('img')) {
+		const parentLink = img.closest('a');
+		wrapMedia(img, parentLink?.href === img.src ? parentLink : null);
+
 		img.addEventListener('click', (e) => {
 			e.preventDefault();
-			OpenMediaModal(img.src, img.alt, 'image');
+			OpenMediaModal(img.src, 'image');
 		});
-	});
+	}
 
-	// Handle videos
-	const videos = changelogContainer.querySelectorAll('video');
-	videos.forEach(video => {
-		// Remove outer details/summary wrapper if present
-		const detailsParent = video.closest('details');
-		if (detailsParent) {
-			const wrapper = document.createElement('div');
-			wrapper.className = 'changelog-video-wrapper';
-			detailsParent.parentNode.insertBefore(wrapper, detailsParent);
-			wrapper.appendChild(video);
-			detailsParent.remove();
-		} else if (!video.closest('.changelog-video-wrapper')) {
-			const wrapper = document.createElement('div');
-			wrapper.className = 'changelog-video-wrapper';
-			video.parentNode.insertBefore(wrapper, video);
-			wrapper.appendChild(video);
-		}
+	for (const video of changelogContainer.querySelectorAll('video')) {
+		wrapMedia(video, video.closest('details'));
 
-		// Add click handler for modal
-		video.style.cursor = 'zoom-in';
 		video.addEventListener('click', (e) => {
 			e.preventDefault();
-			OpenMediaModal(video.src || video.querySelector('source')?.src, '', 'video');
+			OpenMediaModal(video.src || video.querySelector('source')?.src, 'video');
 		});
-	});
+	}
 }
 
-// Media modal for changelog (images and videos)
-function OpenMediaModal(src, alt, type) {
+function OpenMediaModal(src, type) {
 	let modal = document.getElementById('changelog-media-modal');
 	if (!modal) {
-		modal = document.createElement('div');
+		modal = document.createElement('dialog');
 		modal.id = 'changelog-media-modal';
 		modal.className = 'changelog-modal';
-		modal.innerHTML = `
-			<div class="changelog-modal-backdrop">
-				<button class="changelog-modal-close" aria-label="Close">&times;</button>
-				<div class="changelog-modal-content"></div>
-			</div>
-		`;
-		document.body.appendChild(modal);
 
-		const closeModal = () => {
-			modal.classList.remove('active');
-			const content = modal.querySelector('.changelog-modal-content');
-			const video = content.querySelector('video');
-			if (video) video.pause();
-		};
-		modal.querySelector('.changelog-modal-close').onclick = closeModal;
-		modal.querySelector('.changelog-modal-backdrop').onclick = (e) => {
-			if (e.target.classList.contains('changelog-modal-backdrop')) closeModal();
-		};
-		document.addEventListener('keydown', (e) => {
-			if (e.key === 'Escape' && modal.classList.contains('active')) closeModal();
+		const closeBtn = document.createElement('button');
+		closeBtn.className = 'changelog-modal-close';
+		closeBtn.ariaLabel = 'Close';
+		closeBtn.textContent = '\u00D7';
+		closeBtn.onclick = () => modal.close();
+		modal.appendChild(closeBtn);
+
+		modal.addEventListener('click', (e) => {
+			if (e.target === modal) modal.close();
 		});
+		modal.addEventListener('close', () => {
+			const video = modal.querySelector('video');
+			if (video) video.pause();
+		});
+
+		document.body.appendChild(modal);
 	}
 
-	const content = modal.querySelector('.changelog-modal-content');
+	const existing = modal.querySelector('img, video');
+	if (existing) existing.remove();
+
+	const media = document.createElement(type === 'video' ? 'video' : 'img');
+	media.className = 'changelog-modal-media';
+	media.src = src;
 	if (type === 'video') {
-		content.innerHTML = `<video class="changelog-modal-video" src="${src}" controls autoplay loop></video>`;
-	} else {
-		content.innerHTML = `<img class="changelog-modal-img" src="${src}" alt="${alt || ''}">`;
+		media.controls = true;
+		media.autoplay = true;
+		media.loop = true;
 	}
-	modal.classList.add('active');
+	modal.appendChild(media);
+
+	modal.showModal();
 }
 
 function LoadWorkshop() {

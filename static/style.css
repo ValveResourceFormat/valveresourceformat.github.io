@@ -927,134 +927,127 @@ a.hljs-built_in {
 	}
 }
 
-/* Changelog image optimization */
-.changelog-img-wrapper {
+.changelog-media-wrapper {
 	display: block;
 	max-width: var(--changelog-media-width);
 	width: 100%;
 	margin: 1rem auto;
+
+	img,
+	video {
+		width: 100%;
+		height: auto;
+		border-radius: 6px;
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		cursor: zoom-in;
+		transition:
+			transform 0.2s ease,
+			border-color 0.2s ease;
+
+		&:hover {
+			border-color: var(--color-accent);
+			transform: scale(1.02);
+		}
+	}
 }
 
-.changelog-img-wrapper img {
-	width: 100%;
-	height: auto;
-	border-radius: 6px;
-	border: 1px solid rgba(255, 255, 255, 0.08);
-	transition: transform 0.2s ease, border-color 0.2s ease;
-}
-
-.changelog-img-wrapper img:hover {
-	border-color: var(--color-accent);
-	transform: scale(1.02);
-}
-
-/* Changelog video optimization */
-.changelog-video-wrapper {
-	display: block;
-	max-width: var(--changelog-media-width);
-	width: 100%;
-	margin: 1rem auto;
-}
-
-.changelog-video-wrapper video {
-	width: 100%;
-	height: auto;
-	border-radius: 6px;
-	border: 1px solid rgba(255, 255, 255, 0.08);
-	transition: transform 0.2s ease, border-color 0.2s ease;
-}
-
-.changelog-video-wrapper video:hover {
-	border-color: var(--color-accent);
-	transform: scale(1.02);
+html:has(dialog[open]) {
+	overflow: hidden;
+	scrollbar-gutter: stable;
 }
 
 /* Media modal (images and videos) */
 .changelog-modal {
-	display: none;
-	position: fixed;
-	inset: 0;
-	z-index: 9999;
-	animation: fadeIn 0.2s ease;
-}
-
-.changelog-modal.active {
-	display: block;
-}
-
-.changelog-modal-backdrop {
-	position: fixed;
-	inset: 0;
-	background: rgba(0, 0, 0, 0.92);
-	display: flex;
+	border: none;
+	background: transparent;
+	max-width: none;
+	max-height: none;
+	width: 100%;
+	height: 100%;
 	align-items: center;
 	justify-content: center;
 	padding: 2rem;
-	backdrop-filter: blur(4px);
-}
+	opacity: 0;
+	transition:
+		opacity 0.2s ease,
+		overlay 0.2s ease allow-discrete,
+		display 0.2s ease allow-discrete;
 
-.changelog-modal-content {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-}
+	&[open] {
+		display: flex;
+		opacity: 1;
 
-.changelog-modal-img,
-.changelog-modal-video {
-	max-width: 100%;
-	max-height: 90vh;
-	width: auto;
-	height: auto;
-	border-radius: 8px;
-	box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-	object-fit: contain;
-}
+		@starting-style {
+			opacity: 0;
+		}
+	}
 
-.changelog-modal-close {
-	position: absolute;
-	top: 1.5rem;
-	right: 1.5rem;
-	background: rgba(255, 255, 255, 0.1);
-	border: none;
-	color: #fff;
-	font-size: 2rem;
-	line-height: 1;
-	width: 48px;
-	height: 48px;
-	border-radius: 50%;
-	cursor: pointer;
-	transition: background 0.2s ease;
-	z-index: 10000;
-}
+	&::backdrop {
+		background: rgba(0, 0, 0, 0.92);
+		backdrop-filter: blur(4px);
+		opacity: 0;
+		transition:
+			opacity 0.2s ease,
+			overlay 0.2s ease allow-discrete,
+			display 0.2s ease allow-discrete;
+	}
 
-.changelog-modal-close:hover {
-	background: rgba(255, 255, 255, 0.2);
-}
+	&[open]::backdrop {
+		opacity: 1;
 
-@keyframes fadeIn {
-	from { opacity: 0; }
-	to { opacity: 1; }
+		@starting-style {
+			opacity: 0;
+		}
+	}
+
+	.changelog-modal-media {
+		max-width: 90vw;
+		max-height: 90vh;
+		border-radius: 8px;
+		box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+		object-fit: contain;
+	}
+
+	.changelog-modal-close {
+		position: fixed;
+		top: 1.5rem;
+		right: 1.5rem;
+		background: rgba(255, 255, 255, 0.1);
+		border: none;
+		color: #fff;
+		font-size: 2rem;
+		line-height: 1;
+		width: 48px;
+		height: 48px;
+		border-radius: 50%;
+		cursor: pointer;
+		transition: background 0.2s ease;
+		z-index: 1;
+
+		&:hover {
+			background: rgba(255, 255, 255, 0.2);
+		}
+	}
+
+	@media (max-width: 768px) {
+		padding: 1rem;
+
+		.changelog-modal-media {
+			max-height: 80vh;
+		}
+
+		.changelog-modal-close {
+			top: 1rem;
+			right: 1rem;
+			width: 40px;
+			height: 40px;
+			font-size: 1.5rem;
+		}
+	}
 }
 
 @media (max-width: 768px) {
-	.changelog-img-wrapper {
+	.changelog-media-wrapper {
 		max-width: 100%;
-	}
-
-	.changelog-modal-backdrop {
-		padding: 1rem;
-	}
-	
-	.changelog-modal-img,
-	.changelog-modal-video {
-		max-height: 80vh;
-	}
-	
-	.changelog-modal-close {
-		top: 1rem;
-		right: 1rem;
-		width: 40px;
-		height: 40px;
-		font-size: 1.5rem;
 	}
 }

@@ -106,8 +106,8 @@ a:active {
 	vertical-align: middle;
 	cursor: pointer;
 	background: var(--color-accent);
-	border: 2px solid rgb(255 255 255 / 50%);
-	border-radius: 0.6rem;
+	border: 1px solid rgb(255 255 255 / 50%);
+	border-radius: 1rem;
 	font-size: 1.5rem;
 	font-weight: bold;
 	line-height: 1;
@@ -711,11 +711,13 @@ a.hljs-built_in {
 
 		.feature-section > div {
 			padding: 1rem;
+			border: 0;
+			border-radius: 0;
 		}
 	}
 }
 
-#release-notes {
+#changelog {
 	padding: 1.5rem 0;
 
 	> h2 {
@@ -727,19 +729,34 @@ a.hljs-built_in {
 	}
 
 	.release-notes-content {
-		background: rgb(255 255 255 / 3%);
-		border: 1px solid rgb(71 168 255 / 10%);
-		border-radius: 8px;
-		padding: 1.5rem;
-		overflow-x: auto;
 		line-height: 1.6;
 		margin-bottom: 1.5rem;
+		display: flex;
+		gap: 1.5rem;
+
+		.release-notes-sidebar {
+			width: 140px;
+			flex-shrink: 0;
+			position: sticky;
+			top: 0;
+			padding: 1rem;
+			align-self: flex-start;
+		}
+
+		.release-notes-main {
+			flex: 1;
+			min-width: 0;
+			background: rgb(255 255 255 / 3%);
+			border: 1px solid rgb(71 168 255 / 10%);
+			border-radius: 8px;
+			padding: 1.5rem;
+			overflow-x: auto;
+		}
 
 		.release-version {
 			color: var(--color-accent);
 			font-size: 1.5rem;
 			font-weight: 600;
-			margin: 0 0 1rem 0;
 			text-decoration: none;
 			display: block;
 
@@ -747,6 +764,20 @@ a.hljs-built_in {
 				color: #fff;
 				text-decoration: underline;
 			}
+		}
+
+		.release-date {
+			display: block;
+			color: rgb(255 255 255 / 50%);
+			font-size: 0.9rem;
+			margin-top: 0.25rem;
+		}
+
+		.release-downloads {
+			display: block;
+			color: rgb(255 255 255 / 40%);
+			font-size: 0.8rem;
+			margin-top: 0.25rem;
 		}
 
 		h1,
@@ -878,7 +909,19 @@ a.hljs-built_in {
 		}
 
 		.release-notes-content {
-			padding: 1rem;
+			flex-direction: column;
+			gap: 0.5rem;
+
+			.release-notes-sidebar {
+				width: 100%;
+				position: static;
+			}
+
+			.release-notes-main {
+				padding: 1rem;
+				border: 0;
+				border-radius: 0;
+			}
 		}
 	}
 }

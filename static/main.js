@@ -66,7 +66,7 @@ fetch('https://api.github.com/repositories/42366054/releases?per_page=5', {
 
 				const version = document.querySelector('.download-version');
 
-				let string = `View release notes for v${latestRelease.tag_name}`;
+				let string = `View changelog for v${latestRelease.tag_name}`;
 
 				if (window.innerWidth > 500) {
 					const date = new Date(latestRelease.published_at);
@@ -78,7 +78,11 @@ fetch('https://api.github.com/repositories/42366054/releases?per_page=5', {
 			}
 		}
 
-		const releaseNotesContainer = document.getElementById('release-notes');
+		const releaseNotesContainer = document.getElementById('changelog');
+		const downloadFormatter = new Intl.NumberFormat('en', {
+			notation: 'compact',
+			maximumFractionDigits: 1,
+		});
 
 		releases.forEach((release, index) => {
 			const isLatest = index === 0;
@@ -86,19 +90,44 @@ fetch('https://api.github.com/repositories/42366054/releases?per_page=5', {
 			const releaseSection = document.createElement('div');
 			releaseSection.className = 'release-notes-content';
 
+			const releaseSidebar = document.createElement('div');
+			releaseSidebar.className = 'release-notes-sidebar';
+
 			const releaseHeader = document.createElement('a');
 			releaseHeader.className = 'release-version';
 			releaseHeader.href = release.html_url;
 			releaseHeader.target = '_blank';
 			releaseHeader.rel = 'noopener';
+			releaseHeader.textContent = `v${release.tag_name}`;
+			releaseSidebar.appendChild(releaseHeader);
+
+			const releaseDateSpan = document.createElement('span');
+			releaseDateSpan.className = 'release-date';
 			const releaseDate = new Date(release.published_at);
-			releaseHeader.textContent = `v${release.tag_name} - ${releaseDate.toLocaleDateString()}`;
-			releaseSection.appendChild(releaseHeader);
+			releaseDateSpan.textContent = releaseDate.toLocaleDateString();
+			releaseSidebar.appendChild(releaseDateSpan);
+
+			const totalDownloads = release.assets.reduce(
+				(sum, asset) => sum + asset.download_count,
+				0,
+			);
+
+			if (totalDownloads > 0) {
+				const downloadsSpan = document.createElement('span');
+				downloadsSpan.className = 'release-downloads';
+				downloadsSpan.textContent = `${downloadFormatter.format(totalDownloads)} downloads`;
+				releaseSidebar.appendChild(downloadsSpan);
+			}
+
+			releaseSection.appendChild(releaseSidebar);
+
+			const releaseMain = document.createElement('div');
+			releaseMain.className = 'release-notes-main';
 
 			const releaseContent = document.createElement('div');
 			releaseContent.className = 'release-content';
 			releaseContent.innerHTML = release.body_html;
-			releaseSection.appendChild(releaseContent);
+			releaseMain.appendChild(releaseContent);
 
 			if (isLatest) {
 				const releaseAssetsContainer = document.createElement('div');
@@ -128,8 +157,10 @@ fetch('https://api.github.com/repositories/42366054/releases?per_page=5', {
 				githubLink.textContent = 'View release on GitHub';
 				releaseAssetsContainer.appendChild(githubLink);
 
-				releaseSection.appendChild(releaseAssetsContainer);
+				releaseMain.appendChild(releaseAssetsContainer);
 			}
+
+			releaseSection.appendChild(releaseMain);
 
 			releaseNotesContainer.appendChild(releaseSection);
 		});

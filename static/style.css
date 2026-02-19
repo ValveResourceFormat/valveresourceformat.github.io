@@ -89,7 +89,7 @@ a:active {
 }
 
 .hero {
-	min-height: max(1000px, 90vh);
+	min-height: max(1100px, 90vh);
 	display: flex;
 	align-items: center;
 	justify-content: center;

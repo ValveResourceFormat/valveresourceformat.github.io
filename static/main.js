@@ -41,16 +41,8 @@ fetch('https://api.github.com/repositories/42366054/releases?per_page=5', {
 				document.getElementById('js-download').href =
 					asset.browser_download_url;
 
-				const version = document.querySelector('.download-version');
-
-				let string = `View changelog for v${latestRelease.tag_name}`;
-
-				if (window.innerWidth > 500) {
-					const date = new Date(latestRelease.published_at);
-					string += `, released on ${date.toLocaleDateString()}`;
-				}
-
-				version.textContent = string;
+				const version = document.querySelector('.download-text');
+				version.textContent = `Download v${latestRelease.tag_name}`;
 				break;
 			}
 		}

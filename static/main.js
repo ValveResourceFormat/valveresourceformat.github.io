@@ -1,140 +1,182 @@
-fetch('https://api.github.com/repositories/42366054/releases?per_page=5', {
-	headers: {
-		Accept: 'application/vnd.github.html+json',
-	},
-})
-	.then((response) => {
-		if (!response.ok) {
-			throw new Error('Failed to fetch github releases');
-		}
+const releasesPerPage = 5;
+const releaseNotesContainer = document.getElementById('changelog');
+const downloadFormatter = new Intl.NumberFormat('en', {
+	notation: 'compact',
+	maximumFractionDigits: 1,
+});
+let releasesPage = 1;
 
-		return response.json();
-	})
-	.then((releases) => {
-		if (!releases || releases.length === 0) {
-			return;
-		}
+function LoadReleases() {
+	const existingBtn = releaseNotesContainer.querySelector(
+		'.changelog-load-more',
+	);
 
-		const latestRelease = releases[0];
-
-		try {
-			const currentVersion = latestRelease.tag_name;
-			const storedVersion = localStorage.getItem('s2v-last-version');
-
-			if (storedVersion && storedVersion !== currentVersion) {
-				const banner = document.getElementById('js-update-banner');
-				banner.hidden = false;
-
-				banner.addEventListener('click', () => {
-					banner.hidden = true;
-					localStorage.setItem('s2v-last-version', currentVersion);
-				});
-			} else {
-				localStorage.setItem('s2v-last-version', currentVersion);
-			}
-		} catch (e) {
-			console.error(e);
-		}
-
-		for (const asset of latestRelease.assets) {
-			if (asset.name === 'Source2Viewer.exe') {
-				document.getElementById('js-download').href =
-					asset.browser_download_url;
-
-				const version = document.querySelector('.download-text');
-				version.textContent = `Download v${latestRelease.tag_name}`;
-				break;
-			}
-		}
-
-		const releaseNotesContainer = document.getElementById('changelog');
-		const downloadFormatter = new Intl.NumberFormat('en', {
-			notation: 'compact',
-			maximumFractionDigits: 1,
-		});
-
-		releases.forEach((release, index) => {
-			const isLatest = index === 0;
-
-			const releaseSection = document.createElement('div');
-			releaseSection.className = 'release-notes-content';
-
-			const releaseSidebar = document.createElement('div');
-			releaseSidebar.className = 'release-notes-sidebar';
-
-			const releaseHeader = document.createElement('a');
-			releaseHeader.className = 'release-version';
-			releaseHeader.href = release.html_url;
-			releaseHeader.target = '_blank';
-			releaseHeader.rel = 'noopener';
-			releaseHeader.textContent = `v${release.tag_name}`;
-			releaseSidebar.appendChild(releaseHeader);
-
-			const releaseDateSpan = document.createElement('span');
-			releaseDateSpan.className = 'release-date';
-			const releaseDate = new Date(release.published_at);
-			releaseDateSpan.textContent = releaseDate.toLocaleDateString();
-			releaseSidebar.appendChild(releaseDateSpan);
-
-			const totalDownloads = release.assets.reduce(
-				(sum, asset) => sum + asset.download_count,
-				0,
-			);
-
-			if (totalDownloads > 0) {
-				const downloadsSpan = document.createElement('span');
-				downloadsSpan.className = 'release-downloads';
-				downloadsSpan.textContent = `${downloadFormatter.format(totalDownloads)} downloads`;
-				releaseSidebar.appendChild(downloadsSpan);
+	fetch(
+		`https://api.github.com/repositories/42366054/releases?per_page=${releasesPerPage}&page=${releasesPage}`,
+		{
+			headers: {
+				Accept: 'application/vnd.github.html+json',
+			},
+		},
+	)
+		.then((response) => {
+			if (!response.ok) {
+				throw new Error('Failed to fetch github releases');
 			}
 
-			releaseSection.appendChild(releaseSidebar);
+			return response.json();
+		})
+		.then((releases) => {
+			if (existingBtn) {
+				existingBtn.remove();
+			}
 
-			const releaseMain = document.createElement('div');
-			releaseMain.className = 'release-notes-main';
+			if (!releases || releases.length === 0) {
+				return;
+			}
 
-			const releaseContent = document.createElement('div');
-			releaseContent.className = 'release-content';
-			releaseContent.innerHTML = release.body_html;
-			AdjustChangelog(releaseContent);
-			releaseMain.appendChild(releaseContent);
+			const isFirstPage = releasesPage === 1;
+			releasesPage++;
 
-			if (isLatest) {
-				const releaseAssetsContainer = document.createElement('div');
-				releaseAssetsContainer.className = 'release-assets';
-				releaseAssetsContainer.id = 'js-release-assets';
+			if (isFirstPage) {
+				const latestRelease = releases[0];
 
-				for (const asset of release.assets) {
-					let name = asset.name;
+				try {
+					const currentVersion = latestRelease.tag_name;
+					const storedVersion = localStorage.getItem('s2v-last-version');
 
-					if (name.endsWith('.zip')) {
-						name = name.substring(0, name.length - 4).replace(/-/g, ' ');
+					if (storedVersion && storedVersion !== currentVersion) {
+						const banner = document.getElementById('js-update-banner');
+						banner.hidden = false;
+
+						banner.addEventListener('click', () => {
+							banner.hidden = true;
+							localStorage.setItem('s2v-last-version', currentVersion);
+						});
+					} else {
+						localStorage.setItem('s2v-last-version', currentVersion);
 					}
-
-					const assetLink = document.createElement('a');
-					assetLink.href = asset.browser_download_url;
-					assetLink.className = 'asset-link';
-					assetLink.download = '';
-					assetLink.textContent = name;
-					releaseAssetsContainer.appendChild(assetLink);
+				} catch (e) {
+					console.error(e);
 				}
 
-				const githubLink = document.createElement('a');
-				githubLink.href = release.html_url;
-				githubLink.className = 'asset-link';
-				githubLink.target = '_blank';
-				githubLink.rel = 'noopener';
-				githubLink.textContent = 'View release on GitHub';
-				releaseAssetsContainer.appendChild(githubLink);
+				for (const asset of latestRelease.assets) {
+					if (asset.name === 'Source2Viewer.exe') {
+						document.getElementById('js-download').href =
+							asset.browser_download_url;
 
-				releaseMain.appendChild(releaseAssetsContainer);
+						const version = document.querySelector('.download-text');
+						version.textContent = `Download v${latestRelease.tag_name}`;
+						break;
+					}
+				}
 			}
 
-			releaseSection.appendChild(releaseMain);
+			RenderReleases(releases, isFirstPage);
+		})
+		.catch((e) => {
+			console.error(e);
 
-			releaseNotesContainer.appendChild(releaseSection);
+			if (existingBtn) {
+				existingBtn.disabled = false;
+				existingBtn.textContent = 'Load older changelogs';
+			}
 		});
-	});
+}
+
+function RenderReleases(releases, isFirstPage) {
+	for (const release of releases) {
+		const releaseSection = document.createElement('div');
+		releaseSection.className = 'release-notes-content';
+
+		const releaseSidebar = document.createElement('div');
+		releaseSidebar.className = 'release-notes-sidebar';
+
+		const releaseHeader = document.createElement('a');
+		releaseHeader.className = 'release-version';
+		releaseHeader.href = release.html_url;
+		releaseHeader.target = '_blank';
+		releaseHeader.rel = 'noopener';
+		releaseHeader.textContent = `v${release.tag_name}`;
+		releaseSidebar.appendChild(releaseHeader);
+
+		const releaseDateSpan = document.createElement('span');
+		releaseDateSpan.className = 'release-date';
+		const releaseDate = new Date(release.published_at);
+		releaseDateSpan.textContent = releaseDate.toLocaleDateString();
+		releaseSidebar.appendChild(releaseDateSpan);
+
+		const totalDownloads = release.assets.reduce(
+			(sum, asset) => sum + asset.download_count,
+			0,
+		);
+
+		if (totalDownloads > 0) {
+			const downloadsSpan = document.createElement('span');
+			downloadsSpan.className = 'release-downloads';
+			downloadsSpan.textContent = `${downloadFormatter.format(totalDownloads)} downloads`;
+			releaseSidebar.appendChild(downloadsSpan);
+		}
+
+		releaseSection.appendChild(releaseSidebar);
+
+		const releaseMain = document.createElement('div');
+		releaseMain.className = 'release-notes-main';
+
+		const releaseContent = document.createElement('div');
+		releaseContent.className = 'release-content';
+		releaseContent.innerHTML = release.body_html;
+		AdjustChangelog(releaseContent);
+		releaseMain.appendChild(releaseContent);
+
+		if (isFirstPage && release === releases[0]) {
+			const releaseAssetsContainer = document.createElement('div');
+			releaseAssetsContainer.className = 'release-assets';
+			releaseAssetsContainer.id = 'js-release-assets';
+
+			for (const asset of release.assets) {
+				let name = asset.name;
+
+				if (name.endsWith('.zip')) {
+					name = name.substring(0, name.length - 4).replace(/-/g, ' ');
+				}
+
+				const assetLink = document.createElement('a');
+				assetLink.href = asset.browser_download_url;
+				assetLink.className = 'asset-link';
+				assetLink.download = '';
+				assetLink.textContent = name;
+				releaseAssetsContainer.appendChild(assetLink);
+			}
+
+			const githubLink = document.createElement('a');
+			githubLink.href = release.html_url;
+			githubLink.className = 'asset-link';
+			githubLink.target = '_blank';
+			githubLink.rel = 'noopener';
+			githubLink.textContent = 'View release on GitHub';
+			releaseAssetsContainer.appendChild(githubLink);
+
+			releaseMain.appendChild(releaseAssetsContainer);
+		}
+
+		releaseSection.appendChild(releaseMain);
+
+		releaseNotesContainer.appendChild(releaseSection);
+	}
+
+	if (releases.length >= releasesPerPage) {
+		const loadMoreBtn = document.createElement('button');
+		loadMoreBtn.className = 'changelog-load-more';
+		loadMoreBtn.textContent = 'Load older changelogs';
+		loadMoreBtn.addEventListener('click', () => {
+			loadMoreBtn.disabled = true;
+			loadMoreBtn.textContent = 'Loading\u2026';
+			LoadReleases();
+		});
+		releaseNotesContainer.appendChild(loadMoreBtn);
+	}
+}
 
 function AdjustChangelog(changelogContainer) {
 	const wrapMedia = (element, unwrapParent) => {
@@ -253,6 +295,8 @@ function LoadWorkshop() {
 			}
 		});
 }
+
+LoadReleases();
 
 if ('IntersectionObserver' in window) {
 	const observer = new window.IntersectionObserver(

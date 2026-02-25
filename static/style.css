@@ -1040,6 +1040,31 @@ a.hljs-built_in {
 		}
 	}
 
+	.changelog-load-more {
+		display: block;
+		margin: 0 auto 1.5rem;
+		padding: 0.6rem 1.5rem;
+		background: transparent;
+		border: 1px solid rgb(71 168 255 / 20%);
+		border-radius: 6px;
+		color: rgb(255 255 255 / 70%);
+		font: inherit;
+		cursor: pointer;
+		transition:
+			border-color 0.2s,
+			color 0.2s;
+
+		&:hover {
+			border-color: var(--color-accent);
+			color: var(--color-accent);
+		}
+
+		&:disabled {
+			cursor: default;
+			opacity: 0.6;
+		}
+	}
+
 	@media (max-width: 768px) {
 		> h2 {
 			font-size: 2rem;

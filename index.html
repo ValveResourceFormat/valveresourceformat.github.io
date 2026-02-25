@@ -90,7 +90,7 @@
 			</symbol>
 		</svg>
 		<nav class="floating-nav" id="js-nav">
-			<a href="#" class="nav-home">
+			<a href="#" class="nav-home" aria-label="Source 2 Viewer - Back to top">
 				<svg aria-hidden="true"><use href="#s2v-logo"/></svg>
 			</a>
 			<a href="#libraries">Libraries</a>
@@ -100,7 +100,7 @@
 				<svg aria-hidden="true" viewBox="0 0 16 16" width="16" height="16"><path d="M13.54 2.9a13.2 13.2 0 00-3.25-1c-.02 0-.04 0-.05.02-.15.25-.3.58-.41.83a12.18 12.18 0 00-3.66 0 8.4 8.4 0 00-.41-.83.05.05 0 00-.05-.02 13.16 13.16 0 00-3.28 1.03 13.5 13.5 0 00-2.34 9.14c1.37 1 2.7 1.61 4 2.02.01 0 .04 0 .05-.02.3-.42.58-.86.82-1.33a.05.05 0 00-.03-.07 8.76 8.76 0 01-1.25-.6.05.05 0 010-.08l.24-.2a.05.05 0 01.05 0 9.46 9.46 0 008.05 0h.05l.25.2c.03.02.02.07 0 .09-.4.23-.82.43-1.26.59a.05.05 0 00-.02.07c.24.47.51.91.81 1.33.02.02.04.03.06.02a13.23 13.23 0 004.02-2.06 13.41 13.41 0 00-2.39-9.12zm-8.2 7.31c-.78 0-1.43-.72-1.43-1.6 0-.9.64-1.62 1.44-1.62.8 0 1.45.73 1.43 1.61 0 .89-.63 1.61-1.43 1.61zm5.32 0c-.79 0-1.43-.72-1.43-1.6 0-.9.63-1.62 1.43-1.62.81 0 1.45.73 1.44 1.61 0 .89-.63 1.61-1.44 1.61z"/></svg>
 				Discord
 			</a>
-			<a href="https://github.com/ValveResourceFormat/ValveResourceFormat" class="nav-social">
+			<a href="https://github.com/ValveResourceFormat/ValveResourceFormat" class="nav-social" aria-label="GitHub repository">
 				<svg aria-hidden="true" viewBox="0 0 16 16" width="16" height="16"><path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/></svg>
 				GitHub
 			</a>
@@ -113,7 +113,7 @@
 			</defs>
 			<rect width="100%" height="100%" stroke-width="0" fill="url(#hero)"/>
 		</svg>
-		<div class="hero">
+		<main class="hero">
 			<div class="hero-left">
 				<h1>
 					<svg class="main-logo" width="56" height="56" aria-hidden="true"><use href="#s2v-logo"/></svg>
@@ -149,13 +149,13 @@
 
 			</div>
 			<div class="hero-right">
-				<img src="static/screen_hero.webp" alt="Screenshot of Source 2 Viewer displaying a 3D rendered map of Inferno Night with detailed lighting and textures" class="hero-screenshot">
+				<img src="static/screen_hero.webp" fetchpriority="high" alt="Screenshot of Source 2 Viewer displaying a 3D rendered map of Inferno Night with detailed lighting and textures" class="hero-screenshot">
 				<div class="hero-screenshot-author">
 					<svg width="16" height="16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h0"/></svg>
 					<a href="https://steamcommunity.com/workshop/filedetails/?id=3124567099">Inferno Night</a> by Angel, created by decompiling with S2V
 				</div>
 			</div>
-		</div>
+		</main>
 
 		<div class="libraries" id="libraries">
 			<div class="container">
@@ -180,8 +180,8 @@
 						<div class="library-description">
 							<h2>ValveResourceFormat</h2>
 							<div class="library-links">
-								<a href="https://www.nuget.org/packages/ValveResourceFormat">NuGet</a>
-								<a href="https://github.com/ValveResourceFormat/ValveResourceFormat">GitHub</a>
+								<a href="https://www.nuget.org/packages/ValveResourceFormat" aria-label="ValveResourceFormat on NuGet">NuGet</a>
+								<a href="https://github.com/ValveResourceFormat/ValveResourceFormat" aria-label="ValveResourceFormat on GitHub">GitHub</a>
 								<a href="/ValveResourceFormat/api/ValveResourceFormat.html">API Docs</a>
 							</div>
 							<p>.NET library that powers Source 2 Viewer (S2V), also known as VRF. This library can be used to <a href="/ValveResourceFormat/guides/read-resource.html">open and extract Source 2 resource files</a> programmatically.</p>
@@ -194,8 +194,8 @@
 						<div class="library-description">
 							<h2>ValveResourceFormat.Renderer</h2>
 							<div class="library-links">
-								<a href="https://www.nuget.org/packages/ValveResourceFormat.Renderer">NuGet</a>
-								<a href="https://github.com/ValveResourceFormat/ValveResourceFormat/tree/master/Renderer">GitHub</a>
+								<a href="https://www.nuget.org/packages/ValveResourceFormat.Renderer" aria-label="ValveResourceFormat.Renderer on NuGet">NuGet</a>
+								<a href="https://github.com/ValveResourceFormat/ValveResourceFormat/tree/master/Renderer" aria-label="ValveResourceFormat.Renderer on GitHub">GitHub</a>
 								<a href="/ValveResourceFormat/api/ValveResourceFormat.Renderer.html">API Docs</a>
 							</div>
 							<p>.NET library providing an OpenGL-based rendering engine for Source 2 assets. Standalone rendering of models, maps, particles, animations, lighting, and materials with physically-based rendering (PBR).</p>
@@ -208,8 +208,8 @@
 						<div class="library-description">
 							<h2>ValvePak</h2>
 							<div class="library-links">
-								<a href="https://www.nuget.org/packages/ValvePak">NuGet</a>
-								<a href="https://github.com/ValveResourceFormat/ValvePak">GitHub</a>
+								<a href="https://www.nuget.org/packages/ValvePak" aria-label="ValvePak on NuGet">NuGet</a>
+								<a href="https://github.com/ValveResourceFormat/ValvePak" aria-label="ValvePak on GitHub">GitHub</a>
 							</div>
 							<p>.NET library to read Valve Pak (VPK) archives. VPK files are uncompressed archives used to package game content. This library allows you to read and extract files out of these paks.</p>
 						</div>
@@ -221,8 +221,8 @@
 						<div class="library-description">
 							<h2>ValveKeyValue</h2>
 							<div class="library-links">
-								<a href="https://www.nuget.org/packages/ValveKeyValue">NuGet</a>
-								<a href="https://github.com/ValveResourceFormat/ValveKeyValue">GitHub</a>
+								<a href="https://www.nuget.org/packages/ValveKeyValue" aria-label="ValveKeyValue on NuGet">NuGet</a>
+								<a href="https://github.com/ValveResourceFormat/ValveKeyValue" aria-label="ValveKeyValue on GitHub">GitHub</a>
 							</div>
 							<p>.NET library to read and write files in Valve key value format. This library aims to be fully compatible with Valve's various implementations of KeyValues format parsing.</p>
 						</div>
@@ -409,7 +409,7 @@ File.<span class="hljs-built_in">WriteAllBytes</span>(<span class="hljs-string">
 			<h2>Changelog</h2>
 		</div>
 
-		<div class="footer">
+		<footer class="footer">
 			<div class="container">
 				<div class="footer-left">
 					Available under the <a href="https://github.com/ValveResourceFormat/ValveResourceFormat/blob/master/LICENSE">MIT license</a>.<br>
@@ -420,6 +420,6 @@ File.<span class="hljs-built_in">WriteAllBytes</span>(<span class="hljs-string">
 					Source 2 is a trademark and/or registered trademark of Valve Corporation.
 				</div>
 			</div>
-		</div>
+		</footer>
 	</body>
 </html>

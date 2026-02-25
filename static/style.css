@@ -808,14 +808,14 @@ a.hljs-built_in {
 
 		.release-date {
 			display: block;
-			color: rgb(255 255 255 / 50%);
+			color: rgb(255 255 255 / 65%);
 			font-size: 0.9rem;
 			margin-top: 0.25rem;
 		}
 
 		.release-downloads {
 			display: block;
-			color: rgb(255 255 255 / 40%);
+			color: rgb(255 255 255 / 50%);
 			font-size: 0.8rem;
 			margin-top: 0.25rem;
 		}

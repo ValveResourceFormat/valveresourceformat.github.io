@@ -264,28 +264,20 @@ a:active {
 	border-radius: 0.5rem;
 	font-size: 0.85rem;
 	color: #999;
-}
 
-.supported span {
-	white-space: nowrap;
-}
-
-.game-icons {
-	display: flex;
-	gap: 0.5rem;
-
-	a {
-		display: flex;
+	span {
+		white-space: nowrap;
 	}
-}
 
-.supported a {
-	white-space: nowrap;
-	text-decoration: none;
-}
+	.game-icons {
+		display: flex;
+		gap: 0.5rem;
 
-.supported a:hover {
-	text-decoration: underline;
+		a {
+			text-decoration: none;
+			display: flex;
+		}
+	}
 }
 
 .libraries {

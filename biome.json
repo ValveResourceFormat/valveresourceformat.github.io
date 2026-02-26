@@ -29,6 +29,13 @@
 			"quoteStyle": "single"
 		}
 	},
+	"html": {
+		"experimentalFullSupportEnabled": true,
+		"formatter": {
+			"enabled": true,
+			"lineWidth": 160
+		}
+	},
 	"assist": {
 		"enabled": true,
 		"actions": {

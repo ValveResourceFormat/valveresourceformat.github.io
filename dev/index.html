@@ -189,7 +189,7 @@
 				the latest dev build first as it may already be fixed.
 			</p>
 			<p class="warning">Dev builds may be unstable or contain incomplete features.</p>
-			<a class="btn" href="https://nightly.link/ValveResourceFormat/ValveResourceFormat/workflows/build/master/Source2Viewer.exe.zip">
+			<a class="btn" href="https://nightly.link/ValveResourceFormat/ValveResourceFormat/workflows/build/master/Source2Viewer.zip">
 				<svg
 					width="24"
 					height="24"
@@ -226,6 +226,8 @@
 				buildLink.href = run.html_url;
 				buildLink.textContent = `Build #${run.run_number} \u2014 ${formatter.format(date)}`;
 				document.getElementById('js-build-title').textContent = run.display_title;
+				const btn = document.querySelector('.btn');
+				btn.href = btn.href.replace('/workflows/build/master/', `/actions/runs/${run.id}/`);
 			})
 			.catch((e) => {
 				document.getElementById('js-build-title').textContent = e.message;

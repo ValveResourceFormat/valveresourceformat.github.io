@@ -206,11 +206,10 @@
 				const run = data.workflow_runs?.[0];
 				if (!run) return;
 				const date = new Date(run.created_at);
-				const formatted = date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
-				const time = date.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+				const formatter = new Intl.DateTimeFormat(undefined, { year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
 				const buildLink = document.getElementById('js-build-number');
 				buildLink.href = run.html_url;
-				buildLink.textContent = `Build #${run.run_number} \u2014 ${formatted} ${time}`;
+				buildLink.textContent = `Build #${run.run_number} \u2014 ${formatter.format(date)}`;
 				document.getElementById('js-build-title').textContent = run.display_title;
 			})
 			.catch((e) => {

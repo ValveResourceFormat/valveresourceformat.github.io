@@ -411,15 +411,15 @@ package.<span class="hljs-built_in">ReadEntry</span>(packageEntry, <span class="
 
 <span class="hljs-comment">// Read file as a resource</span>
 <span class="hljs-keyword">using</span> var ms = <span class="hljs-keyword">new</span> <span class="hljs-built_in">MemoryStream</span>(rawFile);
-<span class="hljs-keyword">using</span> var resource = <span class="hljs-keyword">new</span> <a class="hljs-built_in" href="https://github.com/ValveResourceFormat/ValveResourceFormat/blob/master/ValveResourceFormat/Resource/Resource.cs">Resource</a>();
-resource.<span class="hljs-built_in">Read</span>(ms);
+<span class="hljs-keyword">using</span> var resource = <span class="hljs-keyword">new</span> <a class="hljs-built_in" href="https://s2v.app/ValveResourceFormat/api/ValveResourceFormat.Resource.html">Resource</a>();
+resource.<a class="hljs-built_in" href="https://s2v.app/ValveResourceFormat/api/ValveResourceFormat.Resource.html#ValveResourceFormat_Resource_Read_System_IO_Stream_System_Boolean_System_Boolean_">Read</a>(ms);
 
-Debug.<span class="hljs-built_in">Assert</span>(resource.<span class="hljs-built_in">ResourceType</span> == ResourceType.Texture);
+Debug.<span class="hljs-built_in">Assert</span>(resource.<span class="hljs-built_in">ResourceType</span> == <a class="hljs-built_in" href="https://s2v.app/ValveResourceFormat/api/ValveResourceFormat.ResourceType.html">ResourceType</a>.Texture);
 
 <span class="hljs-comment">// Get a png from the texture</span>
-<span class="hljs-keyword">var</span> texture = (Texture)resource.DataBlock;
-<span class="hljs-keyword">using var</span> bitmap = texture.<span class="hljs-built_in">GenerateBitmap</span>();
-<span class="hljs-keyword">var</span> png = TextureExtract.<span class="hljs-built_in">ToPngImage</span>(bitmap);
+<span class="hljs-keyword">var</span> texture = (<a class="hljs-built_in" href="https://s2v.app/ValveResourceFormat/api/ValveResourceFormat.ResourceTypes.Texture.html">Texture</a>)resource.DataBlock;
+<span class="hljs-keyword">using var</span> bitmap = texture.<a class="hljs-built_in" href="https://s2v.app/ValveResourceFormat/api/ValveResourceFormat.ResourceTypes.Texture.html#ValveResourceFormat_ResourceTypes_Texture_GenerateBitmap_System_UInt32_ValveResourceFormat_ResourceTypes_Texture_CubemapFace_System_UInt32_ValveResourceFormat_TextureDecoders_TextureCodec_">GenerateBitmap</a>();
+<span class="hljs-keyword">var</span> png = TextureExtract.<a class="hljs-built_in" href="https://s2v.app/ValveResourceFormat/api/ValveResourceFormat.IO.TextureExtract.html#ValveResourceFormat_IO_TextureExtract_ToPngImage_SkiaSharp_SKBitmap_">ToPngImage</a>(bitmap);
 
 File.<span class="hljs-built_in">WriteAllBytes</span>(<span class="hljs-string">"image.png"</span>, png);</code></pre>
 

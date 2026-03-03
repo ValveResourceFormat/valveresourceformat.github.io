@@ -1,3 +1,19 @@
+/**
+ * @typedef {Object} GitHubAsset
+ * @property {string} name
+ * @property {string} browser_download_url
+ * @property {number} download_count
+ */
+
+/**
+ * @typedef {Object} GitHubRelease
+ * @property {string} tag_name
+ * @property {string} html_url
+ * @property {string} published_at
+ * @property {string} body_html
+ * @property {GitHubAsset[]} assets
+ */
+
 const releasesPerPage = 5;
 const releaseNotesContainer = document.getElementById('changelog');
 const downloadFormatter = new Intl.NumberFormat('en', {
@@ -26,7 +42,7 @@ function LoadReleases() {
 
 			return response.json();
 		})
-		.then((releases) => {
+		.then((/** @type {GitHubRelease[]} */ releases) => {
 			if (existingBtn) {
 				existingBtn.remove();
 			}
@@ -84,6 +100,10 @@ function LoadReleases() {
 		});
 }
 
+/**
+ * @param {GitHubRelease[]} releases
+ * @param {boolean} isFirstPage
+ */
 function RenderReleases(releases, isFirstPage) {
 	for (const release of releases) {
 		const releaseSection = document.createElement('div');
@@ -178,7 +198,12 @@ function RenderReleases(releases, isFirstPage) {
 	}
 }
 
+/** @param {HTMLElement} changelogContainer */
 function AdjustChangelog(changelogContainer) {
+	/**
+	 * @param {HTMLElement} element
+	 * @param {HTMLElement|null} [unwrapParent]
+	 */
 	const wrapMedia = (element, unwrapParent) => {
 		if (unwrapParent) {
 			const wrapper = document.createElement('div');
@@ -214,7 +239,12 @@ function AdjustChangelog(changelogContainer) {
 	}
 }
 
+/**
+ * @param {string} src
+ * @param {"image"|"video"} type
+ */
 function OpenMediaModal(src, type) {
+	/** @type {HTMLDialogElement} */
 	let modal = document.getElementById('changelog-media-modal');
 	if (!modal) {
 		modal = document.createElement('dialog');
@@ -245,13 +275,14 @@ function OpenMediaModal(src, type) {
 	const media = document.createElement(type === 'video' ? 'video' : 'img');
 	media.className = 'changelog-modal-media';
 	media.src = src;
+
 	if (type === 'video') {
 		media.controls = true;
 		media.autoplay = true;
 		media.loop = true;
 	}
-	modal.appendChild(media);
 
+	modal.appendChild(media);
 	modal.showModal();
 }
 

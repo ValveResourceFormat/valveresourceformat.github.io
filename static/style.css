@@ -595,6 +595,9 @@ a {
 		inset 0 1px 0 hsl(216 50% 50% / 10%);
 
 	a {
+		display: flex;
+		align-items: center;
+		gap: 0.4rem;
 		padding: 0.35rem 0.7rem;
 		font-size: 0.8rem;
 		font-weight: 500;
@@ -605,6 +608,11 @@ a {
 			color 0.2s,
 			background 0.2s;
 		white-space: nowrap;
+
+		svg {
+			fill: currentColor;
+			flex-shrink: 0;
+		}
 
 		&:hover {
 			color: #fff;
@@ -630,17 +638,6 @@ a {
 
 		&:hover {
 			background: none;
-		}
-	}
-
-	.nav-social {
-		display: flex;
-		align-items: center;
-		gap: 0.4rem;
-
-		svg {
-			fill: currentColor;
-			flex-shrink: 0;
 		}
 	}
 

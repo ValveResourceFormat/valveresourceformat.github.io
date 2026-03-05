@@ -286,4 +286,8 @@ function OpenMediaModal(src, type) {
 	modal.showModal();
 }
 
+document.getElementById('js-download').addEventListener('click', () => {
+	document.getElementById('js-thank-you').classList.add('visible');
+});
+
 LoadReleases();

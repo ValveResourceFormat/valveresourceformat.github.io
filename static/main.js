@@ -16,14 +16,18 @@
 
 const releasesPerPage = 5;
 const releaseNotesContainer = document.getElementById('changelog');
-const downloadFormatter = new Intl.NumberFormat('en', {
-	notation: 'compact',
-	maximumFractionDigits: 1,
-});
+const downloadBtn = document.getElementById('js-download');
+const downloadFormatter = new Intl.NumberFormat(
+	document.documentElement.lang || 'en',
+	{
+		notation: 'compact',
+		maximumFractionDigits: 1,
+	},
+);
 let releasesPage = 1;
 
 function LoadReleases() {
-	const existingBtn = releaseNotesContainer.querySelector(
+	const existingBtn = releaseNotesContainer?.querySelector(
 		'.changelog-load-more',
 	);
 
@@ -78,17 +82,18 @@ function LoadReleases() {
 
 				for (const asset of latestRelease.assets) {
 					if (asset.name === 'Source2Viewer.exe') {
-						document.getElementById('js-download').href =
-							asset.browser_download_url;
+						downloadBtn.href = asset.browser_download_url;
 
 						const version = document.querySelector('.download-text');
-						version.textContent = `Download v${latestRelease.tag_name}`;
+						version.textContent += ` v${latestRelease.tag_name}`;
 						break;
 					}
 				}
 			}
 
-			RenderReleases(releases, isFirstPage);
+			if (releaseNotesContainer) {
+				RenderReleases(releases, isFirstPage);
+			}
 		})
 		.catch((e) => {
 			console.error(e);
@@ -286,8 +291,8 @@ function OpenMediaModal(src, type) {
 	modal.showModal();
 }
 
-document.getElementById('js-download').addEventListener('click', () => {
-	document.getElementById('js-thank-you').classList.add('visible');
+downloadBtn.addEventListener('click', () => {
+	document.getElementById('js-thank-you')?.classList.add('visible');
 });
 
 LoadReleases();

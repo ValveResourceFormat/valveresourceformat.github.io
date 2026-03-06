@@ -130,6 +130,7 @@ a {
 			}
 		}
 
+		.download-warning,
 		.download-footer {
 			display: flex;
 			align-items: center;
@@ -152,6 +153,10 @@ a {
 					color: var(--color-accent);
 				}
 			}
+		}
+
+		.download-warning {
+			color: yellow;
 		}
 	}
 

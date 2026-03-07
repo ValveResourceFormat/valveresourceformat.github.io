@@ -295,4 +295,69 @@ downloadBtn.addEventListener('click', () => {
 	document.getElementById('js-thank-you')?.classList.add('visible');
 });
 
+/** @param {HTMLElement} container */
+async function LoadContributors(container) {
+	try {
+		const response = await fetch(
+			'https://api.github.com/repositories/42366054/contributors?per_page=100',
+		);
+
+		if (!response.ok) {
+			return;
+		}
+
+		/** @type {{login: string, avatar_url: string, html_url: string, contributions: number, type: string}[]} */
+		const contributors = await response.json();
+		const shuffled = contributors.filter((c) => c.type !== 'Bot');
+
+		for (let i = shuffled.length - 1; i > 0; i--) {
+			const j = Math.floor(Math.random() * (i + 1));
+			[shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+		}
+
+		const fragment = document.createDocumentFragment();
+
+		for (const c of shuffled) {
+			const a = document.createElement('a');
+			a.href = `https://github.com/ValveResourceFormat/ValveResourceFormat/commits?author=${c.login}`;
+			a.target = '_blank';
+			a.rel = 'noopener';
+			a.className = 'contributor';
+
+			const img = document.createElement('img');
+			img.src = `${c.avatar_url}&s=64`;
+			img.alt = '';
+			img.width = 32;
+			img.height = 32;
+			img.loading = 'lazy';
+
+			const name = document.createElement('span');
+			name.className = 'contributor-name';
+			name.textContent = c.login;
+
+			a.appendChild(img);
+			a.appendChild(name);
+			fragment.appendChild(a);
+		}
+
+		container.appendChild(fragment);
+	} catch (e) {
+		console.error(e);
+	}
+}
+
 LoadReleases();
+
+const contributorsContainer = document.getElementById('js-contributors');
+if (contributorsContainer) {
+	const observer = new IntersectionObserver(
+		(entries, obs) => {
+			if (entries[0].isIntersecting) {
+				obs.disconnect();
+				LoadContributors(contributorsContainer);
+			}
+		},
+		{ rootMargin: '400px' },
+	);
+	observer.observe(contributorsContainer);
+}

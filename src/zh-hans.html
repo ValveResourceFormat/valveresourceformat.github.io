@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="zh-Hans">
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="color-scheme" content="dark">
 		<meta name="theme-color" content="#0c121c">
-		<title>Source 2 — просмотрщик и декомпилятор</title>
-		<link rel="canonical" href="https://s2v.app/ru.html">
+		<title>Source 2 查看器与反编译器</title>
+		<link rel="canonical" href="https://s2v.app/zh-hans.html">
 		<link rel="alternate" hreflang="en" href="https://s2v.app/">
 		<link rel="alternate" hreflang="ru" href="https://s2v.app/ru.html">
 		<link rel="alternate" hreflang="zh-Hans" href="https://s2v.app/zh-hans.html">
@@ -18,19 +18,19 @@
 		<script src="static/main.js" type="module"></script>
 		<meta
 			name="description"
-			content="Просматривайте VPK-архивы, открывайте, извлекайте и декомпилируйте ресурсы Source 2. Поддерживаются CS2, Dota 2, Deadlock, Half-Life: Alyx и другие игры."
+			content="浏览 VPK 档案，查看、提取和反编译 Source 2 资源。支持 CS2、Dota 2、Deadlock、Half-Life: Alyx 等游戏。"
 		>
 		<meta
 			property="og:description"
-			content="Просматривайте VPK-архивы, открывайте, извлекайте и декомпилируйте ресурсы Source 2. Поддерживаются CS2, Dota 2, Deadlock, Half-Life: Alyx и другие игры."
+			content="浏览 VPK 档案，查看、提取和反编译 Source 2 资源。支持 CS2、Dota 2、Deadlock、Half-Life: Alyx 等游戏。"
 		>
-		<meta property="og:url" content="https://s2v.app/ru.html">
+		<meta property="og:url" content="https://s2v.app/zh-hans.html">
 		<meta property="og:image" content="https://s2v.app/static/preview.jpg">
 		<meta property="og:logo" content="https://s2v.app/static/logo.png">
-		<meta property="og:title" content="Source 2 — просмотрщик и декомпилятор">
+		<meta property="og:title" content="Source 2 查看器与反编译器">
 		<meta property="og:site_name" content="Source 2 Viewer">
 		<meta property="og:type" content="website">
-		<meta property="og:locale" content="ru_RU">
+		<meta property="og:locale" content="zh_CN">
 		<meta property="twitter:card" content="summary_large_image">
 		<link rel="icon" href="favicon.ico" sizes="16x16 24x24 32x32 48x48 72x72 256x256">
 		<link rel="icon" href="static/logo.png" sizes="512x512">
@@ -74,27 +74,26 @@
 					Source 2 Viewer
 				</h1>
 				<h2>
-					Просматривайте VPK-архивы, <strong>открывайте</strong>, <strong>экспортируйте</strong> и <strong>декомпилируйте</strong> ресурсы Source 2: карты,
-					модели, материалы, текстуры и звуки.
+					浏览 VPK 档案，<strong>查看</strong>、<strong>导出</strong>和<strong>反编译</strong> Source 2 资源：地图、模型、材质、纹理和音频。
 				</h2>
-				<h3>Полностью бесплатная и открытая программа, созданная методом обратной разработки.</h3>
+				<h3>完全免费开源，基于逆向工程开发。</h3>
 
 				<div class="download">
-					<div class="download-warning">⚠️ Приложение пока доступно только на английском языке</div>
+					<div class="download-warning">⚠️ 应用程序目前仅提供英文界面</div>
 					<a href="./" class="btn" id="js-download">
-						<span class="download-text">Скачать</span>
+						<span class="download-text">下载</span>
 						<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
 							<path d="M12 17V3" />
 							<path d="m6 11 6 6 6-6" />
 							<path d="M19 21H5" />
 						</svg>
 					</a>
-					<div class="download-footer"><a href="./">Перейти на английскую версию</a></div>
+					<div class="download-footer"><a href="./">前往英文版</a></div>
 				</div>
-				<a class="update-banner" id="js-update-banner" href="./#changelog" hidden> Новая версия выпущена с момента вашего последнего визита </a>
+				<a class="update-banner" id="js-update-banner" href="./#changelog" hidden> 自您上次访问以来已发布新版本 </a>
 
 				<div class="supported">
-					<span>Поддерживает все игры на Source 2</span>
+					<span>支持所有 Source 2 游戏</span>
 					<div class="game-icons">
 						<a href="https://developer.valvesoftware.com/wiki/Source_2" title="Source 2"
 							><svg viewBox="0 0 128 128" width="24" height="24">
@@ -150,7 +149,7 @@
 				<img
 					src="static/screen_hero.webp"
 					fetchpriority="high"
-					alt="Скриншот Source 2 Viewer с 3D-рендером карты Inferno Night с детализированным освещением и текстурами"
+					alt="Source 2 Viewer 截图，展示 Inferno Night 地图的 3D 渲染效果，具有精细的光照和纹理"
 					class="hero-screenshot"
 				>
 				<div class="hero-screenshot-author">
@@ -169,203 +168,201 @@
 						<path d="M12 16v-4M12 8h0" />
 					</svg>
 					<a href="https://steamcommunity.com/workshop/filedetails/?id=3124567099">Inferno Night</a>
-					автор Angel, создано с помощью декомпиляции S2V
+					作者 Angel，使用 S2V 反编译创建
 				</div>
 			</div>
 		</main>
 
 		<div class="container screenshots">
-			<img src="static/screen_map.png" alt="Скриншот 3D-рендера с моделью игрока Counter-Strike 2 на сетке" loading="lazy">
-			<img src="static/screen_package.png" alt="Скриншот проводника VPK-пакета с деревом файлов и списком" loading="lazy">
-			<img src="static/screen_texture.png" alt="Скриншот просмотрщика графа анимаций с узлами" loading="lazy">
-			<img src="static/screen_cli.png" alt="Скриншот интерфейса командной строки с блоком DATA для аудиофайла" loading="lazy">
+			<img src="static/screen_map.png" alt="3D 渲染器截图，展示网格上的 Counter-Strike 2 玩家模型" loading="lazy">
+			<img src="static/screen_package.png" alt="VPK 包浏览器截图，展示文件树和列表视图" loading="lazy">
+			<img src="static/screen_texture.png" alt="动画图查看器截图，展示节点" loading="lazy">
+			<img src="static/screen_cli.png" alt="命令行界面截图，展示音频文件的 DATA 块" loading="lazy">
 		</div>
 
 		<div class="container feature-outline" id="features">
-			<h2>Возможности</h2>
+			<h2>功能特性</h2>
 
 			<div class="feature-section">
 				<div>
-					<h3>3D-рендерер</h3>
+					<h3>3D 渲染器</h3>
 					<ul>
 						<li>
-							Просмотр
-							<a href="/ValveResourceFormat/api/ValveResourceFormat.ResourceTypes.Model.html">карт, моделей, физики и частиц</a>
-							из CS2, Dota 2, Deadlock и других игр на Source 2
+							查看来自 CS2、Dota 2、Deadlock 及其他 Source 2 游戏的
+							<a href="/ValveResourceFormat/api/ValveResourceFormat.ResourceTypes.Model.html">地图、模型、物理和粒子</a>
 						</li>
-						<li>PBR-шейдеры, восстановленные методом обратной разработки, с освещением в реальном времени</li>
-						<li><a href="/ValveResourceFormat/api/ValveResourceFormat.ResourceTypes.ModelAnimation.html">Анимации</a> и управление воспроизведением</li>
-						<li><a href="/ValveResourceFormat/api/ValveResourceFormat.ResourceTypes.EntityLump.html">Просмотр сущностей</a> с инспекцией свойств</li>
-						<li>Перемещение по картам как в Counter-Strike с коллизиями</li>
-						<li>Управление камерой WASD и настраиваемый FOV</li>
-						<li>Отладочные визуализации и мониторинг производительности</li>
+						<li>通过逆向工程还原的 PBR 着色器，支持实时光照</li>
+						<li><a href="/ValveResourceFormat/api/ValveResourceFormat.ResourceTypes.ModelAnimation.html">动画</a> 播放控制</li>
+						<li><a href="/ValveResourceFormat/api/ValveResourceFormat.ResourceTypes.EntityLump.html">实体查看器</a>，支持属性检查</li>
+						<li>以类似 Counter-Strike 的移动方式在地图中漫游，支持碰撞检测</li>
+						<li>WASD 摄像机控制，可自定义视场角 (FOV)</li>
+						<li>调试可视化和性能监控</li>
 						<li>
-							Аппаратно ускоренный
-							<a href="/ValveResourceFormat/api/ValveResourceFormat.Renderer.html">рендеринг OpenGL</a>
+							硬件加速的
+							<a href="/ValveResourceFormat/api/ValveResourceFormat.Renderer.html">OpenGL 渲染</a>
 						</li>
 					</ul>
 				</div>
 
 				<div>
-					<h3>Просмотрщик текстур</h3>
+					<h3>纹理查看器</h3>
 					<ul>
 						<li>
-							Просмотр
-							<a href="/ValveResourceFormat/api/ValveResourceFormat.ResourceTypes.Texture.html">текстур</a> и SVG с изолированным просмотром каналов
+							查看
+							<a href="/ValveResourceFormat/api/ValveResourceFormat.ResourceTypes.Texture.html">纹理</a> 和 SVG，支持独立通道查看
 						</li>
 						<li>
-							Экспорт
-							<a href="/ValveResourceFormat/api/ValveResourceFormat.IO.TextureExtract.html">vtex_c</a> в PNG, TGA и другие форматы изображений
+							将
+							<a href="/ValveResourceFormat/api/ValveResourceFormat.IO.TextureExtract.html">vtex_c</a> 导出为 PNG、TGA 及其他图像格式
 						</li>
-						<li>Цветовые каналы, слои глубины и mip-уровни</li>
-						<li>Варианты декодирования на GPU или CPU</li>
-						<li>Поддержка cubemap и HDR-текстур</li>
-						<li>Режимы визуализации normal map</li>
-						<li>Масштабирование и панорамирование</li>
+						<li>颜色通道、深度层和 mip 级别</li>
+						<li>GPU 或 CPU 解码选项</li>
+						<li>支持 cubemap 和 HDR 纹理</li>
+						<li>法线贴图可视化模式</li>
+						<li>缩放和平移控制</li>
 					</ul>
 				</div>
 			</div>
 
 			<div class="feature-section">
 				<div>
-					<h3>Просмотрщик и распаковщик VPK</h3>
+					<h3>VPK 查看器与提取器</h3>
 					<ul>
-						<li>Открыть и распаковать VPK-файлы из CS2, Dota 2, Deadlock, Half-Life: Alyx и других игр</li>
-						<li>Режимы отображения: дерево и список с иконками типов файлов</li>
-						<li>Расширенный поиск (имя, путь, regex, содержимое, hex)</li>
-						<li>Сортировка файлов по размеру и другим критериям</li>
-						<li>Распаковка отдельных файлов или целых VPK-пакетов</li>
-						<li>Многопоточная распаковка VPK с отображением прогресса</li>
-						<li>Поиск и восстановление удаленных файлов из VPK-архивов</li>
-						<li>Создание новых VPK-архивов из папок в один клик</li>
-						<li>Поддержка всех версий VPK (включая Source 1)</li>
+						<li>打开并提取来自 CS2、Dota 2、Deadlock、Half-Life: Alyx 等游戏的 VPK 文件</li>
+						<li>树形视图和列表视图界面，带文件类型图标</li>
+						<li>高级搜索系统（名称、路径、正则表达式、内容、十六进制）</li>
+						<li>按文件大小及其他条件排序</li>
+						<li>提取单个文件或整个 VPK 包</li>
+						<li>多线程 VPK 提取，带进度显示</li>
+						<li>从 VPK 档案中发现并恢复已删除的文件</li>
+						<li>一键从文件夹创建新的 VPK 档案</li>
+						<li>支持所有 VPK 版本（包括 Source 1）</li>
 					</ul>
 				</div>
 
 				<div>
-					<h3>Экспорт в glTF</h3>
+					<h3>glTF 导出</h3>
 					<ul>
 						<li>
-							Экспорт карт, моделей,
-							<a href="/ValveResourceFormat/api/ValveResourceFormat.ResourceTypes.PhysAggregateData.html">физики</a> и анимаций в
+							将地图、模型、
+							<a href="/ValveResourceFormat/api/ValveResourceFormat.ResourceTypes.PhysAggregateData.html">物理</a> 和动画导出为
 							<a href="/ValveResourceFormat/api/ValveResourceFormat.IO.GltfModelExporter.html">glTF 2.0</a>
 						</li>
-						<li>Работает с CS2, Dota 2, Deadlock и всеми играми на Source 2</li>
-						<li>Преобразование материалов Source 2 в PBR-каналы glTF</li>
-						<li>Совместимость с Blender, Unity, Unreal Engine и другими</li>
-						<li>Пакетный экспорт с корректным разделением текстур</li>
-						<li>Отслеживание и проверка зависимостей ресурсов</li>
+						<li>适用于 CS2、Dota 2、Deadlock 及所有 Source 2 游戏</li>
+						<li>将 Source 2 材质转换为 glTF PBR 通道</li>
+						<li>兼容 Blender、Unity、Unreal Engine 等工具</li>
+						<li>批量导出，正确拆分纹理</li>
+						<li>资源依赖追踪与验证</li>
 					</ul>
 				</div>
 			</div>
 
 			<div class="feature-section">
 				<div>
-					<h3>Декомпилятор Source 2</h3>
+					<h3>Source 2 反编译器</h3>
 					<ul>
 						<li>
-							<a href="/ValveResourceFormat/api/ValveResourceFormat.IO.MapExtract.html">Карты</a>
-							(vmap_c → vmap) для редактора Hammer
+							<a href="/ValveResourceFormat/api/ValveResourceFormat.IO.MapExtract.html">地图</a>
+							(vmap_c → vmap) 用于 Hammer 编辑器
 						</li>
 						<li>
-							<a href="/ValveResourceFormat/api/ValveResourceFormat.IO.ModelExtract.html">Модели</a>
-							(vmdl_c → vmdl) в формат ModelDoc
+							<a href="/ValveResourceFormat/api/ValveResourceFormat.IO.ModelExtract.html">模型</a>
+							(vmdl_c → vmdl) 转为 ModelDoc 格式
 						</li>
 						<li>
-							<a href="/ValveResourceFormat/api/ValveResourceFormat.IO.MaterialExtract.html">Материалы</a>
+							<a href="/ValveResourceFormat/api/ValveResourceFormat.IO.MaterialExtract.html">材质</a>
 							(vmat_c → vmat)
 						</li>
-						<li>Получение редактируемых ассетов для Source 2 Workshop Tools</li>
-						<li>Максимально возможная точность данных</li>
+						<li>生成可用于 Source 2 Workshop Tools 的可编辑资源</li>
+						<li>最大程度保留数据精度</li>
 					</ul>
 				</div>
 
 				<div>
-					<h3>Файлы ресурсов Source 2</h3>
+					<h3>Source 2 资源文件</h3>
 					<ul>
 						<li>
-							Открытие vtex_c, vmdl_c, vmat_c, vpcf_c и всех
-							<a href="/ValveResourceFormat/api/ValveResourceFormat.Resource.html">типов файлов Source 2</a>
+							打开 vtex_c、vmdl_c、vmat_c、vpcf_c 及所有
+							<a href="/ValveResourceFormat/api/ValveResourceFormat.Resource.html">Source 2 文件类型</a>
 						</li>
-						<li>Просмотр Resource Blocks в отдельных вкладках</li>
-						<li>Декодирование бинарных данных в удобный текстовый вид</li>
-						<li>Поддержка всех версий resource-файлов (начиная с 2014 года)</li>
+						<li>在独立标签页中查看 Resource Blocks</li>
+						<li>将二进制数据解码为易读的文本表示</li>
+						<li>支持所有版本的资源文件（最早可追溯至 2014 年）</li>
 					</ul>
 				</div>
 			</div>
 
 			<div class="feature-section">
 				<div>
-					<h3>Аудиосистема</h3>
+					<h3>音频系统</h3>
 					<ul>
-						<li>Встроенный аудиоплеер с визуализацией waveform</li>
-						<li>Поддержка WAV, MP3 и <a href="/ValveResourceFormat/api/ValveResourceFormat.ResourceTypes.Sound.html">аудиоформатов Source 2</a></li>
-						<li>Регулировка громкости и стереометры</li>
-						<li>Перемотка таймлайна и управление воспроизведением</li>
-						<li>Автовоспроизведение в режиме предпросмотра</li>
+						<li>内置音频播放器，带波形可视化</li>
+						<li>支持 WAV、MP3 及 <a href="/ValveResourceFormat/api/ValveResourceFormat.ResourceTypes.Sound.html">Source 2 音频格式</a></li>
+						<li>音量控制和立体声电平表</li>
+						<li>时间轴拖动和播放控制</li>
+						<li>预览模式下自动播放</li>
 					</ul>
 				</div>
 
 				<div>
-					<h3>Шейдеры</h3>
+					<h3>着色器</h3>
 					<ul>
 						<li>
-							Просмотр и анализ
-							<a href="/ValveResourceFormat/api/ValveResourceFormat.CompiledShader.html">шейдерных файлов Source 2</a>
-							(vcs) с преобразованием байткода
+							检查和分析
+							<a href="/ValveResourceFormat/api/ValveResourceFormat.CompiledShader.html">Source 2 着色器文件</a>
+							(vcs)，支持字节码转换
 						</li>
-						<li>Чтение шейдерных пакетов Source 2</li>
-						<li>Просмотр скомпилированного кода шейдеров</li>
-						<li>Инспекция метаданных и байткода шейдеров</li>
-						<li>Древовидный просмотр статических и динамических комбинаций</li>
-						<li>Преобразование байткода Vulkan (SPIR-V) в читаемый язык шейдинга</li>
-						<li>Поддержка всех публично доступных версий файлов</li>
+						<li>读取 Source 2 着色器包</li>
+						<li>查看已编译的着色器代码</li>
+						<li>检查着色器元数据和字节码</li>
+						<li>树形视图查看静态和动态组合</li>
+						<li>将 Vulkan 字节码 (SPIR-V) 转换为可读的着色语言</li>
+						<li>支持所有公开可用的文件版本</li>
 					</ul>
 				</div>
 			</div>
 
 			<div class="feature-section">
 				<div>
-					<h3>Пользовательский интерфейс</h3>
+					<h3>用户界面</h3>
 					<ul>
-						<li>Вкладочный интерфейс документов с расширенным управлением вкладками</li>
-						<li>Поддержка темной и светлой тем</li>
-						<li>Автоопределение установленных игр Source 2 в Steam</li>
-						<li>Управление недавними файлами и закладками</li>
-						<li>Поддержка drag-and-drop для VPK и resource-файлов</li>
-						<li>Горячие клавиши для быстрой навигации</li>
-						<li>Интеграция ассоциаций файлов с Windows</li>
+						<li>标签式文档界面，支持高级标签管理</li>
+						<li>支持深色和浅色主题</li>
+						<li>自动检测 Steam 中已安装的 Source 2 游戏</li>
+						<li>最近文件和书签管理</li>
+						<li>支持拖放 VPK 和资源文件</li>
+						<li>快捷键快速导航</li>
+						<li>Windows 文件关联集成</li>
 					</ul>
 				</div>
 
 				<div>
-					<h3>Дополнительные форматы файлов</h3>
+					<h3>其他文件格式</h3>
 					<ul>
 						<li>
 							<a href="/ValveResourceFormat/api/ValveResourceFormat.NavMesh.NavMeshFile.html">NavigationMesh</a>
-							(.nav) и файлы ToolsAssetInfo (.bin)
+							(.nav) 和 ToolsAssetInfo (.bin) 文件
 						</li>
 						<li>
 							<a href="/ValveResourceFormat/api/ValveResourceFormat.ResourceTypes.WorldNode.html">World nodes</a>
-							(vwnod_c) для потоковой геометрии мира
+							(vwnod_c) 用于流式世界几何体
 						</li>
 						<li>
-							<a href="/ValveResourceFormat/api/ValveResourceFormat.ResourceTypes.ParticleSystem.html">Particle systems</a>
-							(vpcf_c) и эффекты
+							<a href="/ValveResourceFormat/api/ValveResourceFormat.ResourceTypes.ParticleSystem.html">粒子系统</a>
+							(vpcf_c) 和特效
 						</li>
-						<li><a href="/ValveResourceFormat/api/ValveResourceFormat.ResourceTypes.Sound.html">Файлы звуковых событий</a> и аудио-описания (vsnd_c)</li>
-						<li>Форматы изображений, включая PNG, JPG, TGA и GIF</li>
-						<li>Hex-просмотрщик для инспекции бинарных данных</li>
-						<li>Просмотр текстовых и бинарных файлов с подсветкой синтаксиса</li>
+						<li><a href="/ValveResourceFormat/api/ValveResourceFormat.ResourceTypes.Sound.html">声音事件文件</a> 和音频定义 (vsnd_c)</li>
+						<li>图像格式，包括 PNG、JPG、TGA 和 GIF</li>
+						<li>十六进制查看器，用于检查二进制数据</li>
+						<li>文本和二进制文件查看，支持语法高亮</li>
 						<li>
-							Полная поддержка
+							完整的
 							<a href="/ValveResourceFormat/api/ValveResourceFormat.Serialization.KeyValues.KV3File.html">KeyValues</a>
-							(KV1, KV2, KV3)
+							支持 (KV1、KV2、KV3)
 						</li>
-						<li>Конвертация binary keyvalues в текстовый формат</li>
+						<li>将二进制 keyvalues 转换为文本格式</li>
 						<li>
-							Поддержка файлов
-							<a href="/ValveResourceFormat/api/ValveResourceFormat.ClosedCaptions.html">субтитров</a>
+							<a href="/ValveResourceFormat/api/ValveResourceFormat.ClosedCaptions.html">字幕</a> 文件支持
 						</li>
 					</ul>
 				</div>
@@ -374,7 +371,7 @@
 
 		<footer class="footer">
 			<div class="container">
-				Этот проект не связан с Valve Software. Source 2 является товарным знаком и/или зарегистрированным товарным знаком Valve Corporation.
+				本项目与 Valve Software 无关。Source 2 是 Valve Corporation 的商标和/或注册商标。
 			</div>
 		</footer>
 	</body>

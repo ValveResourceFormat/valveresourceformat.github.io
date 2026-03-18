@@ -1,3 +1,4 @@
 User-Agent: *
 Allow: /
 Sitemap: https://s2v.app/ValveResourceFormat/sitemap.xml
+Sitemap: https://s2v.app/SchemaExplorer/sitemap.xml

@@ -12,10 +12,7 @@
 	scrollbar-width: thin;
 	scrollbar-color: rgb(71 168 255 / 50%) hsl(216 40% 8%);
 	scroll-behavior: smooth;
-}
-
-:target {
-	scroll-margin-top: 3rem;
+	scroll-padding-top: 4rem;
 }
 
 *,
@@ -901,10 +898,14 @@ a {
 		.release-notes-sidebar {
 			width: 140px;
 			flex-shrink: 0;
+			display: flex;
+			flex-direction: column;
+		}
+
+		.release-info {
 			position: sticky;
 			top: 0;
 			padding: 1rem;
-			align-self: flex-start;
 		}
 
 		.release-notes-main {
@@ -942,6 +943,47 @@ a {
 			color: rgb(255 255 255 / 50%);
 			font-size: 0.8rem;
 			margin-top: 0.25rem;
+		}
+
+		.release-next {
+			flex: 1;
+			min-height: 0;
+			display: flex;
+			flex-direction: column;
+			justify-content: flex-end;
+			padding: 0;
+			border: 0;
+			background: transparent;
+			color: rgb(255 255 255 / 45%);
+			cursor: pointer;
+			transition: color 0.2s ease;
+
+			&:hover {
+				color: #fff;
+			}
+
+			&:hover .release-next-chevron {
+				background: linear-gradient(to top, rgb(99 161 255 / 28%), transparent);
+			}
+
+			svg {
+				width: 28px;
+				height: 28px;
+				fill: none;
+				stroke: currentColor;
+				stroke-width: 2;
+				stroke-linecap: round;
+				stroke-linejoin: round;
+			}
+		}
+
+		.release-next-chevron {
+			position: sticky;
+			bottom: 0;
+			display: flex;
+			justify-content: center;
+			padding: 4rem 0 1.25rem;
+			transition: background 0.2s ease;
 		}
 
 		h1,
@@ -1131,7 +1173,14 @@ a {
 
 			.release-notes-sidebar {
 				width: 100%;
+			}
+
+			.release-info {
 				position: static;
+			}
+
+			.release-next {
+				display: none;
 			}
 
 			.release-notes-main {

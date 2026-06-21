@@ -117,19 +117,22 @@ function RenderReleases(releases, isFirstPage) {
 		const releaseSidebar = document.createElement('div');
 		releaseSidebar.className = 'release-notes-sidebar';
 
+		const releaseInfo = document.createElement('div');
+		releaseInfo.className = 'release-info';
+
 		const releaseHeader = document.createElement('a');
 		releaseHeader.className = 'release-version';
 		releaseHeader.href = release.html_url;
 		releaseHeader.target = '_blank';
 		releaseHeader.rel = 'noopener';
 		releaseHeader.textContent = `v${release.tag_name}`;
-		releaseSidebar.appendChild(releaseHeader);
+		releaseInfo.appendChild(releaseHeader);
 
 		const releaseDateSpan = document.createElement('span');
 		releaseDateSpan.className = 'release-date';
 		const releaseDate = new Date(release.published_at);
 		releaseDateSpan.textContent = releaseDate.toLocaleDateString();
-		releaseSidebar.appendChild(releaseDateSpan);
+		releaseInfo.appendChild(releaseDateSpan);
 
 		const totalDownloads = release.assets.reduce(
 			(sum, asset) => sum + asset.download_count,
@@ -140,8 +143,26 @@ function RenderReleases(releases, isFirstPage) {
 			const downloadsSpan = document.createElement('span');
 			downloadsSpan.className = 'release-downloads';
 			downloadsSpan.textContent = `${downloadFormatter.format(totalDownloads)} downloads`;
-			releaseSidebar.appendChild(downloadsSpan);
+			releaseInfo.appendChild(downloadsSpan);
 		}
+
+		releaseSidebar.appendChild(releaseInfo);
+
+		const nextBtn = document.createElement('button');
+		nextBtn.type = 'button';
+		nextBtn.className = 'release-next';
+		nextBtn.setAttribute('aria-label', 'Jump to older changelog');
+		nextBtn.innerHTML =
+			'<span class="release-next-chevron"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span>';
+		nextBtn.addEventListener('click', () => {
+			const next = releaseSection.nextElementSibling;
+			const target = next?.classList.contains('release-notes-content')
+				? next
+				: document.getElementById('contributors');
+			target?.scrollIntoView({ block: 'start' });
+		});
+
+		releaseSidebar.appendChild(nextBtn);
 
 		releaseSection.appendChild(releaseSidebar);
 

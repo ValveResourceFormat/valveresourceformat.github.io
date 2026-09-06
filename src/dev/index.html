@@ -7,6 +7,7 @@
 		<meta name="theme-color" content="#0c121c">
 		<title>Dev Build — Source 2 Viewer</title>
 		<link rel="preload" href="../static/Manrope.woff2" as="font" type="font/woff2" crossorigin>
+		<link rel="preconnect" href="https://update.s2v.app">
 		<link rel="canonical" href="https://s2v.app/dev/">
 		<meta name="description" content="Download the latest dev build of Source 2 Viewer to test new features and bug fixes.">
 		<meta property="og:description" content="Download the latest dev build of Source 2 Viewer to test new features and bug fixes.">
@@ -189,7 +190,7 @@
 				the latest dev build first as it may already be fixed.
 			</p>
 			<p class="warning">Dev builds may be unstable or contain incomplete features.</p>
-			<a class="btn" href="https://nightly.link/ValveResourceFormat/ValveResourceFormat/workflows/build/master/Source2Viewer.zip">
+			<a class="btn" href="https://update.s2v.app/dev/Source2Viewer.exe" rel="nofollow">
 				<svg
 					width="24"
 					height="24"
@@ -215,29 +216,44 @@
 			<a class="back" href="/">Back to the homepage</a>
 		</div>
 		<script>
-		fetch('https://api.github.com/repositories/42366054/actions/workflows/86119/runs?branch=master&status=success&per_page=1')
-			.then((r) => r.json())
-			.then((data) => {
-				const run = data.workflow_runs?.[0];
-				if (!run) return;
-				const date = new Date(run.created_at);
-				const formatter = new Intl.DateTimeFormat(undefined, {
-					year: 'numeric',
-					month: 'short',
-					day: 'numeric',
-					hour: '2-digit',
-					minute: '2-digit',
+		const buildLink = document.getElementById('js-build-number');
+		const buildTitle = document.getElementById('js-build-title');
+		const isBot = navigator.webdriver || /bot|crawl|spider/i.test(navigator.userAgent);
+
+		if (isBot) {
+			buildLink.textContent = 'Build history';
+			buildTitle.textContent = '';
+		} else {
+			fetch('https://update.s2v.app/v1/latest.json')
+				.then((r) => {
+					if (!r.ok) {
+						throw new Error(`Failed to fetch the build manifest (HTTP ${r.status})`);
+					}
+					return r.json();
+				})
+				.then((data) => {
+					const dev = data.dev;
+					if (!dev) {
+						throw new Error('No dev build is available right now.');
+					}
+					const formatter = new Intl.DateTimeFormat(undefined, {
+						year: 'numeric',
+						month: 'short',
+						day: 'numeric',
+						hour: '2-digit',
+						minute: '2-digit',
+					});
+					if (dev.runUrl) {
+						buildLink.href = dev.runUrl;
+					}
+					buildLink.textContent = `Build #${dev.buildNumber} \u2014 ${formatter.format(new Date(dev.date))}`;
+					buildTitle.textContent = dev.title ?? '';
+				})
+				.catch((e) => {
+					buildLink.textContent = 'Build history';
+					buildTitle.textContent = e.message;
 				});
-				const buildLink = document.getElementById('js-build-number');
-				buildLink.href = run.html_url;
-				buildLink.textContent = `Build #${run.run_number} \u2014 ${formatter.format(date)}`;
-				document.getElementById('js-build-title').textContent = run.display_title;
-				const btn = document.querySelector('.btn');
-				btn.href = btn.href.replace('/workflows/build/master/', `/actions/runs/${run.id}/`);
-			})
-			.catch((e) => {
-				document.getElementById('js-build-title').textContent = e.message;
-			});
+		}
 		</script>
 		<img
 			class="under-construction"

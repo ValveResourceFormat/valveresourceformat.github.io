@@ -27,11 +27,11 @@
 		<meta property="og:url" content="https://s2v.app/">
 		<meta property="og:image" content="https://s2v.app/static/preview.jpg">
 		<meta property="og:logo" content="https://s2v.app/static/logo.png">
-		<meta property="og:title" content="Source 2 Viewer &amp; Decompiler">
+		<meta property="og:title" content="Source 2 Viewer (S2V) — VPK Viewer &amp; Decompiler">
 		<meta property="og:site_name" content="Source 2 Viewer">
 		<meta property="og:type" content="website">
-		<meta property="og:locale" content="en">
-		<meta property="twitter:card" content="summary_large_image">
+		<meta property="og:locale" content="en_US">
+		<meta name="twitter:card" content="summary_large_image">
 		<link rel="icon" href="favicon.ico" sizes="16x16 24x24 32x32 48x48 72x72 256x256">
 		<link rel="icon" href="static/logo.png" sizes="512x512">
 		<link
@@ -43,9 +43,18 @@
 		<script type="application/ld+json">
 		{
 			"@context": "https://schema.org",
+			"@type": "WebSite",
+			"name": "Source 2 Viewer",
+			"alternateName": ["S2V", "Source2Viewer", "VRF", "ValveResourceFormat"],
+			"url": "https://s2v.app/"
+		}
+		</script>
+		<script type="application/ld+json">
+		{
+			"@context": "https://schema.org",
 			"@type": "SoftwareApplication",
 			"name": "Source 2 Viewer",
-			"alternateName": "S2V",
+			"alternateName": ["S2V", "Source2Viewer", "VRF", "ValveResourceFormat"],
 			"description": "A powerful tool that allows you to browse VPK archives, view, extract, and decompile Source 2 assets, including maps, models, materials, textures, sounds, and more.",
 			"url": "https://s2v.app/",
 			"operatingSystem": "Windows 11",
@@ -55,19 +64,6 @@
 				"@type": "Offer",
 				"price": "0",
 				"priceCurrency": "USD"
-			},
-			"review": {
-				"@type": "Review",
-				"author": {
-					"@type": "Organization",
-					"name": "GitHub Community"
-				},
-				"reviewRating": {
-					"@type": "Rating",
-					"ratingValue": 2000,
-					"bestRating": 2000,
-					"worstRating": 0
-				}
 			},
 			"downloadUrl": "https://github.com/ValveResourceFormat/ValveResourceFormat/releases",
 			"releaseNotes": "https://github.com/ValveResourceFormat/ValveResourceFormat/releases",
@@ -720,7 +716,10 @@ File.<span class="hljs-built_in">WriteAllBytes</span>(<span class="hljs-string">
 		</div>
 
 		<footer class="footer">
-			<div class="container">This project is not affiliated with Valve Software. Source 2 is a trademark and/or registered trademark of Valve Corporation.</div>
+			<div class="container">
+				Source 2 Viewer is also known as S2V, Source2Viewer, and VRF (ValveResourceFormat). This project is not affiliated with Valve Corporation. Source is a
+				trademark and/or registered trademark of Valve Corporation.
+			</div>
 		</footer>
 	</body>
 </html>

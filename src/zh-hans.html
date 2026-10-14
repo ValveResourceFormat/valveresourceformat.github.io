@@ -13,7 +13,6 @@
 		<link rel="alternate" hreflang="x-default" href="https://s2v.app/">
 		<link rel="image_src" href="https://s2v.app/static/preview.jpg">
 		<link rel="preload" href="static/Manrope.woff2" as="font" type="font/woff2" crossorigin>
-		<link rel="preconnect" href="https://api.github.com">
 		<link rel="stylesheet" href="static/style.css">
 		<script src="static/main.js" type="module"></script>
 		<meta name="description" content="浏览 VPK 档案，查看、提取和反编译 Source 2 资源。支持 CS2、Dota 2、Deadlock、Half-Life: Alyx 等游戏。">
@@ -76,8 +75,8 @@
 
 				<div class="download">
 					<div class="download-warning">⚠️ 应用程序目前仅提供英文界面</div>
-					<a href="./" class="btn" id="js-download">
-						<span class="download-text">下载</span>
+					<a href="%S2V_DOWNLOAD_URL%" class="btn" id="js-download">
+						<span class="download-text">下载 v%S2V_VERSION%</span>
 						<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
 							<path d="M12 17V3" />
 							<path d="m6 11 6 6 6-6" />
@@ -86,7 +85,7 @@
 					</a>
 					<div class="download-footer"><a href="./">前往英文版</a></div>
 				</div>
-				<a class="update-banner" id="js-update-banner" href="./#changelog" hidden> 自您上次访问以来已发布新版本 </a>
+				<a class="update-banner" id="js-update-banner" href="./#changelog" data-version="%S2V_VERSION%" hidden> 自您上次访问以来已发布新版本 </a>
 
 				<div class="supported">
 					<span>支持所有 Source 2 游戏</span>

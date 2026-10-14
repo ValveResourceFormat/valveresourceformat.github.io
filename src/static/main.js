@@ -1,247 +1,37 @@
-/**
- * @typedef {Object} GitHubAsset
- * @property {string} name
- * @property {string} browser_download_url
- * @property {number} download_count
- */
+function CheckForUpdate() {
+	const banner = document.getElementById('js-update-banner');
+	const currentVersion = banner.dataset.version;
 
-/**
- * @typedef {Object} GitHubRelease
- * @property {string} tag_name
- * @property {string} html_url
- * @property {string} published_at
- * @property {string} body_html
- * @property {GitHubAsset[]} assets
- */
+	try {
+		const storedVersion = localStorage.getItem('s2v-last-version');
 
-const releasesPerPage = 5;
-const releaseNotesContainer = document.getElementById('changelog');
-const downloadBtn = document.getElementById('js-download');
-const downloadFormatter = new Intl.NumberFormat(
-	document.documentElement.lang || 'en',
-	{
-		notation: 'compact',
-		maximumFractionDigits: 1,
-	},
-);
-let releasesPage = 1;
+		if (storedVersion && storedVersion !== currentVersion) {
+			banner.hidden = false;
 
-function LoadReleases() {
-	const existingBtn = releaseNotesContainer?.querySelector(
-		'.changelog-load-more',
+			banner.addEventListener('click', () => {
+				banner.hidden = true;
+				localStorage.setItem('s2v-last-version', currentVersion);
+			});
+		} else {
+			localStorage.setItem('s2v-last-version', currentVersion);
+		}
+	} catch (e) {
+		console.error(e);
+	}
+}
+
+/** @param {MouseEvent} e */
+function OnChangelogClick(e) {
+	const media = e.target.closest(
+		'.changelog-media-wrapper > img, .changelog-media-wrapper > video',
 	);
 
-	fetch(
-		`https://api.github.com/repositories/42366054/releases?per_page=${releasesPerPage}&page=${releasesPage}`,
-		{
-			headers: {
-				Accept: 'application/vnd.github.html+json',
-			},
-		},
-	)
-		.then((response) => {
-			if (!response.ok) {
-				throw new Error('Failed to fetch github releases');
-			}
-
-			return response.json();
-		})
-		.then((/** @type {GitHubRelease[]} */ releases) => {
-			if (existingBtn) {
-				existingBtn.remove();
-			}
-
-			if (!releases || releases.length === 0) {
-				return;
-			}
-
-			const isFirstPage = releasesPage === 1;
-			releasesPage++;
-
-			if (isFirstPage) {
-				const latestRelease = releases[0];
-
-				try {
-					const currentVersion = latestRelease.tag_name;
-					const storedVersion = localStorage.getItem('s2v-last-version');
-
-					if (storedVersion && storedVersion !== currentVersion) {
-						const banner = document.getElementById('js-update-banner');
-						banner.hidden = false;
-
-						banner.addEventListener('click', () => {
-							banner.hidden = true;
-							localStorage.setItem('s2v-last-version', currentVersion);
-						});
-					} else {
-						localStorage.setItem('s2v-last-version', currentVersion);
-					}
-				} catch (e) {
-					console.error(e);
-				}
-
-				for (const asset of latestRelease.assets) {
-					if (asset.name === 'Source2Viewer.exe') {
-						downloadBtn.href = asset.browser_download_url;
-
-						const version = document.querySelector('.download-text');
-						version.textContent += ` v${latestRelease.tag_name}`;
-						break;
-					}
-				}
-			}
-
-			if (releaseNotesContainer) {
-				RenderReleases(releases, isFirstPage);
-			}
-		})
-		.catch((e) => {
-			console.error(e);
-
-			if (existingBtn) {
-				existingBtn.disabled = false;
-				existingBtn.textContent = 'Load older changelogs';
-			}
-		});
-}
-
-/**
- * @param {GitHubRelease[]} releases
- * @param {boolean} isFirstPage
- */
-function RenderReleases(releases, isFirstPage) {
-	for (const release of releases) {
-		const releaseSection = document.createElement('div');
-		releaseSection.className = 'release-notes-content';
-
-		const releaseSidebar = document.createElement('div');
-		releaseSidebar.className = 'release-notes-sidebar';
-
-		const releaseHeader = document.createElement('a');
-		releaseHeader.className = 'release-version';
-		releaseHeader.href = release.html_url;
-		releaseHeader.target = '_blank';
-		releaseHeader.rel = 'noopener';
-		releaseHeader.textContent = `v${release.tag_name}`;
-		releaseSidebar.appendChild(releaseHeader);
-
-		const releaseDateSpan = document.createElement('span');
-		releaseDateSpan.className = 'release-date';
-		const releaseDate = new Date(release.published_at);
-		releaseDateSpan.textContent = releaseDate.toLocaleDateString();
-		releaseSidebar.appendChild(releaseDateSpan);
-
-		const totalDownloads = release.assets.reduce(
-			(sum, asset) => sum + asset.download_count,
-			0,
-		);
-
-		if (totalDownloads > 0) {
-			const downloadsSpan = document.createElement('span');
-			downloadsSpan.className = 'release-downloads';
-			downloadsSpan.textContent = `${downloadFormatter.format(totalDownloads)} downloads`;
-			releaseSidebar.appendChild(downloadsSpan);
-		}
-
-		releaseSection.appendChild(releaseSidebar);
-
-		const releaseMain = document.createElement('div');
-		releaseMain.className = 'release-notes-main';
-
-		const releaseContent = document.createElement('div');
-		releaseContent.className = 'release-content';
-		releaseContent.innerHTML = release.body_html;
-		AdjustChangelog(releaseContent);
-		releaseMain.appendChild(releaseContent);
-
-		if (isFirstPage && release === releases[0]) {
-			const releaseAssetsContainer = document.createElement('div');
-			releaseAssetsContainer.className = 'release-assets';
-			releaseAssetsContainer.id = 'js-release-assets';
-
-			for (const asset of release.assets) {
-				let name = asset.name;
-
-				if (name.endsWith('.zip')) {
-					name = name.substring(0, name.length - 4).replace(/-/g, ' ');
-				}
-
-				const assetLink = document.createElement('a');
-				assetLink.href = asset.browser_download_url;
-				assetLink.className = 'asset-link';
-				assetLink.download = '';
-				assetLink.textContent = name;
-				releaseAssetsContainer.appendChild(assetLink);
-			}
-
-			const githubLink = document.createElement('a');
-			githubLink.href = release.html_url;
-			githubLink.className = 'asset-link';
-			githubLink.target = '_blank';
-			githubLink.rel = 'noopener';
-			githubLink.textContent = 'View release on GitHub';
-			releaseAssetsContainer.appendChild(githubLink);
-
-			releaseMain.appendChild(releaseAssetsContainer);
-		}
-
-		releaseSection.appendChild(releaseMain);
-
-		releaseNotesContainer.appendChild(releaseSection);
+	if (!media) {
+		return;
 	}
 
-	if (releases.length >= releasesPerPage) {
-		const loadMoreBtn = document.createElement('button');
-		loadMoreBtn.className = 'changelog-load-more';
-		loadMoreBtn.textContent = 'Load older changelogs';
-		loadMoreBtn.addEventListener('click', () => {
-			loadMoreBtn.disabled = true;
-			loadMoreBtn.textContent = 'Loading\u2026';
-			LoadReleases();
-		});
-		releaseNotesContainer.appendChild(loadMoreBtn);
-	}
-}
-
-/** @param {HTMLElement} changelogContainer */
-function AdjustChangelog(changelogContainer) {
-	/**
-	 * @param {HTMLElement} element
-	 * @param {HTMLElement|null} [unwrapParent]
-	 */
-	const wrapMedia = (element, unwrapParent) => {
-		if (unwrapParent) {
-			const wrapper = document.createElement('div');
-			wrapper.className = 'changelog-media-wrapper';
-			unwrapParent.parentNode.insertBefore(wrapper, unwrapParent);
-			wrapper.appendChild(element);
-			unwrapParent.remove();
-		} else if (!element.closest('.changelog-media-wrapper')) {
-			const wrapper = document.createElement('div');
-			wrapper.className = 'changelog-media-wrapper';
-			element.parentNode.insertBefore(wrapper, element);
-			wrapper.appendChild(element);
-		}
-	};
-
-	for (const img of changelogContainer.querySelectorAll('img')) {
-		const parentLink = img.closest('a');
-		wrapMedia(img, parentLink?.href === img.src ? parentLink : null);
-
-		img.addEventListener('click', (e) => {
-			e.preventDefault();
-			OpenMediaModal(img.src, 'image');
-		});
-	}
-
-	for (const video of changelogContainer.querySelectorAll('video')) {
-		wrapMedia(video, video.closest('details'));
-
-		video.addEventListener('click', (e) => {
-			e.preventDefault();
-			OpenMediaModal(video.src || video.querySelector('source')?.src, 'video');
-		});
-	}
+	e.preventDefault();
+	OpenMediaModal(media.src, media.localName === 'video' ? 'video' : 'image');
 }
 
 /**
@@ -291,73 +81,29 @@ function OpenMediaModal(src, type) {
 	modal.showModal();
 }
 
-downloadBtn.addEventListener('click', () => {
+/** @param {HTMLElement} container */
+function ShuffleContributors(container) {
+	const contributors = [...container.children];
+
+	for (let i = contributors.length - 1; i > 0; i--) {
+		const j = Math.floor(Math.random() * (i + 1));
+		[contributors[i], contributors[j]] = [contributors[j], contributors[i]];
+	}
+
+	container.append(...contributors);
+}
+
+document.getElementById('js-download').addEventListener('click', () => {
 	document.getElementById('js-thank-you')?.classList.add('visible');
 });
 
-/** @param {HTMLElement} container */
-async function LoadContributors(container) {
-	try {
-		const response = await fetch(
-			'https://api.github.com/repositories/42366054/contributors?per_page=100',
-		);
+CheckForUpdate();
 
-		if (!response.ok) {
-			return;
-		}
-
-		/** @type {{login: string, avatar_url: string, html_url: string, contributions: number, type: string}[]} */
-		const contributors = await response.json();
-		const shuffled = contributors.filter((c) => c.type !== 'Bot');
-
-		for (let i = shuffled.length - 1; i > 0; i--) {
-			const j = Math.floor(Math.random() * (i + 1));
-			[shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-		}
-
-		const fragment = document.createDocumentFragment();
-
-		for (const c of shuffled) {
-			const a = document.createElement('a');
-			a.href = `https://github.com/ValveResourceFormat/ValveResourceFormat/commits?author=${c.login}`;
-			a.target = '_blank';
-			a.rel = 'noopener';
-			a.className = 'contributor';
-
-			const img = document.createElement('img');
-			img.src = `${c.avatar_url}&s=64`;
-			img.alt = '';
-			img.width = 32;
-			img.height = 32;
-			img.loading = 'lazy';
-
-			const name = document.createElement('span');
-			name.className = 'contributor-name';
-			name.textContent = c.login;
-
-			a.appendChild(img);
-			a.appendChild(name);
-			fragment.appendChild(a);
-		}
-
-		container.appendChild(fragment);
-	} catch (e) {
-		console.error(e);
-	}
-}
-
-LoadReleases();
+document
+	.getElementById('changelog')
+	?.addEventListener('click', OnChangelogClick);
 
 const contributorsContainer = document.getElementById('js-contributors');
 if (contributorsContainer) {
-	const observer = new IntersectionObserver(
-		(entries, obs) => {
-			if (entries[0].isIntersecting) {
-				obs.disconnect();
-				LoadContributors(contributorsContainer);
-			}
-		},
-		{ rootMargin: '400px' },
-	);
-	observer.observe(contributorsContainer);
+	ShuffleContributors(contributorsContainer);
 }

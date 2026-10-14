@@ -1,6 +1,7 @@
 import { globSync, readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { defineConfig } from 'vite';
+import { githubContent } from './build/github-content.js';
 
 const SITE_URL = 'https://s2v.app/';
 
@@ -52,10 +53,12 @@ export default defineConfig({
 	appType: 'mpa',
 	root: 'src',
 	publicDir: '../public',
-	plugins: [absoluteAssetUrls()],
+	plugins: [absoluteAssetUrls(), githubContent()],
 	build: {
 		outDir: '../dist',
 		emptyOutDir: true,
+		// Emit every asset as a file, small ones like avatars are not inlined into the html.
+		assetsInlineLimit: 0,
 		rolldownOptions: {
 			input: globSync('src/**/*.html').map((f) => resolve(f)),
 		},

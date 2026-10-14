@@ -6,7 +6,7 @@
 		"useIgnoreFile": false
 	},
 	"files": {
-		"includes": ["**", "!dist", "!**/dist"],
+		"includes": ["**", "!dist", "!**/dist", "!src/static/github"],
 		"ignoreUnknown": false
 	},
 	"formatter": {

@@ -13,7 +13,6 @@
 		<link rel="alternate" hreflang="x-default" href="https://s2v.app/">
 		<link rel="image_src" href="https://s2v.app/static/preview.jpg">
 		<link rel="preload" href="static/Manrope.woff2" as="font" type="font/woff2" crossorigin>
-		<link rel="preconnect" href="https://api.github.com">
 		<link rel="stylesheet" href="static/style.css">
 		<script src="static/main.js" type="module"></script>
 		<meta
@@ -277,8 +276,8 @@
 				<h3>Fully open-source and reverse-engineered.</h3>
 
 				<div class="download">
-					<a href="https://github.com/ValveResourceFormat/ValveResourceFormat/releases" class="btn" id="js-download">
-						<span class="download-text">Download</span>
+					<a href="%S2V_DOWNLOAD_URL%" class="btn" id="js-download">
+						<span class="download-text">Download v%S2V_VERSION%</span>
 						<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
 							<path d="M12 17V3" />
 							<path d="m6 11 6 6 6-6" />
@@ -298,7 +297,9 @@
 						>
 					</div>
 				</div>
-				<a class="update-banner" id="js-update-banner" href="#changelog" hidden> New version released since your last visit — view changelog </a>
+				<a class="update-banner" id="js-update-banner" href="#changelog" data-version="%S2V_VERSION%" hidden>
+					New version released since your last visit — view changelog
+				</a>
 
 				<div class="supported">
 					<span>Supports all Source 2 games</span>
@@ -874,6 +875,7 @@ File.<span class="hljs-built_in">WriteAllBytes</span>(<span class="hljs-string">
 				<h2>Changelog</h2>
 				<p class="section-lead">Release notes for every version, straight from GitHub.</p>
 			</div>
+			%S2V_CHANGELOG%
 		</div>
 
 		<div class="container" id="contributors">
@@ -881,7 +883,7 @@ File.<span class="hljs-built_in">WriteAllBytes</span>(<span class="hljs-string">
 				<h2>Made possible by amazing people</h2>
 				<p class="section-lead">Source 2 Viewer is open-source and built by volunteers. Every contribution helps make it better for everyone.</p>
 			</div>
-			<div class="contributor-list" id="js-contributors"></div>
+			<div class="contributor-list" id="js-contributors">%S2V_CONTRIBUTORS%</div>
 		</div>
 
 		<footer class="footer">

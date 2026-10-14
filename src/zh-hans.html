@@ -185,35 +185,68 @@
 					<ul>
 						<li>
 							查看来自 CS2、Dota 2、Deadlock 及其他 Source 2 游戏的
-							<a href="/ValveResourceFormat/api/ValveResourceFormat.ResourceTypes.Model.html">地图、模型、物理和粒子</a>
+							<a href="/ValveResourceFormat/api/ValveResourceFormat.ResourceTypes.Model.html">地图、模型、物理、粒子和材质</a>
 						</li>
-						<li>通过逆向工程还原的 PBR 着色器，支持实时光照</li>
-						<li><a href="/ValveResourceFormat/api/ValveResourceFormat.ResourceTypes.ModelAnimation.html">动画</a> 播放控制</li>
-						<li><a href="/ValveResourceFormat/api/ValveResourceFormat.ResourceTypes.EntityLump.html">实体查看器</a>，支持属性检查</li>
-						<li>以类似 Counter-Strike 的移动方式在地图中漫游，支持碰撞检测</li>
-						<li>WASD 摄像机控制，可自定义视场角 (FOV)</li>
-						<li>调试可视化和性能监控</li>
+						<li>通过逆向工程还原的游戏着色器，支持动态阴影、光照贴图、光照探针和立方体贴图</li>
 						<li>
-							硬件加速的
-							<a href="/ValveResourceFormat/api/ValveResourceFormat.Renderer.html">OpenGL 渲染</a>
+							GPU 驱动的
+							<a href="/ValveResourceFormat/api/ValveResourceFormat.Renderer.html">OpenGL 渲染</a>，支持视锥剔除、遮挡剔除和 meshlet 剔除
 						</li>
+						<li>分块光源剔除，可处理包含数百个光源的地图</li>
+						<li>泛光、景深、自动曝光和色彩校正</li>
+						<li>地图中的植被、贴花和 3D 天空盒</li>
+						<li>调试渲染模式、过度绘制视图和性能叠加层</li>
 					</ul>
 				</div>
 
 				<div>
-					<h3>纹理查看器</h3>
+					<h3>地图查看器</h3>
 					<ul>
 						<li>
-							查看
-							<a href="/ValveResourceFormat/api/ValveResourceFormat.ResourceTypes.Texture.html">纹理</a>
-							和 SVG，支持独立通道查看
+							点击任意
+							<a href="/ValveResourceFormat/api/ValveResourceFormat.ResourceTypes.EntityLump.html">实体</a>
+							即可查看其属性、输入和输出
 						</li>
-						<li>将<a href="/ValveResourceFormat/api/ValveResourceFormat.IO.TextureExtract.html">vtex_c</a> 导出为 PNG、TGA 及其他图像格式</li>
-						<li>颜色通道、深度层和 mip 级别</li>
-						<li>GPU 或 CPU 解码选项</li>
-						<li>支持 cubemap 和 HDR 纹理</li>
-						<li>法线贴图可视化模式</li>
-						<li>缩放和平移控制</li>
+						<li>以 Counter-Strike 的移动方式在地图中漫游：碰撞、梯子、连跳和冲浪</li>
+						<li>行走模式下显示 CS2 第一人称武器模型和准星</li>
+						<li>门、按钮、触发器和逻辑实体像在游戏中一样运作</li>
+						<li>3D 空间音效，支持环境音景和声音事件</li>
+						<li>切换世界图层和物理组，跳转到地图摄像机</li>
+						<li>导航网格、可见性簇和 CS2 炸弹伤害范围显示</li>
+						<li>WASD 自由摄像机，支持环绕模式和自定义视场角 (FOV)</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="feature-section">
+				<div>
+					<h3>模型与动画</h3>
+					<ul>
+						<li>
+							<a href="/ValveResourceFormat/api/ValveResourceFormat.ResourceTypes.ModelAnimation.html">动画</a>
+							播放，支持拖动进度、慢放、根运动和叠加层
+						</li>
+						<li>显示骨骼、挂点、命中框和物理形状</li>
+						<li>切换 LOD、网格组和材质皮肤</li>
+						<li>面部表情、变形目标、骨骼约束和 IK</li>
+						<li>AnimGraph 2 动画片段和骨骼 (vnmclip、vnmskel)</li>
+					</ul>
+				</div>
+
+				<div>
+					<h3>粒子与材质</h3>
+					<ul>
+						<li>
+							<a href="/ValveResourceFormat/api/ValveResourceFormat.ResourceTypes.ParticleSystem.html">粒子系统</a>，支持精灵、拖尾、绳索、模型、贴花和子系统
+						</li>
+						<li>粒子光照、场景碰撞和细节等级选择</li>
+						<li>算子列表，标出不支持的算子</li>
+						<li>粒子快照 (vsnap)</li>
+						<li>
+							实时编辑
+							<a href="/ValveResourceFormat/api/ValveResourceFormat.ResourceTypes.Material.html">材质</a>，参数范围由着色器定义
+						</li>
+						<li>在不同网格上预览材质，并跳转到其着色器</li>
 					</ul>
 				</div>
 			</div>
@@ -222,32 +255,35 @@
 				<div>
 					<h3>VPK 查看器与提取器</h3>
 					<ul>
-						<li>打开并提取来自 CS2、Dota 2、Deadlock、Half-Life: Alyx 等游戏的 VPK 文件</li>
-						<li>树形视图和列表视图界面，带文件类型图标</li>
-						<li>高级搜索系统（名称、路径、正则表达式、内容、十六进制）</li>
-						<li>按文件大小及其他条件排序</li>
-						<li>提取单个文件或整个 VPK 包</li>
-						<li>多线程 VPK 提取，带进度显示</li>
-						<li>从 VPK 档案中发现并恢复已删除的文件</li>
-						<li>一键从文件夹创建新的 VPK 档案</li>
-						<li>支持所有 VPK 版本（包括 Source 1）</li>
+						<li>打开任意 Source 1 或 Source 2 游戏的 VPK 文件，包括嵌套在 VPK 中的 VPK</li>
+						<li>文件夹树配合详细列表或渲染缩略图网格</li>
+						<li>按名称、路径、正则表达式、文件内容、十六进制字节或资源信息搜索</li>
+						<li>前进和后退导航、路径栏和快速预览</li>
+						<li>按原样或反编译后导出文件，可为每种文件类型选择输出格式</li>
+						<li>后台提取，显示进度和剩余时间，可随时取消</li>
+						<li>恢复 VPK 档案中残留的已删除文件</li>
+						<li>从文件夹和文件构建新的 VPK，并校验签名和校验和</li>
+						<li>复制 vpk: 链接，可直接在 Source 2 Viewer 中打开文件</li>
 					</ul>
 				</div>
 
 				<div>
-					<h3>glTF 导出</h3>
+					<h3>纹理查看器</h3>
 					<ul>
 						<li>
-							将地图、模型、
-							<a href="/ValveResourceFormat/api/ValveResourceFormat.ResourceTypes.PhysAggregateData.html">物理</a>
-							和动画导出为
-							<a href="/ValveResourceFormat/api/ValveResourceFormat.IO.GltfModelExporter.html">glTF 2.0</a>
+							查看
+							<a href="/ValveResourceFormat/api/ValveResourceFormat.ResourceTypes.Texture.html">纹理</a>、图像和 SVG，可单独查看每个颜色通道或并排显示所有通道
 						</li>
-						<li>适用于 CS2、Dota 2、Deadlock 及所有 Source 2 游戏</li>
-						<li>将 Source 2 材质转换为 glTF PBR 通道</li>
-						<li>兼容 Blender、Unity、Unreal Engine 等工具</li>
-						<li>批量导出，正确拆分纹理</li>
-						<li>资源依赖追踪与验证</li>
+						<li>
+							<a href="/ValveResourceFormat/api/ValveResourceFormat.IO.TextureExtract.html">保存纹理</a>
+							为 PNG、JPG，HDR 纹理可保存为 EXR，SVG 可按任意比例导出
+						</li>
+						<li>mip 级别、深度切片、立方体贴图各面和等距柱状投影</li>
+						<li>播放动画精灵表，支持逐帧拖动</li>
+						<li>法线贴图、YCoCg 和色彩空间转换开关</li>
+						<li>GPU 解码，并提供软件解码备选</li>
+						<li>色彩校正查找表 (vpost)</li>
+						<li>UV 平铺预览、缩放和平移</li>
 					</ul>
 				</div>
 			</div>
@@ -258,18 +294,88 @@
 					<ul>
 						<li>
 							<a href="/ValveResourceFormat/api/ValveResourceFormat.IO.MapExtract.html">地图</a>
-							(vmap_c → vmap) 用于 Hammer 编辑器
+							(vmap_c → vmap) 用于 Hammer，包含实体、可编辑网格、道具、覆盖层和绳索
 						</li>
 						<li>
 							<a href="/ValveResourceFormat/api/ValveResourceFormat.IO.ModelExtract.html">模型</a>
-							(vmdl_c → vmdl) 转为 ModelDoc 格式
+							(vmdl_c → vmdl) 用于 ModelDoc，包含动画、物理、命中框、变形和布料
 						</li>
 						<li>
 							<a href="/ValveResourceFormat/api/ValveResourceFormat.IO.MaterialExtract.html">材质</a>
-							(vmat_c → vmat)
+							(vmat_c → vmat)，纹理还原为原始输入贴图
 						</li>
+						<li><a href="/ValveResourceFormat/api/ValveResourceFormat.IO.AnimationGraphExtract.html">动画图</a>、动画片段和骨骼</li>
+						<li>粒子、后期处理、Panorama、编排场景和字幕</li>
+						<li>声音，并重建口型同步音素</li>
 						<li>生成可用于 Source 2 Workshop Tools 的可编辑资源</li>
-						<li>最大程度保留数据精度</li>
+					</ul>
+				</div>
+
+				<div>
+					<h3>glTF 导出</h3>
+					<ul>
+						<li>
+							将地图、模型、
+							<a href="/ValveResourceFormat/api/ValveResourceFormat.ResourceTypes.PhysAggregateData.html">物理</a>、动画和导航网格导出为
+							<a href="/ValveResourceFormat/api/ValveResourceFormat.IO.GltfModelExporter.html">glTF 2.0</a>
+						</li>
+						<li>蒙皮网格、变形目标和材质皮肤</li>
+						<li>根运动、叠加动画和变形权重动画</li>
+						<li>将 Source 2 材质转换为 glTF PBR，并保留原始参数</li>
+						<li>兼容 Blender、Unity、Unreal Engine 等工具</li>
+						<li>批量导出整个文件夹，纹理导出为独立图像</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="feature-section">
+				<div>
+					<h3>节点图查看器</h3>
+					<ul>
+						<li>
+							<a href="/ValveResourceFormat/api/ValveResourceFormat.ResourceTypes.AnimGraph.html">动画图</a>
+							(vanmgrph、vnmgraph)，状态机可展开
+						</li>
+						<li>从编译后的字节码重建 Pulse 图 (vpulse)</li>
+						<li>地图实体输入/输出关系图，与 3D 视图联动</li>
+						<li>模型的动画图和地图的 Pulse 脚本以标签页显示</li>
+						<li>搜索、筛选、自动布局，并可将图导出为图像</li>
+					</ul>
+				</div>
+
+				<div>
+					<h3>音频</h3>
+					<ul>
+						<li>内置音频播放器，带波形显示、拖动定位和循环播放</li>
+						<li>
+							播放 WAV、MP3 和
+							<a href="/ValveResourceFormat/api/ValveResourceFormat.ResourceTypes.Sound.html">Source 2 声音</a>
+							(PCM、ADPCM、MP3、AAC)
+						</li>
+						<li>在地图、模型和粒子查看器中播放声音事件</li>
+						<li>音量控制和按标签页静音</li>
+						<li>键盘控制，预览模式下自动播放</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="feature-section">
+				<div>
+					<h3>着色器</h3>
+					<ul>
+						<li>
+							以静态和动态组合树的形式浏览
+							<a href="/ValveResourceFormat/api/ValveResourceFormat.CompiledShader.html">Source 2 着色器文件</a>
+							(vcs)
+						</li>
+						<li>查看参数、组合、约束和渲染状态</li>
+						<li>
+							为整个着色器集合
+							<a href="/ValveResourceFormat/api/ValveResourceFormat.IO.ShaderExtract.html">重建 VFX 源代码</a>
+						</li>
+						<li>将 Vulkan SPIR-V 反编译为可读的 HLSL 或 GLSL</li>
+						<li>打开 SPIR-V 文件并导出着色器字节码</li>
+						<li>支持 58 至 72 版本的编译着色器</li>
 					</ul>
 				</div>
 
@@ -280,39 +386,11 @@
 							打开 vtex_c、vmdl_c、vmat_c、vpcf_c 及所有
 							<a href="/ValveResourceFormat/api/ValveResourceFormat.Resource.html">Source 2 文件类型</a>
 						</li>
-						<li>在独立标签页中查看 Resource Blocks</li>
-						<li>将二进制数据解码为易读的文本表示</li>
-						<li>支持所有版本的资源文件（最早可追溯至 2014 年）</li>
-					</ul>
-				</div>
-			</div>
-
-			<div class="feature-section">
-				<div>
-					<h3>音频系统</h3>
-					<ul>
-						<li>内置音频播放器，带波形可视化</li>
-						<li>支持 WAV、MP3 及 <a href="/ValveResourceFormat/api/ValveResourceFormat.ResourceTypes.Sound.html">Source 2 音频格式</a></li>
-						<li>音量控制和立体声电平表</li>
-						<li>时间轴拖动和播放控制</li>
-						<li>预览模式下自动播放</li>
-					</ul>
-				</div>
-
-				<div>
-					<h3>着色器</h3>
-					<ul>
-						<li>
-							检查和分析
-							<a href="/ValveResourceFormat/api/ValveResourceFormat.CompiledShader.html">Source 2 着色器文件</a>
-							(vcs)，支持字节码转换
-						</li>
-						<li>读取 Source 2 着色器包</li>
-						<li>查看已编译的着色器代码</li>
-						<li>检查着色器元数据和字节码</li>
-						<li>树形视图查看静态和动态组合</li>
-						<li>将 Vulkan 字节码 (SPIR-V) 转换为可读的着色语言</li>
-						<li>支持所有公开可用的文件版本</li>
+						<li>每个资源块在独立标签页中查看</li>
+						<li>浏览外部引用，双击即可打开</li>
+						<li>将二进制数据解码为易读的 KeyValues3 文本</li>
+						<li>重建材质、纹理等资源的源文件</li>
+						<li>支持所有 Source 2 游戏的资源文件</li>
 					</ul>
 				</div>
 			</div>
@@ -321,13 +399,14 @@
 				<div>
 					<h3>用户界面</h3>
 					<ul>
-						<li>标签式文档界面，支持高级标签管理</li>
-						<li>支持深色和浅色主题</li>
-						<li>自动检测 Steam 中已安装的 Source 2 游戏</li>
-						<li>最近文件和书签管理</li>
-						<li>支持拖放 VPK 和资源文件</li>
-						<li>快捷键快速导航</li>
-						<li>Windows 文件关联集成</li>
+						<li>标签页支持中键关闭、批量关闭和重新加载</li>
+						<li>深色和浅色主题，或跟随系统设置</li>
+						<li>资源浏览器列出已安装 Steam 游戏中的 VPK、地图、着色器和创意工坊物品</li>
+						<li>最近文件和书签</li>
+						<li>将任意文件拖放到窗口中打开</li>
+						<li>快捷键，并显示当前查看器的按键提示</li>
+						<li>注册为 .vpk 文件和 vpk: 链接的默认打开程序</li>
+						<li>内置更新程序，提供稳定版和开发版通道</li>
 					</ul>
 				</div>
 
@@ -335,28 +414,20 @@
 					<h3>其他文件格式</h3>
 					<ul>
 						<li>
-							<a href="/ValveResourceFormat/api/ValveResourceFormat.NavMesh.NavMeshFile.html">NavigationMesh</a>
-							(.nav) 和 ToolsAssetInfo (.bin) 文件
+							<a href="/ValveResourceFormat/api/ValveResourceFormat.NavMesh.NavMeshFile.html">导航网格</a>
+							(.nav) 3D 显示、网格导航 (.gnv) 和 ToolsAssetInfo (.bin) 文件
 						</li>
 						<li>
-							<a href="/ValveResourceFormat/api/ValveResourceFormat.ResourceTypes.WorldNode.html">World nodes</a>
-							(vwnod_c) 用于流式世界几何体
+							<a href="/ValveResourceFormat/api/ValveResourceFormat.ResourceTypes.WorldNode.html">世界节点</a>
+							(vwnod_c) 和可见性数据 (vvis)
 						</li>
 						<li>
-							<a href="/ValveResourceFormat/api/ValveResourceFormat.ResourceTypes.ParticleSystem.html">粒子系统</a>
-							(vpcf_c) 和特效
+							二进制和文本格式的
+							<a href="/ValveResourceFormat/api/ValveResourceFormat.ResourceTypes.BinaryKV3.html">KeyValues3</a>、二进制 KeyValues1 和 DMX 文件
 						</li>
-						<li><a href="/ValveResourceFormat/api/ValveResourceFormat.ResourceTypes.Sound.html">声音事件文件</a> 和音频定义 (vsnd_c)</li>
-						<li>图像格式，包括 PNG、JPG、TGA 和 GIF</li>
-						<li>十六进制查看器，用于检查二进制数据</li>
-						<li>文本和二进制文件查看，支持语法高亮</li>
-						<li>
-							完整的
-							<a href="/ValveResourceFormat/api/ValveResourceFormat.Serialization.KeyValues.KV3File.html">KeyValues</a>
-							支持 (KV1、KV2、KV3)
-						</li>
-						<li>将二进制 keyvalues 转换为文本格式</li>
-						<li><a href="/ValveResourceFormat/api/ValveResourceFormat.ClosedCaptions.html">字幕</a> 文件支持</li>
+						<li><a href="/ValveResourceFormat/api/ValveResourceFormat.ClosedCaptions.html">字幕</a>、编排场景和面部动画 (.vfe) 文件</li>
+						<li>PNG、JPG、GIF 和 SVG 图像</li>
+						<li>十六进制查看器和支持语法高亮的文本查看器</li>
 					</ul>
 				</div>
 			</div>

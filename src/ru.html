@@ -194,40 +194,72 @@
 					<ul>
 						<li>
 							Просмотр
-							<a href="/ValveResourceFormat/api/ValveResourceFormat.ResourceTypes.Model.html">карт, моделей, физики и частиц</a>
+							<a href="/ValveResourceFormat/api/ValveResourceFormat.ResourceTypes.Model.html">карт, моделей, физики, частиц и материалов</a>
 							из CS2, Dota 2, Deadlock и других игр на Source 2
 						</li>
-						<li>PBR-шейдеры, восстановленные методом обратной разработки, с освещением в реальном времени</li>
-						<li><a href="/ValveResourceFormat/api/ValveResourceFormat.ResourceTypes.ModelAnimation.html">Анимации</a> и управление воспроизведением</li>
-						<li><a href="/ValveResourceFormat/api/ValveResourceFormat.ResourceTypes.EntityLump.html">Просмотр сущностей</a> с инспекцией свойств</li>
-						<li>Перемещение по картам как в Counter-Strike с коллизиями</li>
-						<li>Управление камерой WASD и настраиваемый FOV</li>
-						<li>Отладочные визуализации и мониторинг производительности</li>
+						<li>Восстановленные шейдеры игр с динамическими тенями, лайтмапами, световыми пробами и кубмапами</li>
 						<li>
-							Аппаратно ускоренный
-							<a href="/ValveResourceFormat/api/ValveResourceFormat.Renderer.html">рендеринг OpenGL</a>
+							<a href="/ValveResourceFormat/api/ValveResourceFormat.Renderer.html">Рендеринг на OpenGL</a>
+							с отсечением по пирамиде видимости, окклюзии и мешлетам на GPU
 						</li>
+						<li>Тайловое отсечение источников света для карт с сотнями источников</li>
+						<li>Bloom, глубина резкости, автоэкспозиция и цветокоррекция</li>
+						<li>Мелкая растительность, декали и 3D-скайбоксы на картах</li>
+						<li>Отладочные режимы рендеринга, просмотр overdraw и оверлей производительности</li>
 					</ul>
 				</div>
 
 				<div>
-					<h3>Просмотрщик текстур</h3>
+					<h3>Просмотр карт</h3>
 					<ul>
 						<li>
-							Просмотр
-							<a href="/ValveResourceFormat/api/ValveResourceFormat.ResourceTypes.Texture.html">текстур</a>
-							и SVG с изолированным просмотром каналов
+							Клик по любой
+							<a href="/ValveResourceFormat/api/ValveResourceFormat.ResourceTypes.EntityLump.html">сущности</a>
+							показывает её свойства, входы и выходы
 						</li>
+						<li>Перемещение по картам как в Counter-Strike: коллизии, лестницы, банихоп и сёрф</li>
+						<li>Модель оружия от первого лица из CS2 и прицел в режиме ходьбы</li>
+						<li>Двери, кнопки, триггеры и логические сущности работают как в игре</li>
+						<li>Объёмный звук с саундскейпами и звуковыми событиями</li>
+						<li>Переключение слоёв мира и физических групп, переход к камерам карты</li>
+						<li>Навигационные сетки, кластеры видимости и зоны урона бомбы в CS2</li>
+						<li>Свободная камера на WASD с режимом орбиты и настраиваемым FOV</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="feature-section">
+				<div>
+					<h3>Модели и анимации</h3>
+					<ul>
 						<li>
-							Экспорт
-							<a href="/ValveResourceFormat/api/ValveResourceFormat.IO.TextureExtract.html">vtex_c</a>
-							в PNG, TGA и другие форматы изображений
+							Воспроизведение
+							<a href="/ValveResourceFormat/api/ValveResourceFormat.ResourceTypes.ModelAnimation.html">анимаций</a>
+							с перемоткой, замедлением, root motion и аддитивными слоями
 						</li>
-						<li>Цветовые каналы, слои глубины и mip-уровни</li>
-						<li>Варианты декодирования на GPU или CPU</li>
-						<li>Поддержка cubemap и HDR-текстур</li>
-						<li>Режимы визуализации normal map</li>
-						<li>Масштабирование и панорамирование</li>
+						<li>Отображение скелета, точек крепления, хитбоксов и физических форм</li>
+						<li>Переключение LOD, групп мешей и скинов материалов</li>
+						<li>Лицевая анимация, морф-таргеты, ограничения костей и IK</li>
+						<li>Клипы и скелеты анимаций AnimGraph 2 (vnmclip, vnmskel)</li>
+					</ul>
+				</div>
+
+				<div>
+					<h3>Частицы и материалы</h3>
+					<ul>
+						<li>
+							<a href="/ValveResourceFormat/api/ValveResourceFormat.ResourceTypes.ParticleSystem.html">Системы частиц</a>
+							со спрайтами, шлейфами, тросами, моделями, декалями и дочерними системами
+						</li>
+						<li>Освещение частиц, столкновения со сценой и выбор уровня детализации</li>
+						<li>Список операторов с пометкой неподдерживаемых</li>
+						<li>Снапшоты частиц (vsnap)</li>
+						<li>
+							Редактирование
+							<a href="/ValveResourceFormat/api/ValveResourceFormat.ResourceTypes.Material.html">материалов</a>
+							на лету с диапазонами параметров из шейдера
+						</li>
+						<li>Предпросмотр материалов на разных мешах и переход к их шейдеру</li>
 					</ul>
 				</div>
 			</div>
@@ -236,32 +268,36 @@
 				<div>
 					<h3>Просмотрщик и распаковщик VPK</h3>
 					<ul>
-						<li>Открыть и распаковать VPK-файлы из CS2, Dota 2, Deadlock, Half-Life: Alyx и других игр</li>
-						<li>Режимы отображения: дерево и список с иконками типов файлов</li>
-						<li>Расширенный поиск (имя, путь, regex, содержимое, hex)</li>
-						<li>Сортировка файлов по размеру и другим критериям</li>
-						<li>Распаковка отдельных файлов или целых VPK-пакетов</li>
-						<li>Многопоточная распаковка VPK с отображением прогресса</li>
-						<li>Поиск и восстановление удаленных файлов из VPK-архивов</li>
-						<li>Создание новых VPK-архивов из папок в один клик</li>
-						<li>Поддержка всех версий VPK (включая Source 1)</li>
+						<li>Открытие VPK-файлов из любых игр на Source 1 и Source 2, включая VPK внутри VPK</li>
+						<li>Дерево папок со списком файлов или сеткой отрендеренных миниатюр</li>
+						<li>Поиск по имени, пути, regex, содержимому, hex-байтам или asset info</li>
+						<li>Навигация назад и вперёд, адресная строка и быстрый предпросмотр</li>
+						<li>Экспорт файлов как есть или с декомпиляцией, с выбором формата для каждого типа файлов</li>
+						<li>Фоновая распаковка с прогрессом, оценкой времени и отменой</li>
+						<li>Восстановление удалённых файлов, оставшихся в VPK-архивах</li>
+						<li>Сборка новых VPK из папок и файлов, проверка подписей и контрольных сумм</li>
+						<li>Копирование ссылок vpk:, открывающих файл прямо в Source 2 Viewer</li>
 					</ul>
 				</div>
 
 				<div>
-					<h3>Экспорт в glTF</h3>
+					<h3>Просмотрщик текстур</h3>
 					<ul>
 						<li>
-							Экспорт карт, моделей,
-							<a href="/ValveResourceFormat/api/ValveResourceFormat.ResourceTypes.PhysAggregateData.html">физики</a>
-							и анимаций в
-							<a href="/ValveResourceFormat/api/ValveResourceFormat.IO.GltfModelExporter.html">glTF 2.0</a>
+							Просмотр
+							<a href="/ValveResourceFormat/api/ValveResourceFormat.ResourceTypes.Texture.html">текстур</a>, изображений и SVG по отдельным каналам или всех
+							каналов рядом
 						</li>
-						<li>Работает с CS2, Dota 2, Deadlock и всеми играми на Source 2</li>
-						<li>Преобразование материалов Source 2 в PBR-каналы glTF</li>
-						<li>Совместимость с Blender, Unity, Unreal Engine и другими</li>
-						<li>Пакетный экспорт с корректным разделением текстур</li>
-						<li>Отслеживание и проверка зависимостей ресурсов</li>
+						<li>
+							<a href="/ValveResourceFormat/api/ValveResourceFormat.IO.TextureExtract.html">Сохранение текстур</a>
+							в PNG, JPG или EXR для HDR, экспорт SVG в любом масштабе
+						</li>
+						<li>Mip-уровни, слои глубины, грани кубмапов и эквидистантная проекция</li>
+						<li>Воспроизведение анимированных спрайт-листов с покадровой перемоткой</li>
+						<li>Переключатели преобразований: карты нормалей, YCoCg и цветовое пространство</li>
+						<li>Декодирование на GPU с программным вариантом</li>
+						<li>Таблицы цветокоррекции (vpost)</li>
+						<li>Предпросмотр UV-тайлинга, масштабирование и панорамирование</li>
 					</ul>
 				</div>
 			</div>
@@ -272,18 +308,88 @@
 					<ul>
 						<li>
 							<a href="/ValveResourceFormat/api/ValveResourceFormat.IO.MapExtract.html">Карты</a>
-							(vmap_c → vmap) для редактора Hammer
+							(vmap_c → vmap) для Hammer с сущностями, редактируемыми мешами, пропами, оверлеями и тросами
 						</li>
 						<li>
 							<a href="/ValveResourceFormat/api/ValveResourceFormat.IO.ModelExtract.html">Модели</a>
-							(vmdl_c → vmdl) в формат ModelDoc
+							(vmdl_c → vmdl) для ModelDoc с анимациями, физикой, хитбоксами, морфами и тканью
 						</li>
 						<li>
 							<a href="/ValveResourceFormat/api/ValveResourceFormat.IO.MaterialExtract.html">Материалы</a>
-							(vmat_c → vmat)
+							(vmat_c → vmat) с распаковкой текстур в исходные карты
 						</li>
+						<li><a href="/ValveResourceFormat/api/ValveResourceFormat.IO.AnimationGraphExtract.html">Графы анимаций</a>, клипы и скелеты</li>
+						<li>Частицы, постобработка, Panorama, хореографические сцены и субтитры</li>
+						<li>Звуки с восстановленными фонемами для липсинка</li>
 						<li>Получение редактируемых ассетов для Source 2 Workshop Tools</li>
-						<li>Максимально возможная точность данных</li>
+					</ul>
+				</div>
+
+				<div>
+					<h3>Экспорт в glTF</h3>
+					<ul>
+						<li>
+							Экспорт карт, моделей,
+							<a href="/ValveResourceFormat/api/ValveResourceFormat.ResourceTypes.PhysAggregateData.html">физики</a>, анимаций и навигационных сеток в
+							<a href="/ValveResourceFormat/api/ValveResourceFormat.IO.GltfModelExporter.html">glTF 2.0</a>
+						</li>
+						<li>Скиннинг, морф-таргеты и скины материалов</li>
+						<li>Root motion, аддитивные анимации и анимации весов морфов</li>
+						<li>Преобразование материалов Source 2 в PBR glTF с сохранением исходных параметров</li>
+						<li>Совместимость с Blender, Unity, Unreal Engine и другими</li>
+						<li>Пакетный экспорт целых папок с текстурами в виде отдельных изображений</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="feature-section">
+				<div>
+					<h3>Просмотр графов</h3>
+					<ul>
+						<li>
+							<a href="/ValveResourceFormat/api/ValveResourceFormat.ResourceTypes.AnimGraph.html">Графы анимаций</a>
+							(vanmgrph, vnmgraph) с раскрываемыми машинами состояний
+						</li>
+						<li>Графы Pulse (vpulse), восстановленные из скомпилированного байткода</li>
+						<li>Граф входов и выходов сущностей карты, связанный с 3D-видом</li>
+						<li>Графы анимаций моделей и скрипты Pulse карт открываются во вкладках</li>
+						<li>Поиск, фильтры, автоматическая раскладка и экспорт графов в изображения</li>
+					</ul>
+				</div>
+
+				<div>
+					<h3>Аудио</h3>
+					<ul>
+						<li>Встроенный аудиоплеер с осциллограммой, перемоткой и зацикливанием</li>
+						<li>
+							Воспроизведение WAV, MP3 и
+							<a href="/ValveResourceFormat/api/ValveResourceFormat.ResourceTypes.Sound.html">звуков Source 2</a>
+							(PCM, ADPCM, MP3, AAC)
+						</li>
+						<li>Звуковые события в просмотре карт, моделей и частиц</li>
+						<li>Регулировка громкости и отключение звука во вкладке</li>
+						<li>Управление с клавиатуры и автовоспроизведение в режиме предпросмотра</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="feature-section">
+				<div>
+					<h3>Шейдеры</h3>
+					<ul>
+						<li>
+							Просмотр
+							<a href="/ValveResourceFormat/api/ValveResourceFormat.CompiledShader.html">шейдерных файлов Source 2</a>
+							(vcs) в виде дерева статических и динамических комбинаций
+						</li>
+						<li>Параметры, комбинации, ограничения и состояние рендеринга</li>
+						<li>
+							<a href="/ValveResourceFormat/api/ValveResourceFormat.IO.ShaderExtract.html">Восстановление исходного кода VFX</a>
+							для целых шейдерных коллекций
+						</li>
+						<li>Декомпиляция Vulkan SPIR-V в читаемый HLSL или GLSL</li>
+						<li>Открытие SPIR-V-файлов и экспорт байткода шейдеров</li>
+						<li>Скомпилированные шейдеры версий с 58 по 72</li>
 					</ul>
 				</div>
 
@@ -294,39 +400,11 @@
 							Открытие vtex_c, vmdl_c, vmat_c, vpcf_c и всех
 							<a href="/ValveResourceFormat/api/ValveResourceFormat.Resource.html">типов файлов Source 2</a>
 						</li>
-						<li>Просмотр Resource Blocks в отдельных вкладках</li>
-						<li>Декодирование бинарных данных в удобный текстовый вид</li>
-						<li>Поддержка всех версий resource-файлов (начиная с 2014 года)</li>
-					</ul>
-				</div>
-			</div>
-
-			<div class="feature-section">
-				<div>
-					<h3>Аудиосистема</h3>
-					<ul>
-						<li>Встроенный аудиоплеер с визуализацией waveform</li>
-						<li>Поддержка WAV, MP3 и <a href="/ValveResourceFormat/api/ValveResourceFormat.ResourceTypes.Sound.html">аудиоформатов Source 2</a></li>
-						<li>Регулировка громкости и стереометры</li>
-						<li>Перемотка таймлайна и управление воспроизведением</li>
-						<li>Автовоспроизведение в режиме предпросмотра</li>
-					</ul>
-				</div>
-
-				<div>
-					<h3>Шейдеры</h3>
-					<ul>
-						<li>
-							Просмотр и анализ
-							<a href="/ValveResourceFormat/api/ValveResourceFormat.CompiledShader.html">шейдерных файлов Source 2</a>
-							(vcs) с преобразованием байткода
-						</li>
-						<li>Чтение шейдерных пакетов Source 2</li>
-						<li>Просмотр скомпилированного кода шейдеров</li>
-						<li>Инспекция метаданных и байткода шейдеров</li>
-						<li>Древовидный просмотр статических и динамических комбинаций</li>
-						<li>Преобразование байткода Vulkan (SPIR-V) в читаемый язык шейдинга</li>
-						<li>Поддержка всех публично доступных версий файлов</li>
+						<li>Каждый блок ресурса в отдельной вкладке</li>
+						<li>Дерево внешних ссылок с открытием по двойному клику</li>
+						<li>Декодирование бинарных данных в читаемый текст KeyValues3</li>
+						<li>Восстановленные исходники материалов, текстур и других ресурсов</li>
+						<li>Поддержка файлов ресурсов из всех игр на Source 2</li>
 					</ul>
 				</div>
 			</div>
@@ -335,13 +413,14 @@
 				<div>
 					<h3>Пользовательский интерфейс</h3>
 					<ul>
-						<li>Вкладочный интерфейс документов с расширенным управлением вкладками</li>
-						<li>Поддержка темной и светлой тем</li>
-						<li>Автоопределение установленных игр Source 2 в Steam</li>
-						<li>Управление недавними файлами и закладками</li>
-						<li>Поддержка drag-and-drop для VPK и resource-файлов</li>
-						<li>Горячие клавиши для быстрой навигации</li>
-						<li>Интеграция ассоциаций файлов с Windows</li>
+						<li>Вкладки с закрытием средней кнопкой мыши, массовым закрытием и перезагрузкой</li>
+						<li>Тёмная и светлая темы или как в системе</li>
+						<li>Обозреватель VPK, карт, шейдеров и предметов Мастерской из установленных игр Steam</li>
+						<li>Недавние файлы и закладки</li>
+						<li>Перетаскивание любых файлов в окно</li>
+						<li>Горячие клавиши с подсказками для текущего просмотрщика</li>
+						<li>Регистрация в качестве программы для файлов .vpk и ссылок vpk:</li>
+						<li>Встроенное обновление со стабильным и dev-каналом</li>
 					</ul>
 				</div>
 
@@ -349,31 +428,22 @@
 					<h3>Дополнительные форматы файлов</h3>
 					<ul>
 						<li>
-							<a href="/ValveResourceFormat/api/ValveResourceFormat.NavMesh.NavMeshFile.html">NavigationMesh</a>
-							(.nav) и файлы ToolsAssetInfo (.bin)
+							<a href="/ValveResourceFormat/api/ValveResourceFormat.NavMesh.NavMeshFile.html">Навигационные сетки</a>
+							(.nav) в 3D, сеточная навигация (.gnv) и файлы ToolsAssetInfo (.bin)
 						</li>
 						<li>
-							<a href="/ValveResourceFormat/api/ValveResourceFormat.ResourceTypes.WorldNode.html">World nodes</a>
-							(vwnod_c) для потоковой геометрии мира
+							<a href="/ValveResourceFormat/api/ValveResourceFormat.ResourceTypes.WorldNode.html">Узлы мира</a>
+							(vwnod_c) и данные видимости (vvis)
 						</li>
 						<li>
-							<a href="/ValveResourceFormat/api/ValveResourceFormat.ResourceTypes.ParticleSystem.html">Particle systems</a>
-							(vpcf_c) и эффекты
+							<a href="/ValveResourceFormat/api/ValveResourceFormat.ResourceTypes.BinaryKV3.html">KeyValues3</a>
+							в бинарном и текстовом виде, бинарные KeyValues1 и файлы DMX
 						</li>
-						<li><a href="/ValveResourceFormat/api/ValveResourceFormat.ResourceTypes.Sound.html">Файлы звуковых событий</a> и аудио-описания (vsnd_c)</li>
-						<li>Форматы изображений, включая PNG, JPG, TGA и GIF</li>
-						<li>Hex-просмотрщик для инспекции бинарных данных</li>
-						<li>Просмотр текстовых и бинарных файлов с подсветкой синтаксиса</li>
 						<li>
-							Полная поддержка
-							<a href="/ValveResourceFormat/api/ValveResourceFormat.Serialization.KeyValues.KV3File.html">KeyValues</a>
-							(KV1, KV2, KV3)
+							<a href="/ValveResourceFormat/api/ValveResourceFormat.ClosedCaptions.html">Субтитры</a>, хореографические сцены и файлы лицевой анимации (.vfe)
 						</li>
-						<li>Конвертация binary keyvalues в текстовый формат</li>
-						<li>
-							Поддержка файлов
-							<a href="/ValveResourceFormat/api/ValveResourceFormat.ClosedCaptions.html">субтитров</a>
-						</li>
+						<li>Изображения PNG, JPG, GIF и SVG</li>
+						<li>Hex-просмотрщик и текстовый просмотрщик с подсветкой синтаксиса</li>
 					</ul>
 				</div>
 			</div>

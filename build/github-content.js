@@ -21,6 +21,7 @@ const CACHE_URL = 'static/github/';
 
 // Release notes link their attachments through urls signed for five minutes,
 // the attachment uuid is the only stable part.
+const EXPIRING_HOST = 'private-user-images.githubusercontent.com';
 const ATTACHMENT_URL =
 	/^https:\/\/(?:private-user-images\.githubusercontent\.com\/\d+\/\d+-|github\.com\/user-attachments\/assets\/)([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})/;
 
@@ -241,7 +242,42 @@ function rewriteReleaseBody(body, attachments) {
 		wrapper.append(media);
 	}
 
+	assertNoExpiringUrls(body);
+
 	return body.innerHTML;
+}
+
+/**
+ * Throws if any link or media source still uses the signed attachment urls,
+ * which stop working a few minutes after they were fetched.
+ * @param {HTMLElement} body
+ */
+function assertNoExpiringUrls(body) {
+	for (const element of body.querySelectorAll('[src], [href], [srcset]')) {
+		const urls = [];
+
+		for (const attribute of ['src', 'href']) {
+			const value = element.getAttribute(attribute);
+
+			if (value) {
+				urls.push(value);
+			}
+		}
+
+		const srcset = element.getAttribute('srcset');
+
+		if (srcset) {
+			for (const candidate of srcset.split(',')) {
+				urls.push(candidate.trim().split(/\s+/)[0]);
+			}
+		}
+
+		for (const url of urls) {
+			if (URL.canParse(url) && new URL(url).hostname === EXPIRING_HOST) {
+				throw new Error(`Release notes still link to an expiring url: ${url}`);
+			}
+		}
+	}
 }
 
 /** @param {any} release */
@@ -410,11 +446,6 @@ async function loadContent() {
 
 	const oldestShown = releases[releases.length - 1].tag_name;
 	changelog += `<a class="changelog-older" href="${REPO_URL}/releases?after=${encodeURIComponent(oldestShown)}" target="_blank" rel="noopener">Older releases on GitHub</a>`;
-
-	// Links on this host are signed and expire after a few minutes.
-	if (changelog.includes('private-user-images.githubusercontent.com')) {
-		throw new Error('Changelog still links to expiring GitHub attachment urls');
-	}
 
 	// Keys are the placeholder names without the S2V_ prefix.
 	return {

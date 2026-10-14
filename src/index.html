@@ -203,10 +203,10 @@
 					<use href="#s2v-logo" />
 				</svg>
 			</a>
-			<a href="#libraries">Libraries</a>
 			<a href="#features">Features</a>
+			<a href="#libraries">Libraries</a>
 			<a href="#changelog">Changelog</a>
-			<a href="https://s2v.app/ValveResourceFormat/">
+			<a href="https://s2v.app/ValveResourceFormat/" aria-label="Docs">
 				<svg
 					aria-hidden="true"
 					viewBox="0 0 24 24"
@@ -221,9 +221,9 @@
 					<path d="M12 7v14" />
 					<path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z" />
 				</svg>
-				Docs
+				<span class="nav-label">Docs</span>
 			</a>
-			<a href="https://s2v.app/SchemaExplorer/">
+			<a href="https://s2v.app/SchemaExplorer/" aria-label="Schema Explorer">
 				<svg
 					aria-hidden="true"
 					viewBox="0 0 24 24"
@@ -239,19 +239,19 @@
 					<rect x="3" y="14" width="7" height="7" rx="1" />
 					<circle cx="17.5" cy="17.5" r="3.5" />
 				</svg>
-				Schema Explorer
+				<span class="nav-label">Schema Explorer</span>
 			</a>
-			<a href="https://discord.gg/s9QQ7Wg7r4">
+			<a href="https://discord.gg/s9QQ7Wg7r4" aria-label="Discord">
 				<svg aria-hidden="true" width="16" height="16">
 					<use href="#icon-discord" />
 				</svg>
-				Discord
+				<span class="nav-label">Discord</span>
 			</a>
 			<a href="https://github.com/ValveResourceFormat/ValveResourceFormat" aria-label="GitHub repository">
 				<svg aria-hidden="true" width="16" height="16">
 					<use href="#icon-github" />
 				</svg>
-				GitHub
+				<span class="nav-label">GitHub</span>
 			</a>
 		</nav>
 		<svg class="background-pattern" aria-hidden="true">
@@ -406,8 +406,298 @@
 			</div>
 		</main>
 
+		<div class="container feature-outline" id="features">
+			<div class="section-head">
+				<h2>One tool for every Source 2 asset</h2>
+				<p class="section-lead">Render, inspect, extract, and decompile files from CS2, Dota 2, Deadlock, Half-Life: Alyx, and every other Source 2 game.</p>
+			</div>
+
+			<div class="spotlights">
+				<div class="spotlight">
+					<div class="spotlight-media">
+						<img
+							src="static/screen_map.png"
+							width="820"
+							height="520"
+							alt="Screenshot of the 3D renderer displaying a Counter-Strike 2 player model on a grid"
+							loading="lazy"
+						>
+					</div>
+					<div>
+						<h3>Models &amp; Animation</h3>
+						<p>Play back animations and inspect everything a model is built from.</p>
+						<ul>
+							<li>
+								<a href="/ValveResourceFormat/api/ValveResourceFormat.ResourceTypes.ModelAnimation.html">Animation</a>
+								playback with scrubbing, slow motion, root motion, and additive layers
+							</li>
+							<li>Show skeletons, attachments, hitboxes, and physics shapes</li>
+							<li>Switch LODs, mesh groups, and material skins</li>
+							<li>Facial flexes, morph targets, bone constraints, and IK</li>
+							<li>Animation clips and skeletons from AnimGraph 2 (vnmclip, vnmskel)</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="spotlight">
+					<div class="spotlight-media">
+						<img
+							src="static/screen_package.png"
+							width="820"
+							height="520"
+							alt="Screenshot showing the VPK package explorer interface with a file tree and a list view"
+							loading="lazy"
+						>
+					</div>
+					<div>
+						<h3>VPK Viewer &amp; Extractor</h3>
+						<p>Browse game archives like a file explorer, then extract or decompile what you need.</p>
+						<ul>
+							<li>Open VPK files from any Source 1 or Source 2 game, including VPKs inside VPKs</li>
+							<li>Folder tree with a detail list or a grid of rendered thumbnails</li>
+							<li>Search by name, path, regex, file contents, hex bytes, or asset info</li>
+							<li>Back and forward navigation, path bar, and quick preview</li>
+							<li>Export files as is or decompiled, choosing the output format per file type</li>
+							<li>Background extraction with progress, time estimate, and cancel</li>
+							<li>Recover deleted files left in VPK archives</li>
+							<li>Build new VPKs from folders and files, and verify signatures and checksums</li>
+							<li>Copy vpk: links that open a file directly in Source 2 Viewer</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="spotlight">
+					<div class="spotlight-media">
+						<img src="static/screen_texture.png" width="820" height="520" alt="Screenshot of the animation graph viewer showing nodes" loading="lazy">
+					</div>
+					<div>
+						<h3>Node Graph Viewers</h3>
+						<p>Compiled graphs turned back into readable, searchable node layouts.</p>
+						<ul>
+							<li>
+								<a href="/ValveResourceFormat/api/ValveResourceFormat.ResourceTypes.AnimGraph.html">Animation graphs</a>
+								(vanmgrph, vnmgraph) with expandable state machines
+							</li>
+							<li>Pulse graphs (vpulse) rebuilt from compiled bytecode</li>
+							<li>Entity I/O graph for maps, linked to the 3D view</li>
+							<li>Models and maps show their animation graphs and Pulse scripts as tabs</li>
+							<li>Search, filter, auto layout, and export graphs as images</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+
+			<div class="feature-grid">
+				<div class="feature-card">
+					<h3>3D Renderer</h3>
+					<ul>
+						<li>
+							View
+							<a href="/ValveResourceFormat/api/ValveResourceFormat.ResourceTypes.Model.html">maps, models, physics, particles, and materials</a>
+							from CS2, Dota 2, Deadlock, and other Source 2 games
+						</li>
+						<li>Reverse-engineered game shaders with dynamic shadows, lightmaps, light probes, and cubemaps</li>
+						<li>
+							GPU-driven
+							<a href="/ValveResourceFormat/api/ValveResourceFormat.Renderer.html">OpenGL rendering</a>
+							with frustum, occlusion, and meshlet culling
+						</li>
+						<li>Tiled light culling for maps with hundreds of lights</li>
+						<li>Bloom, depth of field, auto exposure, and color correction</li>
+						<li>Clutter, decals, and 3D skyboxes in maps</li>
+						<li>Debug render modes, overdraw view, and a performance overlay</li>
+					</ul>
+				</div>
+
+				<div class="feature-card">
+					<h3>Map Viewer</h3>
+					<ul>
+						<li>
+							Click any
+							<a href="/ValveResourceFormat/api/ValveResourceFormat.ResourceTypes.EntityLump.html">entity</a>
+							to inspect its properties, inputs, and outputs
+						</li>
+						<li>Walk around maps with Counter-Strike movement: collisions, ladders, bunny hopping, and surfing</li>
+						<li>First-person CS2 weapon viewmodel and crosshair in walk mode</li>
+						<li>Doors, buttons, triggers, and logic entities run like in the game</li>
+						<li>3D positional sound with soundscapes and sound events</li>
+						<li>Toggle world layers and physics groups, and jump to map cameras</li>
+						<li>Navigation meshes, visibility clusters, and CS2 bomb damage overlays</li>
+						<li>WASD fly camera with orbit mode and customizable FOV</li>
+					</ul>
+				</div>
+
+				<div class="feature-card">
+					<h3>Source 2 Decompiler</h3>
+					<ul>
+						<li>
+							<a href="/ValveResourceFormat/api/ValveResourceFormat.IO.MapExtract.html">Maps</a>
+							(vmap_c → vmap) for Hammer with entities, editable meshes, props, overlays, and ropes
+						</li>
+						<li>
+							<a href="/ValveResourceFormat/api/ValveResourceFormat.IO.ModelExtract.html">Models</a>
+							(vmdl_c → vmdl) for ModelDoc with animations, physics, hitboxes, morphs, and cloth
+						</li>
+						<li>
+							<a href="/ValveResourceFormat/api/ValveResourceFormat.IO.MaterialExtract.html">Materials</a>
+							(vmat_c → vmat) with textures unpacked to their original inputs
+						</li>
+						<li><a href="/ValveResourceFormat/api/ValveResourceFormat.IO.AnimationGraphExtract.html">Animation graphs</a>, clips, and skeletons</li>
+						<li>Particles, post-processing, Panorama, choreo scenes, and closed captions</li>
+						<li>Sounds with reconstructed lip-sync phonemes</li>
+						<li>Produce editable assets for Source 2 Workshop Tools</li>
+					</ul>
+				</div>
+
+				<div class="feature-card">
+					<h3>glTF Export</h3>
+					<ul>
+						<li>
+							Export maps, models,
+							<a href="/ValveResourceFormat/api/ValveResourceFormat.ResourceTypes.PhysAggregateData.html">physics</a>, animations, and navigation meshes to
+							<a href="/ValveResourceFormat/api/ValveResourceFormat.IO.GltfModelExporter.html">glTF 2.0</a>
+						</li>
+						<li>Skinned meshes, morph targets, and material skins</li>
+						<li>Root motion, additive animations, and morph weight animations</li>
+						<li>Source 2 materials converted to glTF PBR, with the original parameters kept</li>
+						<li>Compatible with Blender, Unity, Unreal Engine, and more</li>
+						<li>Batch export whole folders with textures as separate images</li>
+					</ul>
+				</div>
+
+				<div class="feature-card">
+					<h3>Texture Viewer</h3>
+					<ul>
+						<li>
+							View
+							<a href="/ValveResourceFormat/api/ValveResourceFormat.ResourceTypes.Texture.html">textures</a>, images, and SVGs per color channel or with all
+							channels side by side
+						</li>
+						<li>
+							<a href="/ValveResourceFormat/api/ValveResourceFormat.IO.TextureExtract.html">Save textures</a>
+							as PNG, JPG, or EXR for HDR, and export SVGs at any scale
+						</li>
+						<li>Mip levels, depth slices, cubemap faces, and equirectangular projection</li>
+						<li>Animated sprite sheet playback with frame scrubbing</li>
+						<li>Normal map, YCoCg, and color space conversion toggles</li>
+						<li>GPU decoding with a software fallback</li>
+						<li>Color correction lookup tables (vpost)</li>
+						<li>UV tiling preview, zoom, and pan</li>
+					</ul>
+				</div>
+
+				<div class="feature-card">
+					<h3>Particles &amp; Materials</h3>
+					<ul>
+						<li>
+							<a href="/ValveResourceFormat/api/ValveResourceFormat.ResourceTypes.ParticleSystem.html">Particle systems</a>
+							with sprites, trails, ropes, models, decals, and child systems
+						</li>
+						<li>Particle lighting, scene collisions, and detail level selection</li>
+						<li>Operator list that flags unsupported operators</li>
+						<li>Particle snapshots (vsnap)</li>
+						<li>
+							Live
+							<a href="/ValveResourceFormat/api/ValveResourceFormat.ResourceTypes.Material.html">material</a>
+							editing with shader-defined parameter ranges
+						</li>
+						<li>Preview materials on different meshes and jump to their shader</li>
+					</ul>
+				</div>
+
+				<div class="feature-card">
+					<h3>Audio</h3>
+					<ul>
+						<li>Built-in audio player with waveform, seeking, and looping</li>
+						<li>
+							Play WAV, MP3, and
+							<a href="/ValveResourceFormat/api/ValveResourceFormat.ResourceTypes.Sound.html">Source 2 sounds</a>
+							(PCM, ADPCM, MP3, AAC)
+						</li>
+						<li>Sound events play in the map, model, and particle viewers</li>
+						<li>Volume control and per-tab mute</li>
+						<li>Keyboard controls and auto-play in preview mode</li>
+					</ul>
+				</div>
+
+				<div class="feature-card">
+					<h3>Shader Packages</h3>
+					<ul>
+						<li>
+							Browse Source 2 <a href="/ValveResourceFormat/api/ValveResourceFormat.CompiledShader.html">shader files</a>
+							(vcs) as a tree of static and dynamic combos
+						</li>
+						<li>Inspect parameters, combos, constraints, and render state</li>
+						<li>
+							<a href="/ValveResourceFormat/api/ValveResourceFormat.IO.ShaderExtract.html">Reconstruct VFX source</a>
+							for whole shader collections
+						</li>
+						<li>Decompile Vulkan SPIR-V to readable HLSL or GLSL</li>
+						<li>Open raw SPIR-V files and export shader bytecode</li>
+						<li>Compiled shader versions 58 through 72</li>
+					</ul>
+				</div>
+
+				<div class="feature-card">
+					<h3>Source 2 Resource Files</h3>
+					<ul>
+						<li>
+							Open vtex_c, vmdl_c, vmat_c, vpcf_c, and all
+							<a href="/ValveResourceFormat/api/ValveResourceFormat.Resource.html">Source 2 file types</a>
+						</li>
+						<li>View every resource block in its own tab</li>
+						<li>Browse external references and open them with a double-click</li>
+						<li>Decode binary data to readable KeyValues3 text</li>
+						<li>Reconstructed source for materials, textures, and more</li>
+						<li>Support for resource files from every Source 2 game</li>
+					</ul>
+				</div>
+
+				<div class="feature-card">
+					<h3>User Interface</h3>
+					<ul>
+						<li>Tabs with middle-click close, bulk close, and reload</li>
+						<li>Dark and light themes, or follow the system setting</li>
+						<li>Explorer lists VPKs, maps, shaders, and Workshop items from installed Steam games</li>
+						<li>Recent files and bookmarks</li>
+						<li>Drag and drop any file onto the window</li>
+						<li>Keyboard shortcuts, with hints for the active viewer</li>
+						<li>Register as the handler for .vpk files and vpk: links</li>
+						<li>Built-in updater with stable and dev channels</li>
+					</ul>
+				</div>
+
+				<div class="feature-card">
+					<h3>Additional File Formats</h3>
+					<ul>
+						<li>
+							<a href="/ValveResourceFormat/api/ValveResourceFormat.NavMesh.NavMeshFile.html">Navigation meshes</a>
+							(.nav) in 3D, grid navigation (.gnv), and ToolsAssetInfo (.bin) files
+						</li>
+						<li>
+							<a href="/ValveResourceFormat/api/ValveResourceFormat.ResourceTypes.WorldNode.html">World nodes</a>
+							(vwnod_c) and visibility data (vvis)
+						</li>
+						<li>
+							<a href="/ValveResourceFormat/api/ValveResourceFormat.ResourceTypes.BinaryKV3.html">KeyValues3</a>
+							binary and text, binary KeyValues1, and DMX files
+						</li>
+						<li>
+							<a href="/ValveResourceFormat/api/ValveResourceFormat.ClosedCaptions.html">Closed captions</a>, choreo scenes, and facial animation (.vfe) files
+						</li>
+						<li>PNG, JPG, GIF, and SVG images</li>
+						<li>Hex viewer and text viewer with syntax highlighting</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
 		<div class="libraries" id="libraries">
-			<div class="container">
+			<div class="container section-head">
+				<h2>Libraries and command line</h2>
+				<p class="section-lead">The code that powers Source 2 Viewer, available as .NET packages and a cross-platform CLI.</p>
+			</div>
+			<div class="container libraries-content">
 				<div class="library-list">
 					<div class="library">
 						<div class="library-icon">
@@ -434,7 +724,7 @@
 							</svg>
 						</div>
 						<div class="library-description">
-							<h2>Command line utility</h2>
+							<h3>Command line utility</h3>
 							<p>A cross-platform console application that can export and decompile Source 2 resources similar to the main application.</p>
 							<div class="library-links">
 								<a href="https://github.com/ValveResourceFormat/ValveResourceFormat/releases">Download CLI for your OS from GitHub</a>
@@ -449,7 +739,7 @@
 							</svg>
 						</div>
 						<div class="library-description">
-							<h2>ValveResourceFormat</h2>
+							<h3>ValveResourceFormat</h3>
 							<div class="library-links">
 								<a href="https://www.nuget.org/packages/ValveResourceFormat" aria-label="ValveResourceFormat on NuGet">NuGet</a>
 								<a href="https://github.com/ValveResourceFormat/ValveResourceFormat" aria-label="ValveResourceFormat on GitHub">GitHub</a>
@@ -469,7 +759,7 @@
 							</svg>
 						</div>
 						<div class="library-description">
-							<h2>ValveResourceFormat.Renderer</h2>
+							<h3>ValveResourceFormat.Renderer</h3>
 							<div class="library-links">
 								<a href="https://www.nuget.org/packages/ValveResourceFormat.Renderer" aria-label="ValveResourceFormat.Renderer on NuGet">NuGet</a>
 								<a href="https://github.com/ValveResourceFormat/ValveResourceFormat/tree/master/Renderer" aria-label="ValveResourceFormat.Renderer on GitHub"
@@ -496,7 +786,7 @@
 							</svg>
 						</div>
 						<div class="library-description">
-							<h2>ValvePak</h2>
+							<h3>ValvePak</h3>
 							<div class="library-links">
 								<a href="https://www.nuget.org/packages/ValvePak" aria-label="ValvePak on NuGet">NuGet</a>
 								<a href="https://github.com/ValveResourceFormat/ValvePak" aria-label="ValvePak on GitHub">GitHub</a>
@@ -529,7 +819,7 @@
 							</svg>
 						</div>
 						<div class="library-description">
-							<h2>ValveKeyValue</h2>
+							<h3>ValveKeyValue</h3>
 							<div class="library-links">
 								<a href="https://www.nuget.org/packages/ValveKeyValue" aria-label="ValveKeyValue on NuGet">NuGet</a>
 								<a href="https://github.com/ValveResourceFormat/ValveKeyValue" aria-label="ValveKeyValue on GitHub">GitHub</a>
@@ -542,8 +832,19 @@
 					</div>
 				</div>
 				<div class="library-code">
-					<span class="hljs-language">C#</span>
-					<pre class="hljs"><code><span class="hljs-comment">// Open package and read a file</span>
+					<figure class="cli-screenshot">
+						<img
+							src="static/screen_cli.png"
+							width="820"
+							height="520"
+							alt="Screenshot of the command line interface showing DATA block for an audio file"
+							loading="lazy"
+						>
+						<figcaption>Source2Viewer-CLI printing the data block of a sound file</figcaption>
+					</figure>
+					<div class="code-sample">
+						<span class="hljs-language">C#</span>
+						<pre class="hljs"><code><span class="hljs-comment">// Open package and read a file</span>
 <span class="hljs-keyword">using var</span> package = <span class="hljs-keyword">new</span> <a class="hljs-built_in" href="https://github.com/ValveResourceFormat/ValvePak/blob/master/ValvePak/ValvePak/Package.cs">Package</a>();
 package.<span class="hljs-built_in">Read</span>(<span class="hljs-string">"pak01_dir.vpk"</span>);
 
@@ -563,289 +864,23 @@ Debug.<span class="hljs-built_in">Assert</span>(resource.<span class="hljs-built
 <span class="hljs-keyword">var</span> png = TextureExtract.<a class="hljs-built_in" href="https://s2v.app/ValveResourceFormat/api/ValveResourceFormat.IO.TextureExtract.html#ValveResourceFormat_IO_TextureExtract_ToPngImage_SkiaSharp_SKBitmap_">ToPngImage</a>(bitmap);
 
 File.<span class="hljs-built_in">WriteAllBytes</span>(<span class="hljs-string">"image.png"</span>, png);</code></pre>
-
-					<a href="/ValveResourceFormat/" class="api-docs-link">View documentation</a>
-				</div>
-			</div>
-		</div>
-
-		<div class="container screenshots">
-			<img src="static/screen_map.png" alt="Screenshot of the 3D renderer displaying a Counter-Strike 2 player model on a grid" loading="lazy">
-			<img src="static/screen_package.png" alt="Screenshot showing the VPK package explorer interface with a file tree and a list view" loading="lazy">
-			<img src="static/screen_texture.png" alt="Screenshot of the animation graph viewer showing nodes" loading="lazy">
-			<img src="static/screen_cli.png" alt="Screenshot of the command line interface showing DATA block for an audio file" loading="lazy">
-		</div>
-
-		<div class="container feature-outline" id="features">
-			<h2>Features</h2>
-
-			<div class="feature-section">
-				<div>
-					<h3>3D Renderer</h3>
-					<ul>
-						<li>
-							View
-							<a href="/ValveResourceFormat/api/ValveResourceFormat.ResourceTypes.Model.html">maps, models, physics, particles, and materials</a>
-							from CS2, Dota 2, Deadlock, and other Source 2 games
-						</li>
-						<li>Reverse-engineered game shaders with dynamic shadows, lightmaps, light probes, and cubemaps</li>
-						<li>
-							GPU-driven
-							<a href="/ValveResourceFormat/api/ValveResourceFormat.Renderer.html">OpenGL rendering</a>
-							with frustum, occlusion, and meshlet culling
-						</li>
-						<li>Tiled light culling for maps with hundreds of lights</li>
-						<li>Bloom, depth of field, auto exposure, and color correction</li>
-						<li>Clutter, decals, and 3D skyboxes in maps</li>
-						<li>Debug render modes, overdraw view, and a performance overlay</li>
-					</ul>
-				</div>
-
-				<div>
-					<h3>Map Viewer</h3>
-					<ul>
-						<li>
-							Click any
-							<a href="/ValveResourceFormat/api/ValveResourceFormat.ResourceTypes.EntityLump.html">entity</a>
-							to inspect its properties, inputs, and outputs
-						</li>
-						<li>Walk around maps with Counter-Strike movement: collisions, ladders, bunny hopping, and surfing</li>
-						<li>First-person CS2 weapon viewmodel and crosshair in walk mode</li>
-						<li>Doors, buttons, triggers, and logic entities run like in the game</li>
-						<li>3D positional sound with soundscapes and sound events</li>
-						<li>Toggle world layers and physics groups, and jump to map cameras</li>
-						<li>Navigation meshes, visibility clusters, and CS2 bomb damage overlays</li>
-						<li>WASD fly camera with orbit mode and customizable FOV</li>
-					</ul>
-				</div>
-			</div>
-
-			<div class="feature-section">
-				<div>
-					<h3>Models &amp; Animation</h3>
-					<ul>
-						<li>
-							<a href="/ValveResourceFormat/api/ValveResourceFormat.ResourceTypes.ModelAnimation.html">Animation</a>
-							playback with scrubbing, slow motion, root motion, and additive layers
-						</li>
-						<li>Show skeletons, attachments, hitboxes, and physics shapes</li>
-						<li>Switch LODs, mesh groups, and material skins</li>
-						<li>Facial flexes, morph targets, bone constraints, and IK</li>
-						<li>Animation clips and skeletons from AnimGraph 2 (vnmclip, vnmskel)</li>
-					</ul>
-				</div>
-
-				<div>
-					<h3>Particles &amp; Materials</h3>
-					<ul>
-						<li>
-							<a href="/ValveResourceFormat/api/ValveResourceFormat.ResourceTypes.ParticleSystem.html">Particle systems</a>
-							with sprites, trails, ropes, models, decals, and child systems
-						</li>
-						<li>Particle lighting, scene collisions, and detail level selection</li>
-						<li>Operator list that flags unsupported operators</li>
-						<li>Particle snapshots (vsnap)</li>
-						<li>
-							Live
-							<a href="/ValveResourceFormat/api/ValveResourceFormat.ResourceTypes.Material.html">material</a>
-							editing with shader-defined parameter ranges
-						</li>
-						<li>Preview materials on different meshes and jump to their shader</li>
-					</ul>
-				</div>
-			</div>
-
-			<div class="feature-section">
-				<div>
-					<h3>VPK Viewer &amp; Extractor</h3>
-					<ul>
-						<li>Open VPK files from any Source 1 or Source 2 game, including VPKs inside VPKs</li>
-						<li>Folder tree with a detail list or a grid of rendered thumbnails</li>
-						<li>Search by name, path, regex, file contents, hex bytes, or asset info</li>
-						<li>Back and forward navigation, path bar, and quick preview</li>
-						<li>Export files as is or decompiled, choosing the output format per file type</li>
-						<li>Background extraction with progress, time estimate, and cancel</li>
-						<li>Recover deleted files left in VPK archives</li>
-						<li>Build new VPKs from folders and files, and verify signatures and checksums</li>
-						<li>Copy vpk: links that open a file directly in Source 2 Viewer</li>
-					</ul>
-				</div>
-
-				<div>
-					<h3>Texture Viewer</h3>
-					<ul>
-						<li>
-							View
-							<a href="/ValveResourceFormat/api/ValveResourceFormat.ResourceTypes.Texture.html">textures</a>, images, and SVGs per color channel or with all
-							channels side by side
-						</li>
-						<li>
-							<a href="/ValveResourceFormat/api/ValveResourceFormat.IO.TextureExtract.html">Save textures</a>
-							as PNG, JPG, or EXR for HDR, and export SVGs at any scale
-						</li>
-						<li>Mip levels, depth slices, cubemap faces, and equirectangular projection</li>
-						<li>Animated sprite sheet playback with frame scrubbing</li>
-						<li>Normal map, YCoCg, and color space conversion toggles</li>
-						<li>GPU decoding with a software fallback</li>
-						<li>Color correction lookup tables (vpost)</li>
-						<li>UV tiling preview, zoom, and pan</li>
-					</ul>
-				</div>
-			</div>
-
-			<div class="feature-section">
-				<div>
-					<h3>Source 2 Decompiler</h3>
-					<ul>
-						<li>
-							<a href="/ValveResourceFormat/api/ValveResourceFormat.IO.MapExtract.html">Maps</a>
-							(vmap_c → vmap) for Hammer with entities, editable meshes, props, overlays, and ropes
-						</li>
-						<li>
-							<a href="/ValveResourceFormat/api/ValveResourceFormat.IO.ModelExtract.html">Models</a>
-							(vmdl_c → vmdl) for ModelDoc with animations, physics, hitboxes, morphs, and cloth
-						</li>
-						<li>
-							<a href="/ValveResourceFormat/api/ValveResourceFormat.IO.MaterialExtract.html">Materials</a>
-							(vmat_c → vmat) with textures unpacked to their original inputs
-						</li>
-						<li><a href="/ValveResourceFormat/api/ValveResourceFormat.IO.AnimationGraphExtract.html">Animation graphs</a>, clips, and skeletons</li>
-						<li>Particles, post-processing, Panorama, choreo scenes, and closed captions</li>
-						<li>Sounds with reconstructed lip-sync phonemes</li>
-						<li>Produce editable assets for Source 2 Workshop Tools</li>
-					</ul>
-				</div>
-
-				<div>
-					<h3>glTF Export</h3>
-					<ul>
-						<li>
-							Export maps, models,
-							<a href="/ValveResourceFormat/api/ValveResourceFormat.ResourceTypes.PhysAggregateData.html">physics</a>, animations, and navigation meshes to
-							<a href="/ValveResourceFormat/api/ValveResourceFormat.IO.GltfModelExporter.html">glTF 2.0</a>
-						</li>
-						<li>Skinned meshes, morph targets, and material skins</li>
-						<li>Root motion, additive animations, and morph weight animations</li>
-						<li>Source 2 materials converted to glTF PBR, with the original parameters kept</li>
-						<li>Compatible with Blender, Unity, Unreal Engine, and more</li>
-						<li>Batch export whole folders with textures as separate images</li>
-					</ul>
-				</div>
-			</div>
-
-			<div class="feature-section">
-				<div>
-					<h3>Node Graph Viewers</h3>
-					<ul>
-						<li>
-							<a href="/ValveResourceFormat/api/ValveResourceFormat.ResourceTypes.AnimGraph.html">Animation graphs</a>
-							(vanmgrph, vnmgraph) with expandable state machines
-						</li>
-						<li>Pulse graphs (vpulse) rebuilt from compiled bytecode</li>
-						<li>Entity I/O graph for maps, linked to the 3D view</li>
-						<li>Models and maps show their animation graphs and Pulse scripts as tabs</li>
-						<li>Search, filter, auto layout, and export graphs as images</li>
-					</ul>
-				</div>
-
-				<div>
-					<h3>Audio</h3>
-					<ul>
-						<li>Built-in audio player with waveform, seeking, and looping</li>
-						<li>
-							Play WAV, MP3, and
-							<a href="/ValveResourceFormat/api/ValveResourceFormat.ResourceTypes.Sound.html">Source 2 sounds</a>
-							(PCM, ADPCM, MP3, AAC)
-						</li>
-						<li>Sound events play in the map, model, and particle viewers</li>
-						<li>Volume control and per-tab mute</li>
-						<li>Keyboard controls and auto-play in preview mode</li>
-					</ul>
-				</div>
-			</div>
-
-			<div class="feature-section">
-				<div>
-					<h3>Shader Packages</h3>
-					<ul>
-						<li>
-							Browse Source 2 <a href="/ValveResourceFormat/api/ValveResourceFormat.CompiledShader.html">shader files</a>
-							(vcs) as a tree of static and dynamic combos
-						</li>
-						<li>Inspect parameters, combos, constraints, and render state</li>
-						<li>
-							<a href="/ValveResourceFormat/api/ValveResourceFormat.IO.ShaderExtract.html">Reconstruct VFX source</a>
-							for whole shader collections
-						</li>
-						<li>Decompile Vulkan SPIR-V to readable HLSL or GLSL</li>
-						<li>Open raw SPIR-V files and export shader bytecode</li>
-						<li>Compiled shader versions 58 through 72</li>
-					</ul>
-				</div>
-
-				<div>
-					<h3>Source 2 Resource Files</h3>
-					<ul>
-						<li>
-							Open vtex_c, vmdl_c, vmat_c, vpcf_c, and all
-							<a href="/ValveResourceFormat/api/ValveResourceFormat.Resource.html">Source 2 file types</a>
-						</li>
-						<li>View every resource block in its own tab</li>
-						<li>Browse external references and open them with a double-click</li>
-						<li>Decode binary data to readable KeyValues3 text</li>
-						<li>Reconstructed source for materials, textures, and more</li>
-						<li>Support for resource files from every Source 2 game</li>
-					</ul>
-				</div>
-			</div>
-
-			<div class="feature-section">
-				<div>
-					<h3>User Interface</h3>
-					<ul>
-						<li>Tabs with middle-click close, bulk close, and reload</li>
-						<li>Dark and light themes, or follow the system setting</li>
-						<li>Explorer lists VPKs, maps, shaders, and Workshop items from installed Steam games</li>
-						<li>Recent files and bookmarks</li>
-						<li>Drag and drop any file onto the window</li>
-						<li>Keyboard shortcuts, with hints for the active viewer</li>
-						<li>Register as the handler for .vpk files and vpk: links</li>
-						<li>Built-in updater with stable and dev channels</li>
-					</ul>
-				</div>
-
-				<div>
-					<h3>Additional File Formats</h3>
-					<ul>
-						<li>
-							<a href="/ValveResourceFormat/api/ValveResourceFormat.NavMesh.NavMeshFile.html">Navigation meshes</a>
-							(.nav) in 3D, grid navigation (.gnv), and ToolsAssetInfo (.bin) files
-						</li>
-						<li>
-							<a href="/ValveResourceFormat/api/ValveResourceFormat.ResourceTypes.WorldNode.html">World nodes</a>
-							(vwnod_c) and visibility data (vvis)
-						</li>
-						<li>
-							<a href="/ValveResourceFormat/api/ValveResourceFormat.ResourceTypes.BinaryKV3.html">KeyValues3</a>
-							binary and text, binary KeyValues1, and DMX files
-						</li>
-						<li>
-							<a href="/ValveResourceFormat/api/ValveResourceFormat.ClosedCaptions.html">Closed captions</a>, choreo scenes, and facial animation (.vfe) files
-						</li>
-						<li>PNG, JPG, GIF, and SVG images</li>
-						<li>Hex viewer and text viewer with syntax highlighting</li>
-					</ul>
+					</div>
 				</div>
 			</div>
 		</div>
 
 		<div class="container" id="changelog">
-			<h2>Changelog</h2>
+			<div class="section-head">
+				<h2>Changelog</h2>
+				<p class="section-lead">Release notes for every version, straight from GitHub.</p>
+			</div>
 		</div>
 
 		<div class="container" id="contributors">
-			<h2>Made possible by amazing people</h2>
-			<p class="contributors-desc">Source 2 Viewer is open-source and built by volunteers. Every contribution helps make it better for everyone.</p>
+			<div class="section-head">
+				<h2>Made possible by amazing people</h2>
+				<p class="section-lead">Source 2 Viewer is open-source and built by volunteers. Every contribution helps make it better for everyone.</p>
+			</div>
 			<div class="contributor-list" id="js-contributors"></div>
 		</div>
 

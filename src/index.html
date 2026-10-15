@@ -432,7 +432,7 @@
 					</div>
 					<div>
 						<h3>Models &amp; Animation</h3>
-						<p>Play back animations and inspect everything a model is built from.</p>
+						<p>Preview any model with its animations, skeleton, and physics.</p>
 						<ul>
 							<li>
 								<a href="/ValveResourceFormat/api/ValveResourceFormat.ResourceTypes.ModelAnimation.html">Animation</a>
@@ -458,7 +458,7 @@
 					</div>
 					<div>
 						<h3>VPK Viewer &amp; Extractor</h3>
-						<p>Browse game archives like a file explorer, then extract or decompile what you need.</p>
+						<p>Open game archives without unpacking them, and extract single files or whole folders.</p>
 						<ul>
 							<li>Open VPK files from any Source 1 or Source 2 game, including VPKs inside VPKs</li>
 							<li>Folder tree with a detail list or a grid of rendered thumbnails</li>
@@ -479,7 +479,7 @@
 					</div>
 					<div>
 						<h3>Node Graph Viewers</h3>
-						<p>Compiled graphs turned back into readable, searchable node layouts.</p>
+						<p>Animation graphs, Pulse scripts, and map entity I/O drawn as node graphs.</p>
 						<ul>
 							<li>
 								<a href="/ValveResourceFormat/api/ValveResourceFormat.ResourceTypes.AnimGraph.html">Animation graphs</a>
@@ -526,7 +526,7 @@
 						</li>
 						<li>Walk around maps with Counter-Strike movement: collisions, ladders, bunny hopping, and surfing</li>
 						<li>First-person CS2 weapon viewmodel and crosshair in walk mode</li>
-						<li>Doors, buttons, triggers, and logic entities run like in the game</li>
+						<li>Doors, buttons, triggers, and logic entities work as they do in the game</li>
 						<li>3D positional sound with soundscapes and sound events</li>
 						<li>Toggle world layers and physics groups, and jump to map cameras</li>
 						<li>Navigation meshes, visibility clusters, and CS2 bomb damage overlays</li>
@@ -566,8 +566,8 @@
 						</li>
 						<li>Skinned meshes, morph targets, and material skins</li>
 						<li>Root motion, additive animations, and morph weight animations</li>
-						<li>Source 2 materials converted to glTF PBR, with the original parameters kept</li>
-						<li>Compatible with Blender, Unity, Unreal Engine, and more</li>
+						<li>Materials converted to glTF PBR, keeping the original Source 2 parameters</li>
+						<li>Opens in Blender, Unity, and Unreal Engine</li>
 						<li>Batch export whole folders with textures as separate images</li>
 					</ul>
 				</div>
@@ -655,8 +655,6 @@
 						<li>View every resource block in its own tab</li>
 						<li>Browse external references and open them with a double-click</li>
 						<li>Decode binary data to readable KeyValues3 text</li>
-						<li>Reconstructed source for materials, textures, and more</li>
-						<li>Support for resource files from every Source 2 game</li>
 					</ul>
 				</div>
 
@@ -702,7 +700,9 @@
 		<div class="libraries" id="libraries">
 			<div class="container section-head">
 				<h2>Libraries and command line</h2>
-				<p class="section-lead">The code that powers Source 2 Viewer, available as .NET packages and a cross-platform CLI.</p>
+				<p class="section-lead">
+					Use the same .NET libraries as Source 2 Viewer in your own projects, or export files from scripts with the command line tool.
+				</p>
 			</div>
 			<div class="container libraries-content">
 				<div class="library-list">
@@ -732,7 +732,7 @@
 						</div>
 						<div class="library-description">
 							<h3>Command line utility</h3>
-							<p>A cross-platform console application that can export and decompile Source 2 resources similar to the main application.</p>
+							<p>Export and decompile Source 2 resources from the command line on Windows, Linux, and macOS.</p>
 							<div class="library-links">
 								<a href="https://github.com/ValveResourceFormat/ValveResourceFormat/releases">Download CLI for your OS from GitHub</a>
 								<a href="/ValveResourceFormat/guides/command-line.html">View usage guide</a>
@@ -879,7 +879,6 @@ File.<span class="hljs-built_in">WriteAllBytes</span>(<span class="hljs-string">
 		<div class="container" id="changelog">
 			<div class="section-head">
 				<h2>Changelog</h2>
-				<p class="section-lead">Release notes for every version, straight from GitHub.</p>
 			</div>
 			%S2V_CHANGELOG%
 		</div>

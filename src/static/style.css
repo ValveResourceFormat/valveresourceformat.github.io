@@ -1041,6 +1041,7 @@ a {
 			border-radius: var(--radius-lg);
 			padding: 1.5rem;
 			overflow-x: auto;
+			overflow-wrap: anywhere;
 		}
 
 		.release-version {
@@ -1104,6 +1105,7 @@ a {
 			border-radius: 3px;
 			padding: 0.2em 0.4em;
 			font-family: var(--font-mono);
+			box-decoration-break: clone;
 		}
 
 		pre {

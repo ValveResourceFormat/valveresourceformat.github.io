@@ -213,11 +213,11 @@ function rewriteReleaseBody(body, attachments) {
 			media.removeAttribute('data-canonical-src');
 		}
 
+		media.setAttribute('loading', 'lazy');
+
 		let replaced = media;
 
 		if (media.localName === 'img') {
-			media.setAttribute('loading', 'lazy');
-
 			if (attachment?.width && !media.hasAttribute('width')) {
 				media.setAttribute('width', String(attachment.width));
 				media.setAttribute('height', String(attachment.height));

@@ -450,6 +450,7 @@ async function loadContent() {
 	// Keys are the placeholder names without the S2V_ prefix.
 	return {
 		VERSION: escapeHtml(latestRelease.tag_name),
+		RELEASE_DATE: latestRelease.published_at.substring(0, 10),
 		DOWNLOAD_URL: escapeHtml(downloadAsset.browser_download_url),
 		CHANGELOG: changelog,
 		CONTRIBUTORS: renderContributors(contributors, avatars),

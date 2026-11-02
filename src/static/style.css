@@ -757,6 +757,58 @@ a {
 	text-align: center;
 }
 
+.skybox {
+	--tool-color: rgb(178 224 252);
+	position: relative;
+	z-index: 101;
+	height: 100vh;
+	overflow: hidden;
+	user-select: none;
+
+	svg {
+		display: block;
+		width: 100%;
+		height: 100%;
+	}
+
+	:is(pattern, .skybox-face) {
+		rect {
+			fill: var(--tool-color);
+		}
+
+		path {
+			stroke: color-mix(in oklab, var(--tool-color), #000 15%);
+		}
+
+		/* Black on colors lighter than 0.67 and white on darker ones, as Source 2 Viewer labels them */
+		text {
+			font-size: 12px;
+			font-weight: 800;
+			fill: oklch(from var(--tool-color) clamp(0, (0.67 - l) * 1000, 1) 0 0);
+		}
+	}
+
+	.skybox-tile {
+		position: absolute;
+		left: calc(var(--column) * var(--tile-size));
+		top: calc(var(--row) * var(--tile-size));
+		width: var(--tile-size);
+		height: var(--tile-size);
+		background: var(--color-bg);
+		perspective: 400px;
+	}
+
+	.skybox-face {
+		position: absolute;
+		inset: 0;
+		backface-visibility: hidden;
+
+		+ .skybox-face {
+			transform: rotateY(180deg);
+		}
+	}
+}
+
 .floating-nav {
 	position: fixed;
 	top: 1rem;

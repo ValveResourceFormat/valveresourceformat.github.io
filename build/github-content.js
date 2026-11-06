@@ -14,6 +14,30 @@ const REPO_URL = 'https://github.com/ValveResourceFormat/ValveResourceFormat';
 const RELEASES_SHOWN = 5;
 const DOWNLOAD_ASSET = 'Source2Viewer.exe';
 
+const CLI_SYSTEMS = [
+	{
+		name: 'Windows',
+		assets: {
+			x64: 'cli-windows-x64.zip',
+			arm64: 'cli-windows-arm64.zip',
+		},
+	},
+	{
+		name: 'Linux',
+		assets: {
+			x64: 'cli-linux-x64.zip',
+			arm64: 'cli-linux-arm64.zip',
+			arm: 'cli-linux-arm.zip',
+		},
+	},
+	{
+		name: 'macOS',
+		assets: {
+			'Apple Silicon': 'cli-macos-arm64.zip',
+		},
+	},
+];
+
 // Downloads live inside the vite root, so pages reference them like any other
 // static file: served as is in dev, hashed and emitted in build.
 const CACHE_DIR = resolve('src/static/github');
@@ -280,22 +304,35 @@ function assertNoExpiringUrls(body) {
 	}
 }
 
-/** @param {any} release */
-function renderAssets(release) {
-	let html = '<div class="release-assets">';
+/**
+ * @param {any} release
+ * @param {string} name
+ */
+function findAsset(release, name) {
+	const asset = release.assets.find((candidate) => candidate.name === name);
 
-	for (const asset of release.assets) {
-		let name = asset.name;
-
-		if (name.endsWith('.zip')) {
-			name = name.substring(0, name.length - 4).replace(/-/g, ' ');
-		}
-
-		html += `<a href="${escapeHtml(asset.browser_download_url)}" class="asset-link" download>${escapeHtml(name)}</a>`;
+	if (!asset) {
+		throw new Error(`Release ${release.tag_name} has no ${name}`);
 	}
 
-	html += `<a href="${escapeHtml(release.html_url)}" class="asset-link" target="_blank" rel="noopener">View release on GitHub</a>`;
-	html += '</div>';
+	return asset;
+}
+
+/** @param {any} release */
+function renderCliDownloads(release) {
+	let html = '';
+
+	for (const system of CLI_SYSTEMS) {
+		html += `<div class="cli-system"><span>${system.name}</span>`;
+
+		for (const [label, assetName] of Object.entries(system.assets)) {
+			const asset = findAsset(release, assetName);
+
+			html += `<a href="${escapeHtml(asset.browser_download_url)}" download>${label}</a>`;
+		}
+
+		html += '</div>';
+	}
 
 	return html;
 }
@@ -303,9 +340,8 @@ function renderAssets(release) {
 /**
  * @param {any} release
  * @param {string} body
- * @param {boolean} isLatest
  */
-function renderRelease(release, body, isLatest) {
+function renderRelease(release, body) {
 	const version = escapeHtml(`v${release.tag_name}`);
 	const date = dateFormatter.format(new Date(release.published_at));
 
@@ -316,11 +352,6 @@ function renderRelease(release, body, isLatest) {
 	html += '</div>';
 	html += '<div class="release-notes-main">';
 	html += `<div class="release-content">${body}</div>`;
-
-	if (isLatest) {
-		html += renderAssets(release);
-	}
-
 	html += '</div>';
 	html += '</div>';
 
@@ -360,15 +391,7 @@ async function loadContent() {
 	const contributors = allContributors.filter((c) => c.type !== 'Bot');
 
 	const latestRelease = releases[0];
-	const downloadAsset = latestRelease.assets.find(
-		(asset) => asset.name === DOWNLOAD_ASSET,
-	);
-
-	if (!downloadAsset) {
-		throw new Error(
-			`Release ${latestRelease.tag_name} has no ${DOWNLOAD_ASSET}`,
-		);
-	}
+	const downloadAsset = findAsset(latestRelease, DOWNLOAD_ASSET);
 
 	const bodies = new Map();
 	const uuids = new Set();
@@ -441,7 +464,7 @@ async function loadContent() {
 	let changelog = '';
 	for (const release of releases) {
 		const body = rewriteReleaseBody(bodies.get(release), attachments);
-		changelog += renderRelease(release, body, release === latestRelease);
+		changelog += renderRelease(release, body);
 	}
 
 	const oldestShown = releases[releases.length - 1].tag_name;
@@ -452,6 +475,7 @@ async function loadContent() {
 		VERSION: escapeHtml(latestRelease.tag_name),
 		RELEASE_DATE: latestRelease.published_at.substring(0, 10),
 		DOWNLOAD_URL: escapeHtml(downloadAsset.browser_download_url),
+		CLI_DOWNLOADS: renderCliDownloads(latestRelease),
 		CHANGELOG: changelog,
 		CONTRIBUTORS: renderContributors(contributors, avatars),
 	};

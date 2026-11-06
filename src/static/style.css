@@ -133,6 +133,7 @@ a {
 	margin: 0 2rem;
 
 	.download {
+		anchor-name: --download;
 		display: flex;
 		width: min-content;
 		white-space: nowrap;
@@ -222,6 +223,83 @@ a {
 		}
 	}
 
+	.cli-trigger {
+		anchor-name: --cli-trigger;
+		align-self: flex-start;
+		margin-top: 0.75rem;
+		font: inherit;
+		font-size: 0.85rem;
+		color: var(--color-text-muted);
+		background: none;
+		border: none;
+		padding: 0 0 0 calc(1.5rem + 1px);
+		cursor: pointer;
+
+		svg {
+			vertical-align: -0.15em;
+			margin-left: 0.25rem;
+		}
+
+		&:hover,
+		&:focus-visible {
+			color: var(--color-accent);
+		}
+	}
+
+	.cli-popover {
+		width: max-content;
+		max-width: calc(100vw - 2rem);
+		padding: 0.75rem 1rem;
+		color: var(--color-text-secondary);
+		background: var(--color-bg-raised);
+		border: 1px solid var(--color-border-strong);
+		border-radius: var(--radius-lg);
+		font-size: 0.85rem;
+		text-align: left;
+		white-space: nowrap;
+
+		.cli-system {
+			display: flex;
+			align-items: center;
+			gap: 0.4rem;
+			padding: 0.2rem 0;
+
+			span {
+				flex: 0 0 4rem;
+				color: var(--color-text-muted);
+			}
+
+			a {
+				padding: 0.3rem 0.75rem;
+				font-size: 0.95rem;
+				color: var(--color-text);
+				text-decoration: none;
+				background: var(--color-surface);
+				border: 1px solid var(--color-border-strong);
+				border-radius: var(--radius);
+
+				&:hover,
+				&:focus-visible {
+					color: var(--color-accent);
+					background: var(--color-surface-hover);
+					border-color: var(--color-accent);
+				}
+			}
+		}
+	}
+
+	@supports (position-anchor: --cli-trigger) {
+		.cli-popover {
+			position-anchor: --cli-trigger;
+			inset: auto;
+			top: anchor(bottom);
+			left: anchor(--download left);
+			width: anchor-size(--download width);
+			margin: 0.5rem 0 0;
+			position-try-fallbacks: flip-block;
+		}
+	}
+
 	.hero-left {
 		font-size: 1.5rem;
 		max-width: 500px;
@@ -297,7 +375,7 @@ a {
 			display: flex;
 			align-items: center;
 			gap: 0.75rem;
-			padding: 0.5rem 1rem;
+			padding: 0.5rem 1.5rem;
 			border: 1px solid rgb(255 255 255 / 15%);
 			border-radius: var(--radius);
 			font-size: 0.85rem;
@@ -309,7 +387,7 @@ a {
 
 			.game-icons {
 				display: flex;
-				gap: 0.5rem;
+				gap: 0.25rem;
 
 				a {
 					text-decoration: none;
@@ -489,6 +567,21 @@ a {
 		.hero-left .supported {
 			width: 100%;
 			flex-direction: column;
+		}
+
+		.cli-trigger {
+			align-self: center;
+			padding: 0;
+		}
+
+		.cli-popover .cli-system {
+			flex-wrap: wrap;
+			justify-content: center;
+
+			span {
+				flex-basis: 100%;
+				text-align: center;
+			}
 		}
 
 		.hero-left .update-banner {
@@ -1237,37 +1330,6 @@ a {
 
 			@media (max-width: 768px) {
 				max-width: 100%;
-			}
-		}
-	}
-
-	.release-assets {
-		margin-top: 2rem;
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-		gap: 0.75rem;
-
-		.asset-link {
-			display: block;
-			padding: 0.75rem 1rem;
-			background: rgb(255 255 255 / 5%);
-			border: 1px solid rgb(71 168 255 / 15%);
-			border-radius: var(--radius);
-			text-decoration: none;
-			color: var(--color-text);
-			font-weight: 500;
-			white-space: nowrap;
-			overflow: hidden;
-			text-overflow: ellipsis;
-			transition:
-				background 0.2s ease,
-				border-color 0.2s ease,
-				color 0.2s ease;
-
-			&:hover {
-				background: rgb(255 255 255 / 8%);
-				border-color: var(--color-accent);
-				color: var(--color-accent);
 			}
 		}
 	}

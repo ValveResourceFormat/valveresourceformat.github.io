@@ -158,7 +158,7 @@ function textColumn(text) {
 				display: 'block',
 				lineClamp: text.summaryLines,
 				textOverflow: 'ellipsis',
-				fontSize: 23,
+				fontSize: 24,
 				fontWeight: 500,
 				color: SECONDARY_TEXT,
 				lineHeight: `${CELL / 2}px`,

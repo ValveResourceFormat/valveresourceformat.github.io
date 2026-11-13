@@ -43,15 +43,25 @@ html {
 	margin-right: 1.25rem;
 	padding: 0.55rem 1.1rem;
 	border-radius: var(--radius);
-	background: var(--release-accent);
-	color: #fff;
+	background: linear-gradient(
+		to bottom,
+		color-mix(in srgb, var(--color-accent), #fff 15%),
+		var(--color-accent)
+	);
+	color: #000;
 	font-weight: 700;
 	text-decoration: none;
 	white-space: nowrap;
-	transition: background 0.2s;
 
-	&:hover {
-		background: var(--color-accent);
+	&:hover,
+	&:focus {
+		color: #000;
+		text-decoration: underline;
+		background: linear-gradient(
+			to bottom,
+			#fff,
+			color-mix(in srgb, var(--color-accent), #fff 70%)
+		);
 	}
 }
 

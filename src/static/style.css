@@ -3,7 +3,7 @@
 	font-style: normal;
 	font-weight: 200 800;
 	font-display: fallback;
-	src: url(Manrope.woff2) format("woff2");
+	src: url(fonts/Manrope.woff2) format("woff2");
 }
 
 :root {

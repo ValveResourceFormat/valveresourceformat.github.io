@@ -1,3 +1,11 @@
+# Building
+
+The build fetches releases from the GitHub API. Pass a token so it is not rate limited:
+
+```bash
+GITHUB_TOKEN=$(gh auth token) npm run build
+```
+
 # Translation guidelines
 
 This site has localized pages (e.g. `ru.html`) based on `index.html`.

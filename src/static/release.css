@@ -8,8 +8,6 @@ html {
 /* On narrow screens the sidebar's children join the layout grid, so the brand
    and the release menu share the top row. */
 .release-layout {
-	--release-accent: #458fff;
-
 	display: grid;
 	grid-template-columns: minmax(0, 1fr) auto;
 	column-gap: 1rem;
@@ -68,39 +66,34 @@ html {
 .release-sidebar {
 	--timeline-line: hsl(216 30% 22%);
 	--timeline-dot: hsl(216 30% 38%);
+	/* The rail and dots sit in a gutter as wide as the brand logo, and the text
+	   after it starts where the wordmark does */
+	--timeline-gutter: 40px;
 
 	display: contents;
-}
-
-.release-timeline-menu {
-	grid-column: 2;
-	grid-row: 1;
-	align-self: center;
-	position: relative;
-	margin-right: 1.25rem;
 }
 
 .release-main {
 	grid-column: 1 / -1;
 }
 
-.release-timeline-summary {
+.release-timeline-button {
+	anchor-name: --release-timeline-button;
+	grid-column: 2;
+	grid-row: 1;
+	align-self: center;
+	margin-right: 1.25rem;
 	display: flex;
 	align-items: center;
-	justify-content: space-between;
 	gap: 0.75rem;
 	padding: 0.55rem 1rem;
 	border: 1px solid var(--timeline-line);
 	border-radius: var(--radius);
 	background: var(--color-bg-raised);
 	color: var(--color-text);
+	font: inherit;
 	font-weight: 700;
-	list-style: none;
 	cursor: pointer;
-
-	&::-webkit-details-marker {
-		display: none;
-	}
 
 	&::after {
 		content: "";
@@ -110,35 +103,34 @@ html {
 		border-bottom: 2px solid var(--color-accent);
 		rotate: 45deg;
 		translate: 0 -2px;
-		transition: rotate 0.2s;
-	}
-
-	details[open] > &::after {
-		rotate: -135deg;
-		translate: 0 2px;
 	}
 }
 
-.release-timeline-menu::details-content {
-	display: block;
-}
-
-/* The open list drops over the page from the right edge of the menu button */
-.release-timeline {
-	position: absolute;
-	top: calc(100% + 0.5rem);
-	right: 0;
-	z-index: 10;
+/* The open list drops below the menu button, aligned to its right edge */
+.release-timeline-menu {
+	inset: auto;
+	top: calc(anchor(--release-timeline-button bottom) + 0.5rem);
+	right: anchor(--release-timeline-button right);
 	width: min(20rem, calc(100vw - 2.5rem));
+	padding: 0;
+	overflow: hidden;
+	border: 1px solid var(--timeline-line);
+	border-radius: var(--radius);
+	background: var(--color-bg-raised);
+
+	&::backdrop {
+		background: rgba(0, 0, 0, 0.92);
+	}
+}
+
+.release-timeline {
 	max-height: 60vh;
 	overflow-x: hidden;
 	overflow-y: auto;
 	overscroll-behavior: contain;
 	scrollbar-width: thin;
-	scrollbar-color: rgb(69 143 255 / 33%) transparent;
-	border: 1px solid var(--timeline-line);
-	border-radius: var(--radius);
-	background: var(--color-bg-raised);
+	scrollbar-color: color-mix(in srgb, var(--color-accent) 33%, transparent)
+		transparent;
 }
 
 .release-timeline-list {
@@ -146,23 +138,33 @@ html {
 	padding: 0.25rem 0 1rem;
 }
 
-.release-timeline-line {
+/* The rail is drawn in segments, one beside each year and each release, so it
+   starts on the first dot and ends on the last. */
+.release-timeline-year::before,
+.release-timeline-row::before {
+	content: "";
 	position: absolute;
 	top: 0;
 	bottom: 0;
-	left: 14px;
+	left: calc(var(--timeline-gutter) / -2);
 	width: 2px;
+	translate: -50%;
 	background: var(--timeline-line);
 }
 
 .release-timeline-year {
 	position: relative;
-	padding: 1rem 0.75rem 0.4rem 2.25rem;
+	padding: 1rem 0.75rem 0.4rem 0.6rem;
+	margin-left: var(--timeline-gutter);
 	color: var(--color-accent);
 	font-size: 0.7rem;
 	font-weight: 800;
 	line-height: 1;
 	letter-spacing: 0.12em;
+
+	&:first-child::before {
+		display: none;
+	}
 }
 
 .release-timeline-row {
@@ -171,8 +173,8 @@ html {
 	align-items: center;
 	gap: 0.5rem;
 	min-height: 2.5rem;
-	padding: 0 0.75rem 0 2.25rem;
-	margin-right: 0.5rem;
+	padding: 0 0.75rem 0 0.6rem;
+	margin: 0 0.5rem 0 var(--timeline-gutter);
 	border-radius: var(--radius);
 	color: var(--color-text-secondary);
 	font-size: 0.9rem;
@@ -192,23 +194,29 @@ html {
 		outline-offset: -2px;
 	}
 
-	i {
+	&:first-of-type::before {
+		top: 50%;
+	}
+
+	&:last-of-type::before {
+		bottom: 50%;
+	}
+
+	&::after {
+		content: "";
 		position: absolute;
 		top: 50%;
-		left: 9px;
-		translate: 0 -50%;
-		box-sizing: border-box;
+		left: calc(var(--timeline-gutter) / -2);
+		translate: -50% -50%;
 		width: 12px;
 		height: 12px;
 		border: 2px solid var(--timeline-dot);
 		border-radius: 50%;
 		background: var(--color-bg);
-		transition:
-			border-color 0.15s,
-			box-shadow 0.15s;
+		transition: border-color 0.15s;
 	}
 
-	&:hover i {
+	&:hover::after {
 		border-color: var(--color-accent);
 	}
 
@@ -220,7 +228,7 @@ html {
 	em {
 		padding: 0.2rem 0.45rem;
 		border-radius: 99px;
-		background: rgb(69 143 255 / 18%);
+		background: color-mix(in srgb, var(--color-accent) 18%, transparent);
 		color: var(--color-accent);
 		font-size: 0.625rem;
 		font-style: normal;
@@ -231,16 +239,15 @@ html {
 	}
 
 	&.is-current {
-		background: rgb(69 143 255 / 15%);
+		background: color-mix(in srgb, var(--color-accent) 15%, transparent);
 
 		b {
 			color: var(--color-text);
 		}
 
-		i {
-			border-color: var(--release-accent);
-			background: var(--release-accent);
-			box-shadow: 0 0 0 4px rgb(69 143 255 / 25%);
+		&::after {
+			border-color: var(--color-accent);
+			background: var(--color-accent);
 		}
 	}
 }
@@ -292,33 +299,22 @@ html {
 		grid-row: 2;
 	}
 
-	.release-timeline-summary {
+	.release-timeline-button {
 		display: none;
 	}
 
+	/* The dialog is never opened at this width; its list sits in the sidebar */
 	.release-timeline-menu {
-		display: flex;
-		flex-direction: column;
-		flex: 1;
-		min-height: 0;
-		position: static;
-		margin: 0;
-
-		&::details-content {
-			content-visibility: visible;
-			display: flex;
-			flex-direction: column;
-			min-height: 0;
-		}
+		display: contents;
 	}
 
 	.release-timeline {
-		position: static;
-		width: auto;
+		flex: 1;
+		min-height: 0;
 		max-height: none;
-		border: 0;
-		border-radius: 0;
-		background: none;
+		/* Matches the brand's left padding, so the rail runs under the centre of
+		   the logo */
+		padding-left: 12px;
 	}
 }
 

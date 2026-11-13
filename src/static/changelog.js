@@ -109,8 +109,17 @@ if (thanks) {
 	ShuffleContributors(thanks);
 }
 
-document
-	.querySelector('.release-timeline-menu')
-	.addEventListener('toggle', ScrollTimelineToCurrent);
+const timelineMenu = document.querySelector('.release-timeline-menu');
+timelineMenu.addEventListener('toggle', ScrollTimelineToCurrent);
+
+// A click on the backdrop closes the menu.
+timelineMenu.addEventListener('click', (e) => {
+	if (e.target === timelineMenu) timelineMenu.close();
+});
+
+// The menu is only a modal below the sidebar breakpoint.
+matchMedia('(min-width: 900px)').addEventListener('change', () =>
+	timelineMenu.close(),
+);
 
 InitSkybox(document.querySelector('.skybox'));

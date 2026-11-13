@@ -101,7 +101,6 @@ function renderDocument(page) {
 function renderTimelineLink(release, latest, current) {
 	const published = new Date(release.published_at);
 	const version = escapeHtml(`v${release.tag_name}`);
-	const title = escapeHtml(dateFormatter.format(published));
 	const shortDate = escapeHtml(shortDateFormatter.format(published));
 	const badge = latest ? '<em>Latest</em>' : '';
 	let rowClass = 'release-timeline-row';
@@ -112,7 +111,7 @@ function renderTimelineLink(release, latest, current) {
 		ariaCurrent = ' aria-current="page"';
 	}
 
-	return `<a class="${rowClass}"${ariaCurrent} href="/${releasePath(release)}" title="${title}"><i></i><b>${version}</b>${badge}<span class="release-timeline-date">${shortDate}</span></a>`;
+	return `<a class="${rowClass}"${ariaCurrent} href="/${releasePath(release)}"><b>${version}</b>${badge}<span class="release-timeline-date">${shortDate}</span></a>`;
 }
 
 /**
@@ -121,8 +120,7 @@ function renderTimelineLink(release, latest, current) {
  * @param {any} currentRelease The release the page is for.
  */
 function renderTimeline(pages, currentRelease) {
-	let html =
-		'<div class="release-timeline-list"><span class="release-timeline-line"></span>';
+	let html = '<div class="release-timeline-list">';
 	let year = 0;
 
 	for (let i = 0; i < pages.length; i++) {
@@ -148,10 +146,9 @@ function renderTimeline(pages, currentRelease) {
  */
 function renderSidebar(pages, release) {
 	const timeline = renderTimeline(pages, release);
-	let html = '<details class="release-timeline-menu">';
-	html += '<summary class="release-timeline-summary">All releases</summary>';
-	html += `<nav class="release-timeline" aria-label="All releases">${timeline}</nav>`;
-	html += '</details>';
+	let html =
+		'<button class="release-timeline-button" type="button" commandfor="release-timeline-menu" command="show-modal">All releases</button>';
+	html += `<dialog class="release-timeline-menu" id="release-timeline-menu"><nav class="release-timeline" aria-label="All releases">${timeline}</nav></dialog>`;
 
 	return html;
 }

@@ -43,7 +43,6 @@ const CLI_SYSTEMS = [
 		assets: {
 			x64: 'cli-linux-x64.zip',
 			arm64: 'cli-linux-arm64.zip',
-			arm: 'cli-linux-arm.zip',
 		},
 	},
 	{

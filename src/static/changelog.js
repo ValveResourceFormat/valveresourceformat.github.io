@@ -110,16 +110,15 @@ if (thanks) {
 }
 
 const timelineMenu = document.querySelector('.release-timeline-menu');
-timelineMenu.addEventListener('toggle', ScrollTimelineToCurrent);
-
-// A click on the backdrop closes the menu.
-timelineMenu.addEventListener('click', (e) => {
-	if (e.target === timelineMenu) timelineMenu.close();
+timelineMenu.addEventListener('toggle', (e) => {
+	if (e.newState === 'open') {
+		ScrollTimelineToCurrent();
+	}
 });
 
-// The menu is only a modal below the sidebar breakpoint.
+// The menu is only a popover below the sidebar breakpoint.
 matchMedia('(min-width: 900px)').addEventListener('change', () =>
-	timelineMenu.close(),
+	timelineMenu.hidePopover(),
 );
 
 InitSkybox(document.querySelector('.skybox'));

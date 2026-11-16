@@ -303,7 +303,7 @@ html {
 		display: none;
 	}
 
-	/* The dialog is never opened at this width; its list sits in the sidebar */
+	/* The popover is never opened at this width; its list sits in the sidebar */
 	.release-timeline-menu {
 		display: contents;
 	}

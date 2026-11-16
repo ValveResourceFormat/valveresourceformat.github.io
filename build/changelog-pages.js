@@ -147,8 +147,8 @@ function renderTimeline(pages, currentRelease) {
 function renderSidebar(pages, release) {
 	const timeline = renderTimeline(pages, release);
 	let html =
-		'<button class="release-timeline-button" type="button" commandfor="release-timeline-menu" command="show-modal">All releases</button>';
-	html += `<dialog class="release-timeline-menu" id="release-timeline-menu"><nav class="release-timeline" aria-label="All releases">${timeline}</nav></dialog>`;
+		'<button class="release-timeline-button" type="button" commandfor="release-timeline-menu" command="toggle-popover">All releases</button>';
+	html += `<div class="release-timeline-menu" id="release-timeline-menu" popover><nav class="release-timeline" aria-label="All releases">${timeline}</nav></div>`;
 
 	return html;
 }

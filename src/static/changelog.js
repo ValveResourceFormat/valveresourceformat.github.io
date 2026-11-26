@@ -16,50 +16,129 @@ function OnChangelogClick(e) {
 	OpenMediaModal(media);
 }
 
-/** @param {HTMLImageElement|HTMLVideoElement} source */
-function OpenMediaModal(source) {
-	const isVideo = source.localName === 'video';
+/** @type {HTMLDialogElement|null} */
+let mediaModal = null;
 
-	/** @type {HTMLDialogElement} */
-	let modal = document.getElementById('changelog-media-modal');
-	if (!modal) {
-		modal = document.createElement('dialog');
-		modal.id = 'changelog-media-modal';
-		modal.className = 'changelog-modal';
+/** @type {HTMLImageElement|HTMLVideoElement|null} */
+let modalMedia = null;
 
-		const closeBtn = document.createElement('button');
-		closeBtn.className = 'changelog-modal-close';
-		closeBtn.ariaLabel = 'Close';
-		closeBtn.textContent = '×';
-		closeBtn.onclick = () => modal.close();
-		modal.appendChild(closeBtn);
+/** @type {HTMLElement|null} */
+let modalMediaWrapper = null;
 
-		modal.addEventListener('click', (e) => {
-			if (e.target === modal) modal.close();
-		});
-		modal.addEventListener('close', () => {
-			const video = modal.querySelector('video');
-			if (video) video.pause();
-		});
+function CreateMediaModal() {
+	const modal = document.createElement('dialog');
+	modal.className = 'changelog-modal';
 
-		document.body.appendChild(modal);
+	const closeBtn = document.createElement('button');
+	closeBtn.className = 'changelog-modal-close';
+	closeBtn.ariaLabel = 'Close';
+	closeBtn.textContent = '×';
+	closeBtn.onclick = CloseMediaModal;
+	modal.appendChild(closeBtn);
+
+	modal.addEventListener('click', (e) => {
+		if (e.target === modal) CloseMediaModal();
+	});
+
+	// Escape closes through the view transition as well.
+	modal.addEventListener('cancel', (e) => {
+		e.preventDefault();
+		CloseMediaModal();
+	});
+
+	// Browsers may close the dialog without a cancelable cancel event.
+	modal.addEventListener('close', () => {
+		const media = ReturnModalMedia();
+
+		if (media) {
+			media.style.viewTransitionName = '';
+		}
+	});
+
+	document.body.appendChild(modal);
+
+	return modal;
+}
+
+/**
+ * Moves the media itself into the modal, so a video keeps playing from the
+ * same frame.
+ * @param {HTMLImageElement|HTMLVideoElement} media
+ */
+function OpenMediaModal(media) {
+	mediaModal ??= CreateMediaModal();
+	modalMedia = media;
+	modalMediaWrapper = media.parentElement;
+
+	// Hold the wrapper height so the article does not reflow without the media.
+	modalMediaWrapper.style.height = `${modalMediaWrapper.getBoundingClientRect().height}px`;
+	media.style.viewTransitionName = 'changelog-media';
+
+	RunViewTransition(() => {
+		if (media.localName === 'video') {
+			media.controls = true;
+			media.play().catch(() => {});
+		}
+
+		mediaModal.appendChild(media);
+		mediaModal.showModal();
+	});
+}
+
+function CloseMediaModal() {
+	const media = modalMedia;
+
+	if (!media) {
+		return;
 	}
 
-	const existing = modal.querySelector('img, video');
-	if (existing) existing.remove();
+	const finished = RunViewTransition(() => {
+		ReturnModalMedia();
+		mediaModal.close();
+	});
 
-	const media = document.createElement(isVideo ? 'video' : 'img');
-	media.className = 'changelog-modal-media';
-	media.src = source.src;
+	finished.then(() => {
+		media.style.viewTransitionName = '';
+	});
+}
 
-	if (isVideo) {
-		media.controls = true;
-		media.autoplay = true;
-		media.loop = true;
+/**
+ * Runs a DOM update in a view transition, or directly where the browser has
+ * none. Returns a promise that settles when the animation ends.
+ * @param {() => void} update
+ */
+function RunViewTransition(update) {
+	if (!document.startViewTransition) {
+		update();
+		return Promise.resolve();
 	}
 
-	modal.appendChild(media);
-	modal.showModal();
+	return document.startViewTransition(update).finished;
+}
+
+/**
+ * Puts the media in the modal back into its wrapper in the article.
+ * Returns the media, or null when the modal holds none.
+ */
+function ReturnModalMedia() {
+	const media = modalMedia;
+
+	if (!media) {
+		return null;
+	}
+
+	modalMedia = null;
+
+	if (media.localName === 'video') {
+		media.controls = false;
+		// Sound turned on in the modal stays off in the article.
+		media.muted = true;
+	}
+
+	modalMediaWrapper.appendChild(media);
+	modalMediaWrapper.style.height = '';
+
+	return media;
 }
 
 function ScrollTimelineToCurrent() {

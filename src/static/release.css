@@ -532,7 +532,14 @@ html {
 	}
 }
 
-/* Media modal (images and videos) */
+::view-transition-group(changelog-media),
+::view-transition-old(changelog-media),
+::view-transition-new(changelog-media) {
+	animation-duration: 350ms;
+	animation-timing-function: var(--ease-out);
+}
+
+/* Media modal (images and videos), opened and closed by a view transition */
 .changelog-modal {
 	border: none;
 	background: transparent;
@@ -543,54 +550,24 @@ html {
 	align-items: center;
 	justify-content: center;
 	padding: 2rem;
-	opacity: 0;
-	transition:
-		opacity 200ms var(--ease-out),
-		overlay 200ms var(--ease-out) allow-discrete,
-		display 200ms var(--ease-out) allow-discrete;
 
 	&[open] {
 		display: flex;
-		opacity: 1;
-
-		@starting-style {
-			opacity: 0;
-		}
 	}
 
 	&::backdrop {
 		background: rgba(0, 0, 0, 0.92);
 		backdrop-filter: blur(4px);
-		opacity: 0;
-		transition:
-			opacity 200ms var(--ease-out),
-			overlay 200ms var(--ease-out) allow-discrete,
-			display 200ms var(--ease-out) allow-discrete;
 	}
 
-	&[open]::backdrop {
-		opacity: 1;
-
-		@starting-style {
-			opacity: 0;
-		}
-	}
-
-	.changelog-modal-media {
+	/* Auto sizes keep the aspect ratio from the width and height attributes */
+	> :is(img, video) {
+		width: auto;
+		height: auto;
 		max-width: 90vw;
 		max-height: 90vh;
 		border-radius: var(--radius);
 		box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-		object-fit: contain;
-		transition: scale 250ms var(--ease-out);
-
-		@starting-style {
-			scale: 0.96;
-		}
-
-		@media (prefers-reduced-motion: reduce) {
-			transition: none;
-		}
 	}
 
 	.changelog-modal-close {
@@ -617,7 +594,7 @@ html {
 	@media (max-width: 768px) {
 		padding: 1rem;
 
-		.changelog-modal-media {
+		> :is(img, video) {
 			max-height: 80vh;
 		}
 

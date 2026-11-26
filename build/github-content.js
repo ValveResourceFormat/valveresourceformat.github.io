@@ -449,6 +449,9 @@ function rewriteReleaseBody(body, attachments) {
 			media.removeAttribute('data-canonical-src');
 		}
 
+		// Drop GitHub's inline sizing, which caps media at its height in pixels.
+		media.removeAttribute('style');
+		media.removeAttribute('class');
 		media.setAttribute('loading', 'lazy');
 
 		let replaced = media;
@@ -477,6 +480,8 @@ function rewriteReleaseBody(body, attachments) {
 				continue;
 			}
 		} else {
+			// Controls show only in the modal.
+			media.removeAttribute('controls');
 			media.setAttribute('preload', 'none');
 			media.setAttribute('muted', '');
 			media.setAttribute('loop', '');
